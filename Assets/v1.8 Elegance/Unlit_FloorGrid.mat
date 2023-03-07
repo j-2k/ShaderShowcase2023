@@ -22,12 +22,12 @@ Material:
     m_TexEnvs:
     - _MainTex:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 15, y: 15}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _LineDensity: 100
-    - _LineThickness: 1000
+    - _LineDensity: 10
+    - _LineThickness: 100
     m_Colors:
-    - _Color: {r: 1, g: 0.008962989, b: 0, a: 1}
+    - _Color: {r: 5.992157, g: 0.09411765, b: 0, a: 1}
   m_BuildTextureStacks: []
