@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: dynamicymask
+  m_Name: dynamicymask 1
   m_Shader: {fileID: 4800000, guid: 0587b582840254955bb5489f772eb86d, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -21,11 +21,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 8d283e391da5f46b49683af8dc6fe88f, type: 3}
-        m_Scale: {x: 3, y: 3}
+        m_Texture: {fileID: 2800000, guid: e09650ca1deb24cc7811aa68aac4213e, type: 3}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _TopTex:
-        m_Texture: {fileID: 2800000, guid: e09650ca1deb24cc7811aa68aac4213e, type: 3}
+        m_Texture: {fileID: 2800000, guid: b9d3b0fb983c543f38d443c2b7c44ab0, type: 3}
         m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
