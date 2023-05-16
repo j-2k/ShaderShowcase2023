@@ -39,18 +39,18 @@ public class ArcadeDanceController : MonoBehaviour
         if(isRandom)
         {
             float randomRadian = Random.Range(0, Mathf.PI*2);
+            Debug.Log(randomRadian + "RRAND RADIAN1");
             Vector3 direction = new Vector3(Mathf.Sin(randomRadian), 0, Mathf.Cos(randomRadian));
             if(Vector3.Angle(dir, direction) <= 90)
             {
-                Debug.Log("Angle is < 90");
-                Vector3 newDir = GetRandomDirection(angleTheta, true);
-                return newDir;
+                Debug.Log("Angle is < 90, Gen New");
+                direction.x *= -1;
+                direction.z *= -1;
+                Debug.Log(randomRadian + "RRAND RADIAN2");
             }
-            else
-            {
-                Debug.Log(direction);
-                return direction;
-            }
+
+            //Debug.Log(direction);
+            return direction;
 
         }
         else
@@ -66,7 +66,7 @@ public class ArcadeDanceController : MonoBehaviour
         if (Time.time >= a)
         {
             dir = GetRandomDirection(angleTheta, true) * 3;
-            a = Time.time + 1;
+            a = Time.time + 2;
         }
         Debug.DrawRay(transformPos, dir, Color.green);
     }
