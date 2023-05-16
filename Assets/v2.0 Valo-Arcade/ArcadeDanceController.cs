@@ -11,9 +11,12 @@ public class ArcadeDanceController : MonoBehaviour
     float speed;
     [SerializeField] float angleTheta;
     [SerializeField] float directionMagnitude = 5;
+    [SerializeField] float acceleration = 7;
 
     Vector3 transformPos;
     Vector3 dir;
+
+    GameObject MainDanceArrow;
 
     enum DanceStages {
         EMPTY,
@@ -31,32 +34,36 @@ public class ArcadeDanceController : MonoBehaviour
         deformShaderMat = transform.GetChild(0).Find("Surface").GetComponent<Renderer>().material;
     }
 
-    GameObject MainDanceArrow;
 
 
-
-
-
+    // Update is called once per frame
+    void Update()
+    {
+        transformPos = transform.position + Vector3.up * 1.0f;
+        DebugDirectionRay();
+        ShaderHandler();
+        EnumDanceStates();
+       
+    }
 
     void DebugDirectionRay()
     {
         Debug.DrawRay(transformPos, dir, Color.green);
     }
-    // Update is called once per frame
-    void Update()
+
+    void ShaderHandler()
     {
-        DebugDirectionRay();
-        deformShaderMat.SetFloat("_Strength", Mathf.PingPong(Time.time*2,1));//(-0.5f,0.5f, Mathf.Abs(Mathf.Sin(Time.time))));
-        transformPos = transform.position + Vector3.up * 1.0f;
-        EnumDanceStates();
-       
+        deformShaderMat.SetFloat("_Strength", Mathf.PingPong(Time.time * 2, 1));//(-0.5f,0.5f, Mathf.Abs(Mathf.Sin(Time.time))));
     }
+
+    int stateIterator = 0;
 
     void EnumDanceStates()
     {
         switch (currentEnum)
         {
             case DanceStages.EMPTY:
+                stateIterator = 0;
                 Debug.Log("EMPTY");
                 break;
 
@@ -81,19 +88,35 @@ public class ArcadeDanceController : MonoBehaviour
 
             case DanceStages.Playing:
                 Debug.Log("Playing");
-                speed += 7 * Time.deltaTime;
+                speed += acceleration * Time.deltaTime;
                 MainDanceArrow.transform.position += MainDanceArrow.transform.forward * speed * Time.deltaTime;
                 if (Vector3.Distance(MainDanceArrow.transform.position, transformPos) < 0.5)
                 {
                     MainDanceArrow.SetActive(false);
-                    currentEnum = DanceStages.Generate;
                     speed = 1;
+                    stateIterator++;
+                    if (stateIterator >= 5)
+                    {
+                        currentEnum = DanceStages.Ending;
+                    }
+                    else
+                    {
+                        currentEnum = DanceStages.Generate;
+                    }
                 }
                 break;
 
 
             case DanceStages.Ending:
                 Debug.Log("Ending");
+                dir = Vector3.up * directionMagnitude;
+                MainDanceArrow.transform.position = transformPos + dir;
+                MainDanceArrow.transform.rotation = Quaternion.LookRotation(transformPos - MainDanceArrow.transform.position);
+                MainDanceArrow.SetActive(true);
+                //for (int i = 0; i < 20; i++)
+                //create 20 arrows and try to send them all down (think of logic now implement later)
+
+                
                 break;
 
 
