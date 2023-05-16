@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DeformULSMaterial
+  m_Name: 1_DeformULSMaterial
   m_Shader: {fileID: 4800000, guid: e4e1da104e0ee4bb8bc10f8640b5d94f, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -25,6 +25,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
-    m_Colors: []
+    m_Floats:
+    - _Amount: 0
+    - _FresnelExponent: 1.5
+    - _TimeOffset: 0
+    - _TimeScale: 3
+    m_Colors:
+    - _Color: {r: 0.26918706, g: 0, b: 0.5188679, a: 1}
+    - _Emission: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
