@@ -10,6 +10,7 @@ public class ArcadeDanceController : MonoBehaviour
     [SerializeField] DanceStages currentEnum;
     float speed;
     [SerializeField] float angleTheta;
+    [SerializeField] float directionMagnitude = 5;
 
     Vector3 transformPos;
     Vector3 dir;
@@ -34,52 +35,17 @@ public class ArcadeDanceController : MonoBehaviour
 
 
 
-    Vector3 GetRandomDirection(float angle, bool isRandom = true)
-    {
-        if(isRandom)
-        {
-            float randomRadian = Random.Range(0, Mathf.PI*2);
-            Vector3 direction = new Vector3(Mathf.Sin(randomRadian), 0, Mathf.Cos(randomRadian));
-            if(Vector3.Angle(dir, direction) <= 90)
-            {
-                direction.x *= -1;
-                direction.z *= -1;
-            }
-            return Vector3.Normalize(direction);
-        }
-        else
-        {
-            Vector3 direction = new Vector3(Mathf.Sin(Mathf.Deg2Rad * angle), 0, Mathf.Cos(Mathf.Deg2Rad * angle));
-            Debug.Log(direction);
-            return Vector3.Normalize(direction);
-        }
-    }
 
-    float nextTimeToCheck;
-    [SerializeField] float secondsToGenNewRay = 5;
-    [SerializeField] float directionMagnitude = 5;
-    void DebugRotARay(bool isGenerating = false)
-    {
-        if(!isGenerating)
-        {
 
-        }
-        else
-        {
-            if (Time.time >= nextTimeToCheck)
-            {
-                dir = GetRandomDirection(angleTheta, true) * directionMagnitude;
-                nextTimeToCheck = Time.time + secondsToGenNewRay;
-            }
-        }
+
+    void DebugDirectionRay()
+    {
         Debug.DrawRay(transformPos, dir, Color.green);
-
     }
     // Update is called once per frame
     void Update()
     {
-        DebugRotARay();
-
+        DebugDirectionRay();
         deformShaderMat.SetFloat("_Strength", Mathf.PingPong(Time.time*2,1));//(-0.5f,0.5f, Mathf.Abs(Mathf.Sin(Time.time))));
         transformPos = transform.position + Vector3.up * 1.0f;
         EnumDanceStates();
@@ -97,7 +63,7 @@ public class ArcadeDanceController : MonoBehaviour
 
             case DanceStages.Generate:
                 Debug.Log("Generate");
-                dir = GetRandomDirection(angleTheta, true) * directionMagnitude;
+                dir = GetRandomDirection() * directionMagnitude;
                 if (MainDanceArrow == null)
                 {
                     MainDanceArrow = GameObject.Instantiate(danceArrowFab, transformPos + dir,
@@ -137,18 +103,30 @@ public class ArcadeDanceController : MonoBehaviour
         }
     }
 
-
-
-    Vector3 GenRandom8GridPos(Transform center, bool isWorldSpace = false)
+    Vector3 GetRandomDirection(bool isNormalized = true)
     {
-        //Ditching this idea Random Direction Vec will look better
-        return Vector3.zero + Vector3.up * 1f;
+        float randomRadian = Random.Range(0, Mathf.PI * 2);
+        Vector3 direction = new Vector3(Mathf.Sin(randomRadian), 0, Mathf.Cos(randomRadian));
+        if (Vector3.Angle(dir, direction) <= 90)
+        {
+            direction.x *= -1;
+            direction.z *= -1;
+        }
+
+        if(isNormalized)
+        {
+            return Vector3.Normalize(direction);
+        }
+        else
+        {
+            return direction;
+        }
     }
 
-    private void OnDrawGizmos()
+    Vector3 SetDirectionFromAngle(float angle)
     {
-        //Vector3 GizmoDir = GetRandomDirection(0);
-        //Gizmos.DrawRay(transformPos, GizmoDir);
-        //Gizmos.DrawSphere(transformPos + GizmoDir, 0.1f);
+        Vector3 direction = new Vector3(Mathf.Sin(Mathf.Deg2Rad * angle), 0, Mathf.Cos(Mathf.Deg2Rad * angle));
+        Debug.Log(direction);
+        return Vector3.Normalize(direction);
     }
 }
