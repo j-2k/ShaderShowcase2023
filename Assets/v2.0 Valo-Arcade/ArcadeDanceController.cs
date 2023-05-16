@@ -110,12 +110,23 @@ public class ArcadeDanceController : MonoBehaviour
             case DanceStages.Ending:
                 Debug.Log("Ending");
                 dir = Vector3.up * directionMagnitude;
-                MainDanceArrow.transform.position = transformPos + dir;
-                MainDanceArrow.transform.rotation = Quaternion.LookRotation(transformPos - MainDanceArrow.transform.position);
-                MainDanceArrow.SetActive(true);
-                //for (int i = 0; i < 20; i++)
+                //MainDanceArrow.transform.position = transformPos + dir;
+                //MainDanceArrow.transform.rotation = Quaternion.LookRotation(transformPos - MainDanceArrow.transform.position);
+                //MainDanceArrow.SetActive(true);
                 //create 20 arrows and try to send them all down (think of logic now implement later)
+                float posOffset = 0;
+                float scaleOffset = 0.5f;
+                for (int i = 0; i < 20; i++)
+                {
+                    GameObject endingArrow = Instantiate(danceArrowFab, transformPos + dir + Vector3.up * posOffset,
+                    Quaternion.LookRotation(transformPos - (transformPos + dir)));
+                    endingArrow.transform.localScale = Vector3.one * scaleOffset;
+                    posOffset += 1 * 1f;
+                    scaleOffset += 0.1f;//.4f * 1.2f;
+                }
 
+
+                currentEnum = DanceStages.EMPTY;
                 
                 break;
 
