@@ -11,8 +11,8 @@ public class ArcadeDanceController : MonoBehaviour
     //float speed;
     [SerializeField] float directionMagnitude = 5; //def 5
     //[SerializeField] float acceleration = 12;//def 12
-    [SerializeField] float edTimeOffset = 0.04f;//def 0.04f
-    [SerializeField] float allSpeedAmount = 30;//def 30
+    [SerializeField] float edTimeOffset = 0.05f;//def 0.04f
+    [SerializeField] float allSpeedAmount = 20;//def 30
 
     [Header("Might wanna ignore these:")]
     [SerializeField] Material deformShaderMat;
@@ -27,14 +27,16 @@ public class ArcadeDanceController : MonoBehaviour
     enum DanceStages {
         EMPTY,
         Generate,
-        Playing,
+        //Playing,
         Ending,
     }
-    
+
+    float originalEDTimeOffset = 0;
     // Start is called before the first frame update
     void Start()
     {
-        if(maxEDDanceArrows == 0)
+        originalEDTimeOffset = edTimeOffset;
+        if (maxEDDanceArrows == 0)
         {
             maxEDDanceArrows = 20;
         }
@@ -107,22 +109,11 @@ public class ArcadeDanceController : MonoBehaviour
 
             case DanceStages.Generate:
                 Debug.Log("Generate");
-                dir = GetRandomDirection() * directionMagnitude;
-                if (MainDanceArrow == null)
-                {
-                    MainDanceArrow = GameObject.Instantiate(danceArrowFab, transformPos + dir,
-                        Quaternion.LookRotation(transformPos - (transformPos + dir)));
-                }
-                else
-                {
-                    MainDanceArrow.transform.position = transformPos + dir;
-                    MainDanceArrow.transform.rotation = Quaternion.LookRotation(transformPos - (transformPos + dir));
-                    MainDanceArrow.SetActive(true);
-                }
-                currentEnum = DanceStages.Playing;
+                //OldGen();dir = GetRandomDirection() * directionMagnitude;
+                Time.timeScale = 0.5f;
                 break;
 
-
+                /*
             case DanceStages.Playing:
                 Debug.Log("Playing");
                 //speed += acceleration * Time.deltaTime;
@@ -142,18 +133,14 @@ public class ArcadeDanceController : MonoBehaviour
                     }
                 }
                 break;
+                */
 
 
             case DanceStages.Ending:
                 Debug.Log("Ending");
-                //dir = Vector3.up * directionMagnitude;
-                //MainDanceArrow.transform.position = transformPos + dir;
-                //MainDanceArrow.transform.rotation = Quaternion.LookRotation(transformPos - MainDanceArrow.transform.position);
-                //MainDanceArrow.SetActive(true);
                 //create 20 arrows and try to send them all down (think of logic now implement later)
 
                 //speed = acceleration;
-                Time.timeScale = 0.5f;
                 if (Time.time >= maxTime && edArrowIndex < maxEDDanceArrows)
                 {
                     edDanceArrowsList[edArrowIndex].SetActive(true);
@@ -179,7 +166,7 @@ public class ArcadeDanceController : MonoBehaviour
                             maxTime = 0;
                             //speed = 1;
                             areArrowsReset = true;
-                            edTimeOffset = 0.04f;
+                            edTimeOffset = originalEDTimeOffset;
                             currentEnum = DanceStages.EMPTY;
                         }
                     }
@@ -234,4 +221,22 @@ public class ArcadeDanceController : MonoBehaviour
             areArrowsReset = false;
         }
     }
+    /*
+    void OldGen()
+    {
+        dir = GetRandomDirection() * directionMagnitude;
+        if (MainDanceArrow == null)
+        {
+            MainDanceArrow = GameObject.Instantiate(danceArrowFab, transformPos + dir,
+                Quaternion.LookRotation(transformPos - (transformPos + dir)));
+        }
+        else
+        {
+            MainDanceArrow.transform.position = transformPos + dir;
+            MainDanceArrow.transform.rotation = Quaternion.LookRotation(transformPos - (transformPos + dir));
+            MainDanceArrow.SetActive(true);
+        }
+        currentEnum = DanceStages.Playing;
+    }
+    */
 }
