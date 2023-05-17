@@ -12,6 +12,7 @@ public class ArcadeDanceController : MonoBehaviour
     [SerializeField] float angleTheta;
     [SerializeField] float directionMagnitude = 5;
     [SerializeField] float acceleration = 7;
+    [SerializeField] List<GameObject> edDanceArrowsList;
 
     Vector3 transformPos;
     Vector3 dir;
@@ -114,15 +115,13 @@ public class ArcadeDanceController : MonoBehaviour
                 //MainDanceArrow.transform.rotation = Quaternion.LookRotation(transformPos - MainDanceArrow.transform.position);
                 //MainDanceArrow.SetActive(true);
                 //create 20 arrows and try to send them all down (think of logic now implement later)
-                float posOffset = 0;
-                float scaleOffset = 0.5f;
+
                 for (int i = 0; i < 20; i++)
                 {
-                    GameObject endingArrow = Instantiate(danceArrowFab, transformPos + dir + Vector3.up * posOffset,
+                    GameObject endingArrow = Instantiate(danceArrowFab, transformPos + dir + Vector3.up * 0,
                     Quaternion.LookRotation(transformPos - (transformPos + dir)));
-                    endingArrow.transform.localScale = Vector3.one * scaleOffset;
-                    posOffset += 1 * 1f;
-                    scaleOffset += 0.1f;//.4f * 1.2f;
+                    endingArrow.transform.localScale = (Vector3.one * ((i*0.1f) + 0.8f));
+                    edDanceArrowsList.Add(endingArrow);
                 }
 
 
