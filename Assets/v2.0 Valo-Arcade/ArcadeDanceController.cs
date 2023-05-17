@@ -11,11 +11,17 @@ public class ArcadeDanceController : MonoBehaviour
     //float speed;
     [SerializeField] float directionMagnitude = 5; //def 5
     //[SerializeField] float acceleration = 12;//def 12
-    [SerializeField] float edTimeOffset = 0.05f;//def 0.04f
-    [SerializeField] float allSpeedAmount = 20;//def 30
+    [SerializeField] float edTimeOffset = 0.05f;//def 0.05f
+    [SerializeField] float allSpeedAmount = 20;//def 20
+
+    [Header("Horizontal Arrows:")]
+    [SerializeField] float HA_Speed = 0f;
+    [SerializeField] float HA_Accel = 1f;
+    [SerializeField] float genOffset = 0.5f;
 
     [Header("Might wanna ignore these:")]
     [SerializeField] Material deformShaderMat;
+    [SerializeField] List<GameObject> horizontalArrowsList;
     [SerializeField] float angleTheta;
     [SerializeField] int maxEDDanceArrows;
     [SerializeField] List<GameObject> edDanceArrowsList;
@@ -27,15 +33,18 @@ public class ArcadeDanceController : MonoBehaviour
     enum DanceStages {
         EMPTY,
         Generate,
+        Waiting, //this approach for waiting is overkill (check implementation below) but whatever it works quickly.
         //Playing,
         Ending,
     }
 
     float originalEDTimeOffset = 0;
+    float originalGenOffset = 0;
     // Start is called before the first frame update
     void Start()
     {
         originalEDTimeOffset = edTimeOffset;
+        originalGenOffset = genOffset;
         if (maxEDDanceArrows == 0)
         {
             maxEDDanceArrows = 20;
@@ -44,17 +53,33 @@ public class ArcadeDanceController : MonoBehaviour
         transformPos = transform.position + Vector3.up * 1.0f;
         currentEnum = DanceStages.EMPTY;
         deformShaderMat = transform.GetChild(0).Find("Surface").GetComponent<Renderer>().material;
-        dir = Vector3.up * directionMagnitude;
 
         DanceArrowScript.allSpeed = allSpeedAmount;
 
+        //GENERATING FOR HORIZONTAL STAGE
+        for (int i = 0; i < 5; i++)
+        {
+            //dir = GetRandomDirection() * directionMagnitude;
+            //GameObject arrowH = GameObject.Instantiate(danceArrowFab, transformPos + dir,
+            //    Quaternion.LookRotation(transformPos - (transformPos + dir)));
+            GameObject arrowH = GameObject.Instantiate(danceArrowFab, Vector3.zero,
+                Quaternion.identity);
+            DanceArrowScript arrowScript = arrowH.GetComponent<DanceArrowScript>();
+            arrowScript.speed = HA_Speed;
+            arrowScript.acceleration = HA_Accel;
+
+            arrowH.SetActive(false);
+            horizontalArrowsList.Add(arrowH);
+        }
+
+        dir = Vector3.up * directionMagnitude;
         //GENERATING FOR ENDING STAGE
         for (int i = 0; i < maxEDDanceArrows; i++)
         {
             GameObject endingArrow = Instantiate(danceArrowFab, transformPos + dir,
             Quaternion.LookRotation(transformPos - (transformPos + dir)));
             endingArrow.transform.localScale = (Vector3.one * (((i * 0.1f) * 0.8f) + 1f));
-            endingArrow.GetComponent<DanceArrowScript>().isUniversal = true;
+            endingArrow.GetComponent<DanceArrowScript>().isVertical = true;
             
             endingArrow.SetActive(false);
             edDanceArrowsList.Add(endingArrow);
@@ -96,6 +121,8 @@ public class ArcadeDanceController : MonoBehaviour
     float maxTime = 0;
     int edArrowIndex = 0;
 
+    float maxGenTime = 0;
+
     void EnumDanceStates()
     {
         switch (currentEnum)
@@ -109,8 +136,66 @@ public class ArcadeDanceController : MonoBehaviour
 
             case DanceStages.Generate:
                 Debug.Log("Generate");
-                //OldGen();dir = GetRandomDirection() * directionMagnitude;
-                Time.timeScale = 0.5f;
+                //OldGen();
+                if(Time.time > maxGenTime)
+                {
+                    if (stateIterator >= 5)
+                    {
+                        genOffset = originalGenOffset;
+                        
+                        currentEnum = DanceStages.Waiting;
+                        break;
+                    }
+                    maxGenTime = Time.time + genOffset;
+                    genOffset = genOffset * 0.9f - 0.012f;
+                    //genOffset -= 0.09f;
+
+                    //Reposition
+                    dir = GetRandomDirection() * directionMagnitude;
+                    horizontalArrowsList[stateIterator].transform.position = transformPos + dir;
+                    horizontalArrowsList[stateIterator].transform.rotation = Quaternion.LookRotation(transformPos - (transformPos + dir));
+                    horizontalArrowsList[stateIterator].SetActive(true);
+                    stateIterator++;
+                }
+
+                DistanceCheck();
+                break;
+
+            case DanceStages.Waiting:
+                Debug.Log("Waiting");
+                //int checkListAmount = 0;
+                DistanceCheck();
+
+                bool shouldBreak = false;
+                for (int i = 0; i < horizontalArrowsList.Count; i++)
+                {
+                    if (!horizontalArrowsList[i].activeSelf)
+                    {
+                        Debug.Log("Continue Waiting");
+                        continue;
+                    }
+                    else
+                    {
+                        Debug.Log("Break Waiting");
+                        shouldBreak = true;
+                        break;
+                    }
+                    /*if (!horizontalArrowsList[i].activeSelf)
+                    {
+                        checkListAmount++;
+                    }*/
+                }
+
+                if(!shouldBreak)
+                {
+                    currentEnum = DanceStages.Ending;
+                }
+
+                /*
+                if (checkListAmount == horizontalArrowsList.Count)
+                {
+                    currentEnum = DanceStages.Ending;
+                }*/
                 break;
 
                 /*
@@ -212,7 +297,7 @@ public class ArcadeDanceController : MonoBehaviour
     {
         if (areArrowsReset)
         {
-            dir = Vector3.up * directionMagnitude*1f;
+            dir = Vector3.up * directionMagnitude*0.9f;
             for (int i = 0; i < edDanceArrowsList.Count; i++)
             {
                 edDanceArrowsList[i].transform.position = transformPos + dir;
@@ -239,4 +324,17 @@ public class ArcadeDanceController : MonoBehaviour
         currentEnum = DanceStages.Playing;
     }
     */
+
+    void DistanceCheck()
+    {
+        for (int i = 0; i < horizontalArrowsList.Count; i++)
+        {
+            if (!horizontalArrowsList[i].activeSelf) { continue; }
+            if (Vector3.Distance(horizontalArrowsList[i].transform.position, transformPos) < 0.5f)
+            {
+                horizontalArrowsList[i].gameObject.SetActive(false);
+            }
+        }
+    }
+
 }
