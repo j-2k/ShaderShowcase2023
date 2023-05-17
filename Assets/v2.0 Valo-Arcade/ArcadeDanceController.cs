@@ -5,15 +5,20 @@ using UnityEngine;
 
 public class ArcadeDanceController : MonoBehaviour
 {
-    [SerializeField] Material deformShaderMat;
     [SerializeField] GameObject danceArrowFab;
     [SerializeField] DanceStages currentEnum;
-    float speed;
-    [SerializeField] float angleTheta;
-    [SerializeField] float directionMagnitude = 5;
-    [SerializeField] float acceleration = 7;
-    [SerializeField] List<GameObject> edDanceArrowsList;
 
+    //float speed;
+    [SerializeField] float directionMagnitude = 5; //def 5
+    //[SerializeField] float acceleration = 12;//def 12
+    [SerializeField] float edTimeOffset = 0.04f;//def 0.04f
+    [SerializeField] float allSpeedAmount = 30;//def 30
+
+    [Header("Might wanna ignore these:")]
+    [SerializeField] Material deformShaderMat;
+    [SerializeField] float angleTheta;
+    [SerializeField] int maxEDDanceArrows;
+    [SerializeField] List<GameObject> edDanceArrowsList;
     Vector3 transformPos;
     Vector3 dir;
 
@@ -29,10 +34,29 @@ public class ArcadeDanceController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 1;
+        if(maxEDDanceArrows == 0)
+        {
+            maxEDDanceArrows = 20;
+        }
+        //speed = 1;
         transformPos = transform.position + Vector3.up * 1.0f;
         currentEnum = DanceStages.EMPTY;
         deformShaderMat = transform.GetChild(0).Find("Surface").GetComponent<Renderer>().material;
+        dir = Vector3.up * directionMagnitude;
+
+        DanceArrowScript.allSpeed = allSpeedAmount;
+
+        //GENERATING FOR ENDING STAGE
+        for (int i = 0; i < maxEDDanceArrows; i++)
+        {
+            GameObject endingArrow = Instantiate(danceArrowFab, transformPos + dir,
+            Quaternion.LookRotation(transformPos - (transformPos + dir)));
+            endingArrow.transform.localScale = (Vector3.one * (((i * 0.1f) * 0.8f) + 1f));
+            endingArrow.GetComponent<DanceArrowScript>().isUniversal = true;
+            
+            endingArrow.SetActive(false);
+            edDanceArrowsList.Add(endingArrow);
+        }
     }
 
 
@@ -40,11 +64,20 @@ public class ArcadeDanceController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        InputHandling();
         transformPos = transform.position + Vector3.up * 1.0f;
         DebugDirectionRay();
         ShaderHandler();
         EnumDanceStates();
-       
+
+    }
+
+    void InputHandling()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && currentEnum == DanceStages.EMPTY)
+        {
+            currentEnum = DanceStages.Generate;
+        }
     }
 
     void DebugDirectionRay()
@@ -58,6 +91,8 @@ public class ArcadeDanceController : MonoBehaviour
     }
 
     int stateIterator = 0;
+    float maxTime = 0;
+    int edArrowIndex = 0;
 
     void EnumDanceStates()
     {
@@ -65,6 +100,7 @@ public class ArcadeDanceController : MonoBehaviour
         {
             case DanceStages.EMPTY:
                 stateIterator = 0;
+                ResetArrows();
                 Debug.Log("EMPTY");
                 break;
 
@@ -89,12 +125,12 @@ public class ArcadeDanceController : MonoBehaviour
 
             case DanceStages.Playing:
                 Debug.Log("Playing");
-                speed += acceleration * Time.deltaTime;
-                MainDanceArrow.transform.position += MainDanceArrow.transform.forward * speed * Time.deltaTime;
+                //speed += acceleration * Time.deltaTime;
+                //MainDanceArrow.transform.position += MainDanceArrow.transform.forward * speed * Time.deltaTime;
                 if (Vector3.Distance(MainDanceArrow.transform.position, transformPos) < 0.5)
                 {
                     MainDanceArrow.SetActive(false);
-                    speed = 1;
+                    //speed = 1;
                     stateIterator++;
                     if (stateIterator >= 5)
                     {
@@ -110,23 +146,44 @@ public class ArcadeDanceController : MonoBehaviour
 
             case DanceStages.Ending:
                 Debug.Log("Ending");
-                dir = Vector3.up * directionMagnitude;
+                //dir = Vector3.up * directionMagnitude;
                 //MainDanceArrow.transform.position = transformPos + dir;
                 //MainDanceArrow.transform.rotation = Quaternion.LookRotation(transformPos - MainDanceArrow.transform.position);
                 //MainDanceArrow.SetActive(true);
                 //create 20 arrows and try to send them all down (think of logic now implement later)
 
-                for (int i = 0; i < 20; i++)
+                //speed = acceleration;
+                Time.timeScale = 0.5f;
+                if (Time.time >= maxTime && edArrowIndex < maxEDDanceArrows)
                 {
-                    GameObject endingArrow = Instantiate(danceArrowFab, transformPos + dir + Vector3.up * 0,
-                    Quaternion.LookRotation(transformPos - (transformPos + dir)));
-                    endingArrow.transform.localScale = (Vector3.one * ((i*0.1f) + 0.8f));
-                    edDanceArrowsList.Add(endingArrow);
+                    edDanceArrowsList[edArrowIndex].SetActive(true);
+                    edArrowIndex++;
+                    maxTime = Time.time + edTimeOffset;
+                    //edTimeOffset -= 0.005f;//-= 0.003f;
                 }
 
+                for (int i = 0; i < maxEDDanceArrows; i++)
+                {
+                    if (!edDanceArrowsList[i].activeSelf){continue;}
+                    Transform currArrow = edDanceArrowsList[i].transform;
+                    //NEXT PROBLEM IS SPEED HAS TO BE UNIQUE FOR EVERY ARROW
+                    //currArrow.position += currArrow.transform.forward * speed * Time.deltaTime;
 
-                currentEnum = DanceStages.EMPTY;
-                
+                    if (Vector3.Distance(currArrow.position, transformPos) < 0.5)
+                    {
+                        //speed = 1;
+                        currArrow.gameObject.SetActive(false);
+                        if(currArrow == edDanceArrowsList[maxEDDanceArrows-1].transform)
+                        {
+                            edArrowIndex = 0;
+                            maxTime = 0;
+                            //speed = 1;
+                            areArrowsReset = true;
+                            edTimeOffset = 0.04f;
+                            currentEnum = DanceStages.EMPTY;
+                        }
+                    }
+                }
                 break;
 
 
@@ -161,5 +218,20 @@ public class ArcadeDanceController : MonoBehaviour
         Vector3 direction = new Vector3(Mathf.Sin(Mathf.Deg2Rad * angle), 0, Mathf.Cos(Mathf.Deg2Rad * angle));
         Debug.Log(direction);
         return Vector3.Normalize(direction);
+    }
+
+    bool areArrowsReset = true;
+    void ResetArrows()
+    {
+        if (areArrowsReset)
+        {
+            dir = Vector3.up * directionMagnitude*1f;
+            for (int i = 0; i < edDanceArrowsList.Count; i++)
+            {
+                edDanceArrowsList[i].transform.position = transformPos + dir;
+            }
+            DanceArrowScript.allSpeed = allSpeedAmount;
+            areArrowsReset = false;
+        }
     }
 }
