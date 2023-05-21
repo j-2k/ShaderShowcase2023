@@ -5,6 +5,20 @@ This is my project where I will hold many shaders that I have created & show the
 Currently it's still a very WIP project, however it already contains a bunch of shaders.  
 I will be making a "Game" out of this where I will show all the shaders I made in here, not sure of the exact idea yet but something like that will do.
 
+# Shaders currently featured
+A lot of these shaders are incomplete but I will add more & finish them up when I prepare a final scene or if I ever need to showcase properly.
+- Spherical Wrapping
+- Dynamic Decal (Source/Valorant Sprays)
+- Stencil Shader (Stencil has an illusion effect)
+- Dynamic Moving Normals (Learning)
+- Skybox Shader
+- Outlines (Using Normals)
+- Fresnel
+- SDF Testing (Learning Signed Distance Fields)
+- Mandelbrot Fractal Shader (Learning Fractals)
+- Valorant Arcade Kill Effect (Dance Version)
+- More to come later...
+
 ## My Personal Notes
 #### ***FIX FOR SKYBOX STRETCHING THROUGH SHADER CODE***
 ```
