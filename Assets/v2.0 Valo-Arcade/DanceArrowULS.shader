@@ -3,6 +3,8 @@ Shader "Unlit/DanceArrowULS"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _Color1 ("Primary Color", color) = (0.5,0,1,1)
+        _Color2 ("Secondary Color", color) = (1,1,1,1)
     }
     SubShader
     {
@@ -35,6 +37,9 @@ Shader "Unlit/DanceArrowULS"
             sampler2D _MainTex;
             float4 _MainTex_ST;
 
+            float4 _Color1;
+            float4 _Color2;
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -50,7 +55,7 @@ Shader "Unlit/DanceArrowULS"
                 fixed4 col = tex2D(_MainTex, i.uv);
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
-                return col;
+                return _Color1 * (col + _Color2);
             }
             ENDCG
         }
