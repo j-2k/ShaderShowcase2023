@@ -13,11 +13,14 @@ public class QuakeMovement : MonoBehaviour
     Camera cam;
 
     [Header("MAIN PARAMS")]
-    [SerializeField] float maxSpeed;
-    [SerializeField] float maxAccel;
-    [SerializeField] Vector3 vel;
+    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float moveAccel = 10f;
+    [SerializeField] float moveDecel = 7f;
+    [SerializeField] float floorFriction = 6f;
+    [SerializeField] Vector3 playerVelocity;
 
-    [SerializeField] float currentSpeed;
+    [SerializeField] float CheckPlayerFriction;
+    [SerializeField] float CheckPlayerSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -66,16 +69,78 @@ public class QuakeMovement : MonoBehaviour
         */
 
         UpdateGroundedVelocity();
-    }
 
+        cc.Move(playerVelocity * Time.deltaTime);
+    }
 
     void UpdateGroundedVelocity()
     {
         Debug.Log("Grounded!");
 
-        vel += wishDir * maxSpeed;
+        ApplyFriction();
 
-        cc.Move(vel * Time.deltaTime);
+        float wishSpeed = wishDir.magnitude;
+        wishSpeed *= moveSpeed;
+
+        SV_ACCELERATION(wishSpeed, moveAccel);
+        CheckPlayerSpeed = playerVelocity.magnitude;
+    }
+
+    void SV_ACCELERATION(float wishspeed, float accel)
+    {
+        float addspeed, accelspeed, currentspeed;
+
+        currentspeed = Vector3.Dot(playerVelocity, wishDir);
+        addspeed = wishspeed - currentspeed;
+        if (addspeed <= 0)
+            return;
+        accelspeed = accel * Time.deltaTime * wishspeed;
+        if (accelspeed > addspeed)
+            accelspeed = addspeed;
+
+        playerVelocity.x += accelspeed * wishDir.x;
+        playerVelocity.z += accelspeed * wishDir.z;
+    }
+
+    void ApplyFriction()
+    {
+        Vector3 vel = playerVelocity;
+        float speed, newspeed, control;
+
+        speed = vel.magnitude;
+        if (speed < 0)
+                return;
+
+        vel.y = 0.0f;
+        speed = vel.magnitude;
+
+        //Only if the player is on the ground then apply friction
+        /*
+        if (cc.isGrounded)
+        {
+            control = speed < moveDecel ? moveDecel : speed;
+            drop = control * floorFriction * Time.deltaTime;
+        }
+        */
+
+        control = speed < moveDecel ? moveDecel : speed;
+        newspeed = speed - Time.deltaTime * control * floorFriction;
+
+
+        CheckPlayerFriction = newspeed;
+
+
+        if (newspeed < 0)
+        {
+            newspeed = 0;
+        }
+            
+        if (speed > 0)
+            newspeed /= speed;
+        
+
+        playerVelocity.x *= newspeed;
+        playerVelocity.z *= newspeed;
     }
 
     void UpdateAirVelocity()
@@ -83,10 +148,11 @@ public class QuakeMovement : MonoBehaviour
         Debug.LogWarning("IN AIR!!!");
         //cc.Move(wishDir * 5 * Time.deltaTime);
     }
+    
 
     void DebugMovementVectors()
     {
-        Debug.DrawRay(transform.position, wishDir * 3, Color.blue);
+        Debug.DrawRay(transform.position, wishDir * moveSpeed, Color.blue);
         Debug.DrawRay(cam.transform.position, cam.transform.forward * 3, Color.magenta);
         Debug.DrawRay(transform.position + Vector3.up, cc.velocity, Color.red);
         debugCCVelocity = cc.velocity;
@@ -96,6 +162,7 @@ public class QuakeMovement : MonoBehaviour
     {
         rotX += Input.GetAxis("Mouse X") * sens;
         rotY += Input.GetAxis("Mouse Y") * sens;
+        rotY = Mathf.Clamp(rotY, -90, 90);
 
         cam.transform.rotation = Quaternion.Euler(-rotY, rotX, 0);
 
