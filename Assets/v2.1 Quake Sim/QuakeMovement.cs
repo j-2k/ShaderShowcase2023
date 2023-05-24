@@ -8,14 +8,14 @@ public class QuakeMovement : MonoBehaviour
     [SerializeField] Vector3 wishDir;
     CharacterController cc;
 
-    [SerializeField] float rotX, rotY, sens, angle;
+    [SerializeField] float rotX, rotY, sens;
 
     Camera cam;
 
     [Header("MAIN PARAMS")]
-    [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float moveAccel = 10f;
-    [SerializeField] float moveDecel = 7f;
+    [SerializeField] float MAX_GROUND_SPEED = 5f;
+    [SerializeField] float MAX_GROUND_ACCEL = 10f;
+    [SerializeField] float MAX_GROUND_DECEL = 7f;
     [SerializeField] float floorFriction = 6f;
     [SerializeField] Vector3 playerVelocity;
 
@@ -79,24 +79,26 @@ public class QuakeMovement : MonoBehaviour
 
         ApplyFriction();
 
-        float wishSpeed = wishDir.magnitude;
-        wishSpeed *= moveSpeed;
+        float wishSpeed = wishDir.magnitude * MAX_GROUND_SPEED;
 
-        SV_ACCELERATION(wishSpeed, moveAccel);
+        SV_ACCELERATION(wishSpeed, MAX_GROUND_ACCEL);
         CheckPlayerSpeed = playerVelocity.magnitude;
     }
 
-    void SV_ACCELERATION(float wishspeed, float accel)
+    void SV_ACCELERATION(float wishSpeed, float wishAccel)
     {
         float addspeed, accelspeed, currentspeed;
 
         currentspeed = Vector3.Dot(playerVelocity, wishDir);
-        addspeed = wishspeed - currentspeed;
+        addspeed = wishSpeed - currentspeed;
+
         if (addspeed <= 0)
-            return;
-        accelspeed = accel * Time.deltaTime * wishspeed;
+        { return; }
+
+        accelspeed = wishAccel * Time.deltaTime * wishSpeed;
+
         if (accelspeed > addspeed)
-            accelspeed = addspeed;
+        { accelspeed = addspeed; }
 
         playerVelocity.x += accelspeed * wishDir.x;
         playerVelocity.z += accelspeed * wishDir.z;
@@ -108,8 +110,7 @@ public class QuakeMovement : MonoBehaviour
         float speed, newspeed, control;
 
         speed = vel.magnitude;
-        if (speed < 0)
-                return;
+        if (speed < 0) { return; }
 
         vel.y = 0.0f;
         speed = vel.magnitude;
@@ -119,26 +120,21 @@ public class QuakeMovement : MonoBehaviour
         if (cc.isGrounded)
         {
             control = speed < moveDecel ? moveDecel : speed;
-            drop = control * floorFriction * Time.deltaTime;
+            newspeed = speed - Time.deltaTime * control * floorFriction;
         }
         */
 
-        control = speed < moveDecel ? moveDecel : speed;
+        control = speed < MAX_GROUND_DECEL ? MAX_GROUND_DECEL : speed;
         newspeed = speed - Time.deltaTime * control * floorFriction;
-
 
         CheckPlayerFriction = newspeed;
 
-
         if (newspeed < 0)
-        {
-            newspeed = 0;
-        }
-            
-        if (speed > 0)
-            newspeed /= speed;
-        
+        {newspeed = 0;}
 
+        if (speed > 0)
+        {newspeed /= speed;}
+        
         playerVelocity.x *= newspeed;
         playerVelocity.z *= newspeed;
     }
@@ -152,7 +148,7 @@ public class QuakeMovement : MonoBehaviour
 
     void DebugMovementVectors()
     {
-        Debug.DrawRay(transform.position, wishDir * moveSpeed, Color.blue);
+        Debug.DrawRay(transform.position, wishDir * MAX_GROUND_SPEED, Color.blue);
         Debug.DrawRay(cam.transform.position, cam.transform.forward * 3, Color.magenta);
         Debug.DrawRay(transform.position + Vector3.up, cc.velocity, Color.red);
         debugCCVelocity = cc.velocity;

@@ -1299,7 +1299,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &557386557
 Transform:
   m_ObjectHideFlags: 0
@@ -2436,7 +2436,6 @@ MonoBehaviour:
   rotX: 0
   rotY: 0
   sens: 3
-  angle: 0
   moveSpeed: 10
   moveAccel: 100
   moveDecel: 20
