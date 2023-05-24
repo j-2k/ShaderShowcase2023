@@ -16,11 +16,24 @@ public class QuakeMovement : MonoBehaviour
     [SerializeField] float MAX_GROUND_SPEED = 5f;
     [SerializeField] float MAX_GROUND_ACCEL = 10f;
     [SerializeField] float MAX_GROUND_DECEL = 7f;
+    [SerializeField] float MAX_AIR_ACCEL = 10f;
+    [SerializeField] float MAX_AIR_DECEL = 7f;
+    [SerializeField] float airControl = 0.3f;
+
+    [SerializeField] float sideStrafeAcceleration = 50f;
+    [SerializeField] float sideStrafeSpeed = 1f;
+
+    [SerializeField] float jumpSpeed = 10f;
+
     [SerializeField] float floorFriction = 6f;
+    [SerializeField] float gravity = 10f;
+
     [SerializeField] Vector3 playerVelocity;
 
     [SerializeField] float CheckPlayerFriction;
     [SerializeField] float CheckPlayerSpeed;
+
+    [SerializeField] bool isJumping;
 
     // Start is called before the first frame update
     void Start()
@@ -61,14 +74,15 @@ public class QuakeMovement : MonoBehaviour
 
     void QuakeMove()
     {
-        /*
+        isJumping = Input.GetButton("Jump");
+
         if(cc.isGrounded) //cc is grounded is trash
         { UpdateGroundedVelocity(); }
         else
         { UpdateAirVelocity(); }
-        */
 
-        UpdateGroundedVelocity();
+
+        //UpdateGroundedVelocity();
 
         cc.Move(playerVelocity * Time.deltaTime);
     }
@@ -83,6 +97,15 @@ public class QuakeMovement : MonoBehaviour
 
         SV_ACCELERATION(wishSpeed, MAX_GROUND_ACCEL);
         CheckPlayerSpeed = playerVelocity.magnitude;
+
+
+        playerVelocity.y = -gravity * Time.deltaTime;
+
+        if (isJumping)
+        {
+            playerVelocity.y = jumpSpeed;
+            isJumping = false;
+        }
     }
 
     void SV_ACCELERATION(float wishSpeed, float wishAccel)
@@ -108,6 +131,7 @@ public class QuakeMovement : MonoBehaviour
     {
         Vector3 vel = playerVelocity;
         float speed, newspeed, control;
+        newspeed = 0;
 
         speed = vel.magnitude;
         if (speed < 0) { return; }
@@ -115,19 +139,12 @@ public class QuakeMovement : MonoBehaviour
         vel.y = 0.0f;
         speed = vel.magnitude;
 
-        //Only if the player is on the ground then apply friction
-        /*
         if (cc.isGrounded)
         {
-            control = speed < moveDecel ? moveDecel : speed;
+            control = speed < MAX_GROUND_DECEL ? MAX_GROUND_DECEL : speed;
             newspeed = speed - Time.deltaTime * control * floorFriction;
+            CheckPlayerFriction = newspeed;
         }
-        */
-
-        control = speed < MAX_GROUND_DECEL ? MAX_GROUND_DECEL : speed;
-        newspeed = speed - Time.deltaTime * control * floorFriction;
-
-        CheckPlayerFriction = newspeed;
 
         if (newspeed < 0)
         {newspeed = 0;}
@@ -142,7 +159,11 @@ public class QuakeMovement : MonoBehaviour
     void UpdateAirVelocity()
     {
         Debug.LogWarning("IN AIR!!!");
-        //cc.Move(wishDir * 5 * Time.deltaTime);
+
+        float wishSpeed = wishDir.magnitude * MAX_GROUND_SPEED;
+        
+
+        playerVelocity.y -= gravity * Time.deltaTime;
     }
     
 

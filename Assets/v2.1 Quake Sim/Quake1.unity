@@ -2436,13 +2436,21 @@ MonoBehaviour:
   rotX: 0
   rotY: 0
   sens: 3
-  moveSpeed: 10
-  moveAccel: 100
-  moveDecel: 20
+  MAX_GROUND_SPEED: 10
+  MAX_GROUND_ACCEL: 100
+  MAX_GROUND_DECEL: 20
+  MAX_AIR_ACCEL: 3
+  MAX_AIR_DECEL: 1
+  airControl: 0.3
+  sideStrafeAcceleration: 50
+  sideStrafeSpeed: 1
+  jumpSpeed: 10
   floorFriction: 6
+  gravity: 30
   playerVelocity: {x: 0, y: 0, z: 0}
   CheckPlayerFriction: 0
   CheckPlayerSpeed: 0
+  isJumping: 0
 --- !u!1 &1537475224
 GameObject:
   m_ObjectHideFlags: 0
