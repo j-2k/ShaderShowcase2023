@@ -2379,6 +2379,10 @@ MonoBehaviour:
   rotY: 0
   sens: 3
   angle: 0
+  maxSpeed: 10
+  maxAccel: 10
+  vel: {x: 0, y: 0, z: 0}
+  currentSpeed: 0
 --- !u!1 &1537475224
 GameObject:
   m_ObjectHideFlags: 0
