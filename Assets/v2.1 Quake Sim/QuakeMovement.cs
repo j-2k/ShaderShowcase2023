@@ -38,6 +38,7 @@ public class QuakeMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponentInChildren<Animator>();
         cc = GetComponent<CharacterController>();
         cam = Camera.main;
         Cursor.lockState = CursorLockMode.Locked;
@@ -53,6 +54,8 @@ public class QuakeMovement : MonoBehaviour
         QuakeMove();
 
         DebugMovementVectors();
+
+        AnimatorManager();
     }
 
     Vector3 localForward;
@@ -213,4 +216,19 @@ public class QuakeMovement : MonoBehaviour
 	    	velocity[i] += accelspeed*wishdir[i];	
     }
     */
+
+    Animator anim;
+    void AnimatorManager()
+    {
+        //can compare velocity but having some issues rn
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))    //hack but whatever
+        {
+            anim.SetBool("isRunning", true);
+        }
+        else
+        {
+            anim.SetBool("isRunning", false);
+        }
+       
+    }
 }
