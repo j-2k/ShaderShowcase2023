@@ -16,12 +16,8 @@ public class QuakeMovement : MonoBehaviour
     [SerializeField] float MAX_GROUND_SPEED = 5f;
     [SerializeField] float MAX_GROUND_ACCEL = 10f;
     [SerializeField] float SV_STOPSPEED = 7f;
-    [SerializeField] float MAX_AIR_ACCEL = 10f;
-    [SerializeField] float MAX_AIR_DECEL = 7f;
-    [SerializeField] float airControl = 0.3f;
 
-    [SerializeField] float sideStrafeAcceleration = 50f;
-    [SerializeField] float sideStrafeSpeed = 1f;
+    [SerializeField] float MAX_AIR_ACCEL = 10f;
 
     [SerializeField] float jumpSpeed = 10f;
 
@@ -123,7 +119,7 @@ public class QuakeMovement : MonoBehaviour
         float addspeed, accelspeed, currentspeed;
 
         currentspeed = Vector3.Dot(playerVelocity, wishDir);
-        currSpeedDot = currentspeed;
+        //currSpeedDot = currentspeed;
         addspeed = maxSpeed - currentspeed;
 
         if (addspeed <= 0)
@@ -166,17 +162,40 @@ public class QuakeMovement : MonoBehaviour
         playerVelocity.x *= newspeed;
         playerVelocity.z *= newspeed;
     }
-
+    
     void UpdateAirVelocity()
     {
         Debug.LogWarning("IN AIR!!!");
 
         float wishSpeed = wishDir.magnitude * MAX_GROUND_SPEED;
-        
+
+        SV_AIRACCELERATE(wishSpeed, MAX_AIR_ACCEL);
 
         playerVelocity.y -= gravity * Time.deltaTime;
     }
     
+
+    void SV_AIRACCELERATE(float maxSpeed, float maxAirAccel)
+    {
+        float addspeed, accelspeed, currentspeed;
+
+        currentspeed = Vector3.Dot(playerVelocity, wishDir);
+        addspeed = maxSpeed - currentspeed;
+        currSpeedDot = currentspeed;
+        if(addspeed <= 0)
+        { return; }    
+
+        accelspeed = maxAirAccel * maxSpeed * Time.deltaTime;
+        if (accelspeed > addspeed)
+            accelspeed = addspeed;
+
+
+        playerVelocity += accelspeed * wishDir;
+        //playerVelocity.x += accelspeed * wishDir.x;
+        //playerVelocity.z += accelspeed * wishDir.z;
+    }
+
+
 
     void DebugMovementVectors()
     {
@@ -243,4 +262,5 @@ public class QuakeMovement : MonoBehaviour
         }
 
     }
+
 }
