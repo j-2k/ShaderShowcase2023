@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class QuakeMovement : MonoBehaviour
@@ -31,6 +32,9 @@ public class QuakeMovement : MonoBehaviour
 
     [SerializeField] bool isJumping;
 
+    [SerializeField] TextMeshProUGUI currUUPS;
+    [SerializeField] TextMeshProUGUI MAXUUPS;
+    bool isUpdatingUUPS;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +42,10 @@ public class QuakeMovement : MonoBehaviour
         if(anim != null)
         {
             isAnimating = true;
+        }
+        if(currUUPS != null)
+        {
+            isUpdatingUUPS = true;
         }
 
         cc = GetComponent<CharacterController>();
@@ -57,7 +65,20 @@ public class QuakeMovement : MonoBehaviour
         DebugMovementVectors();
 
         AnimatorManager();
+
+        UpdateUUPS();
     }
+
+    float offset;
+    public void UpdateUUPS()
+    {
+        if (isUpdatingUUPS && offset < Time.timeSinceLevelLoad)
+        {
+            currUUPS.text = (Mathf.Round(cc.velocity.magnitude * 100) * 0.01f).ToString();
+            offset = Time.timeSinceLevelLoad + 0.1f;
+        }
+    }
+
 
     Vector3 localForward;
     Vector3 localRight;
@@ -105,7 +126,7 @@ public class QuakeMovement : MonoBehaviour
         CheckPlayerSpeed = playerVelocity.magnitude;
 
 
-        playerVelocity.y = -gravity * Time.deltaTime;
+        playerVelocity.y += -gravity * Time.deltaTime;
 
         if (isJumping)
         {
@@ -197,7 +218,7 @@ public class QuakeMovement : MonoBehaviour
 
 
 
-    void DebugMovementVectors()
+    public void DebugMovementVectors()
     {
         Debug.DrawRay(transform.position, wishDir * MAX_GROUND_SPEED, Color.blue);
         Debug.DrawRay(cam.transform.position, cam.transform.forward * 3, Color.magenta);
@@ -205,7 +226,7 @@ public class QuakeMovement : MonoBehaviour
         debugCCVelocity = cc.velocity;
     }
 
-    void MouseHandler()
+    public void MouseHandler()
     {
         rotX += Input.GetAxis("Mouse X") * sens;
         rotY += Input.GetAxis("Mouse Y") * sens;
@@ -246,7 +267,7 @@ public class QuakeMovement : MonoBehaviour
 
     Animator anim;
     bool isAnimating;
-    void AnimatorManager()
+    public void AnimatorManager()
     {
         if(isAnimating) 
         { 
