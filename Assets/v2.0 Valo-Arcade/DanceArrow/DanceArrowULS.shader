@@ -10,7 +10,8 @@ Shader "Unlit/DanceArrowULS"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Transparent"  "Queue" = "Transparent"}
+        Blend SrcAlpha OneMinusSrcAlpha
         LOD 100
 
         Pass
@@ -74,7 +75,7 @@ Shader "Unlit/DanceArrowULS"
                 float4 fresnelCol = float4((_Emission.xyz * f),1);
 
                 float4 fCol = (flatCol * _Color2) + (angleCol * _Color1) + fresnelCol;
-                return fCol;
+                return float4(fCol.xyz,0.8);
             }
             ENDCG
         }
