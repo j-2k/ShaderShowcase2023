@@ -6,6 +6,7 @@ using UnityEngine;
 public class ArcadeDanceController : MonoBehaviour
 {
     [SerializeField] GameObject danceArrowFab;
+    [SerializeField] GameObject icoSphereFab;
     [SerializeField] DanceStages currentEnum;
 
     //float speed;
@@ -29,6 +30,7 @@ public class ArcadeDanceController : MonoBehaviour
     Vector3 dir;
 
     GameObject MainDanceArrow;
+    GameObject MainIcoSphere;
 
     enum DanceStages {
         EMPTY,
@@ -84,6 +86,9 @@ public class ArcadeDanceController : MonoBehaviour
             endingArrow.SetActive(false);
             edDanceArrowsList.Add(endingArrow);
         }
+
+        MainIcoSphere = Instantiate(icoSphereFab, transformPos + Vector3.up * 2, Quaternion.identity);
+
     }
 
 

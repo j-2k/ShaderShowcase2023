@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   danceArrowFab: {fileID: 642716614448705774, guid: ccfe5bfab6296423d9edf2a460ee010d, type: 3}
+  icoSphereFab: {fileID: 4792720799991781774, guid: 64116e47c5c4048af899179b5162f916, type: 3}
   currentEnum: 0
   directionMagnitude: 6
   edTimeOffset: 0.05

@@ -173,10 +173,16 @@ public class Quake1Move : MonoBehaviour
     }
     Animator anim;
     bool isAnimating;
+    float maxVelo = 10;
+    [SerializeField] float lerpAmt = 0;
     public void AnimatorManager()
     {
+        
         if (isAnimating)
         {
+            Vector3 xzVelo = playerVelocity;
+            xzVelo.y = 0;
+            /*
             //can compare velocity but having some issues rn
             if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))    //hack but whatever
             {
@@ -186,6 +192,19 @@ public class Quake1Move : MonoBehaviour
             {
                 anim.SetBool("isRunning", false);
             }
+            */
+
+            if (xzVelo.magnitude > 1f)
+            {
+                anim.SetBool("isRunning", true);
+                anim.SetFloat("Multiply", Mathf.Lerp(0.1f,1, (xzVelo.magnitude) / maxVelo));
+            }
+            else
+            {
+                anim.SetBool("isRunning", false);
+                
+            }
+            lerpAmt = Mathf.Lerp(0.1f, 1, (xzVelo.magnitude) / maxVelo);
         }
 
     }
