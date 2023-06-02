@@ -50,6 +50,7 @@ public class Quake1Move : MonoBehaviour
         else
         {//DO GODOT THING
             //playerVelocity = wishDir * max_velocity_air;
+            AirMove(cc.velocity);
             Gravity();
         }
         cc.Move(playerVelocity * Time.deltaTime );
@@ -57,6 +58,17 @@ public class Quake1Move : MonoBehaviour
     void Gravity()
     {
         playerVelocity.y -= gravity * Time.deltaTime;
+    }
+
+    void AirMove(Vector3 currVelocity)
+    {
+        Vector3 newVeloXZ = currVelocity;
+        newVeloXZ.y = 0;
+
+        newVeloXZ = Accelerate(newVeloXZ, air_accelerate, max_velocity_air);
+
+        newVeloXZ.y = currVelocity.y;
+        playerVelocity = newVeloXZ;
     }
 
     void GroundMove(Vector3 currVelocity)
