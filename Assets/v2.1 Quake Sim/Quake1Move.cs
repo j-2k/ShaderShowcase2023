@@ -28,18 +28,19 @@ public class Quake1Move : MonoBehaviour
     void Update()
     {
         MainFunctions();
-        QuakeMainMovement();
+        QuakeMovementManager();
     }
-    [SerializeField] bool isJumping;
+
+    //DO GODOT THING
     [SerializeField] bool isGrounded;
-    void QuakeMainMovement()
+    [SerializeField] bool isJumping;
+    void QuakeMovementManager()
     {
         isGrounded = cc.isGrounded;
         isJumping = Input.GetButton("Jump");
         if (cc.isGrounded)
-        {
-            //playerVelocity = GroundMove();
-            playerVelocity = MoveGround(wishDir,playerVelocity);
+        {//DO GODOT THING
+            playerVelocity = wishDir * max_velocity_ground;
             Gravity();
             if (isJumping)
             {
@@ -48,55 +49,16 @@ public class Quake1Move : MonoBehaviour
             }
         }
         else
-        {
+        {//DO GODOT THING
+            //playerVelocity = wishDir * max_velocity_air;
             Gravity();
-            playerVelocity = MoveAir(wishDir, playerVelocity);
         }
-
-        cc.Move(playerVelocity * Time.deltaTime);
-    }
-
-
-    Vector3 GroundMove()
-    {
-        return wishDir * ground_accelerate;
-    }
-
-    Vector3 Accelerate(Vector3 accelDir, Vector3 prevVelocity, float accelerate, float max_velocity)
-    {
-        float projVel = Vector3.Dot(prevVelocity, accelDir); // Vector projection of Current velocity onto accelDir.
-        float accelVel = accelerate * Time.fixedDeltaTime; // Accelerated velocity in direction of movment
-
-        // If necessary, truncate the accelerated velocity so the vector projection does not exceed max_velocity
-        if (projVel + accelVel > max_velocity)
-            accelVel = max_velocity - projVel;
-
-        return prevVelocity + accelDir * accelVel;
-    }
-
-    Vector3 MoveGround(Vector3 accelDir, Vector3 prevVelocity)
-    {
-        // Apply Friction
-        float speed = prevVelocity.magnitude;
-        if (speed != 0) // To avoid divide by zero errors
-        {
-            float drop = speed * friction * Time.fixedDeltaTime;
-            prevVelocity *= Mathf.Max(speed - drop, 0) / speed; // Scale the velocity based on friction.
-        }
-
-        // ground_accelerate and max_velocity_ground are server-defined movement variables
-        return Accelerate(accelDir, prevVelocity, ground_accelerate, max_velocity_ground);
-    }
-
-    private Vector3 MoveAir(Vector3 accelDir, Vector3 prevVelocity)
-    {
-        // air_accelerate and max_velocity_air are server-defined movement variables
-        return Accelerate(accelDir, prevVelocity, air_accelerate, max_velocity_air);
+        cc.Move(playerVelocity * Time.deltaTime );
     }
 
     void Gravity()
     {
-        playerVelocity.y += -gravity * Time.fixedDeltaTime;
+        playerVelocity.y -= gravity * Time.deltaTime;
     }
 
     #region DEBUGS & OTHERS
@@ -214,6 +176,76 @@ public class Quake1Move : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position + debugCCVelocity + Vector3.up * 2, 0.25f);
+        Gizmos.color = Color.blue;
+        Gizmos.DrawSphere(Vector3.up * 1 + transform.position + wishDir, 0.25f);
     }
+#endregion
+
+#region Old
+/*
+[SerializeField] bool isJumping;
+[SerializeField] bool isGrounded;
+void QuakeMainMovement()
+{
+    isGrounded = cc.isGrounded;
+    isJumping = Input.GetButton("Jump");
+    if (cc.isGrounded)
+    {
+        //playerVelocity = GroundMove();
+        playerVelocity = MoveGround(wishDir, playerVelocity);
+        Gravity();
+        if (isJumping)
+        {
+            playerVelocity.y = jumpSpeed;
+            isJumping = false;
+        }
+    }
+    else
+    {
+        Gravity();
+        playerVelocity = MoveAir(wishDir, playerVelocity);
+    }
+
+    cc.Move(playerVelocity * Time.deltaTime);
+}
+
+
+Vector3 GroundMove()
+{
+    return wishDir * ground_accelerate;
+}
+
+Vector3 Accelerate(Vector3 accelDir, Vector3 prevVelocity, float accelerate, float max_velocity)
+{
+    float projVel = Vector3.Dot(prevVelocity, accelDir); // Vector projection of Current velocity onto accelDir.
+    float accelVel = accelerate * Time.deltaTime; // Accelerated velocity in direction of movment
+
+    // If necessary, truncate the accelerated velocity so the vector projection does not exceed max_velocity
+    if (projVel + accelVel > max_velocity)
+        accelVel = max_velocity - projVel;
+
+    return prevVelocity + accelDir * accelVel;
+}
+
+Vector3 MoveGround(Vector3 accelDir, Vector3 prevVelocity)
+{
+    // Apply Friction
+    float speed = prevVelocity.magnitude;
+    if (speed != 0) // To avoid divide by zero errors
+    {
+        float drop = speed * friction * Time.deltaTime;
+        prevVelocity *= Mathf.Max(speed - drop, 0) / speed; // Scale the velocity based on friction.
+    }
+
+    // ground_accelerate and max_velocity_ground are server-defined movement variables
+    return Accelerate(accelDir, prevVelocity, ground_accelerate, max_velocity_ground);
+}
+
+private Vector3 MoveAir(Vector3 accelDir, Vector3 prevVelocity)
+{
+    // air_accelerate and max_velocity_air are server-defined movement variables
+    return Accelerate(accelDir, prevVelocity, air_accelerate, max_velocity_air);
+}
+*/
 #endregion
 }
