@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Quake1Move : MonoBehaviour
@@ -40,7 +39,7 @@ public class Quake1Move : MonoBehaviour
         isJumping = Input.GetButton("Jump");
         if (cc.isGrounded)
         {//DO GODOT THING
-            playerVelocity = wishDir * max_velocity_ground;
+            GroundMove(cc.velocity);
             Gravity();
             if (isJumping)
             {
@@ -55,11 +54,50 @@ public class Quake1Move : MonoBehaviour
         }
         cc.Move(playerVelocity * Time.deltaTime );
     }
-
     void Gravity()
     {
         playerVelocity.y -= gravity * Time.deltaTime;
     }
+
+    void GroundMove(Vector3 currVelocity)
+    {
+        Vector3 newVeloXZ = currVelocity;
+        newVeloXZ.y = 0;
+
+        newVeloXZ = Friction(newVeloXZ);
+        newVeloXZ = Accelerate(newVeloXZ, ground_accelerate, max_velocity_ground);
+
+        newVeloXZ.y = currVelocity.y;
+        playerVelocity = newVeloXZ;
+    }
+
+    Vector3 Friction(Vector3 currVelocity)
+    {
+        float currSpeed = currVelocity.magnitude;
+        Vector3 scaledVelocity = Vector3.zero;
+
+        if(currSpeed != 0)
+        {
+            //drop in speed, amt to reduce speed by friction
+            float drop = currSpeed * friction * Time.deltaTime;
+            scaledVelocity = currVelocity * MathF.Max(currSpeed - drop, 0)/ currSpeed;//care brackets
+        }
+
+        return scaledVelocity;
+    }
+
+    Vector3 Accelerate(Vector3 currVelocity, float maxAccel, float maxVelocity)
+    {
+        float currentSpeedDot = Vector3.Dot(wishDir, currVelocity);
+
+        float addSpeed = Mathf.Clamp(maxVelocity - currentSpeedDot, 0, maxAccel * Time.deltaTime);
+
+        Vector3 finalVec = currVelocity + wishDir * addSpeed;
+
+        return finalVec;
+    }
+
+
 
     #region DEBUGS & OTHERS
     CharacterController cc;
