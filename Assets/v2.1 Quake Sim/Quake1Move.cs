@@ -44,7 +44,7 @@ public class Quake1Move : MonoBehaviour
                 playerVelocity.y = jumpSpeed;
                 isJumping = false;
             }
-            else
+            else//REMOVE THIS ELSE STATEMENT IN CASE YOU WANT 1 FRAME OF FRICTION
             {
                 playerVelocity = MoveGround(wishDir, playerVelocity);
                 Gravity();
@@ -161,7 +161,7 @@ public class Quake1Move : MonoBehaviour
     {
         if (isUpdatingUUPS && offset < Time.timeSinceLevelLoad)
         {
-            currUUPS.text = (Mathf.Round(cc.velocity.magnitude * 100) * 0.01f).ToString();
+            currUUPS.text = Mathf.RoundToInt(cc.velocity.magnitude*10).ToString();
             offset = Time.timeSinceLevelLoad + 0.1f;
         }
     }
