@@ -103,15 +103,16 @@ Shader "Unlit/RangerShader"
                 return lerp(colTex,finalCol,maskTex);
 
                 /*
-                if(col.x > 0.01f)
+                if(maskTex.x > 0.01f)
                 {
-                    return float4(float3(fc),1);
+                    return finalCol;
                 }
                 else
                 {
-                    return starTexCol;
+                    return colTex;
                 }
                 */
+                
                 
             }
             ENDCG
