@@ -2,8 +2,8 @@ Shader "Unlit/RangerShader"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
-        _StarTex ("StarTex", 2D) = "white" {}
+        _MainTex ("MASK TEX", 2D) = "white" {}
+        _ColTex ("COLORED TEX", 2D) = "white" {}
         _Color("Color", color) = (0,0,1,1)
     }
     SubShader
@@ -38,8 +38,8 @@ Shader "Unlit/RangerShader"
             float4 _MainTex_ST;
             float4 _Color;
 
-            sampler2D _StarTex;
-            float4 _StarTex_ST;
+            sampler2D _ColTex;
+            float4 _ColTex_ST;
 
             v2f vert (appdata v)
             {
@@ -50,41 +50,69 @@ Shader "Unlit/RangerShader"
                 return o;
             }
 
-            float3 palette( float t ) {
-                float3 a = float3(0.5, 0.5, 0.5);
-                float3 b = float3(0.5, 0.5, 0.5);
-                float3 c = float3(1.0, 1.0, 1.0);
-                float3 d = float3(0.263,0.416,0.557);
-
+            float3 palette( in float t, in float3 a, in float3 b, in float3 c, in float3 d )
+            {
                 return a + b*cos( 6.28318*(c*t+d) );
             }
 
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                fixed4 col = 1 - (1 - tex2D(_MainTex, i.uv));
+                fixed4 maskTex = 1 - (1 - tex2D(_MainTex, i.uv));
+                fixed4 colTex = (tex2D(_ColTex, i.uv));
                 // apply fog
-                float2 starUV = (i.uv * 1) + _Time.y * 0;
-                fixed4 starTexCol = (tex2D(_StarTex, starUV));
+                /*
                 //starTexCol *= _Color;
                 //float4 fc = lerp(col,starTexCol,col);
                 UNITY_APPLY_FOG(i.fogCoord, fc);
                 //float4 fc = abs(sin(i.uv.x + _Time.y*2)) * 10;
 
                 return col + starTexCol;
+                */
+                float2 uv = i.uv * 2 -1;
+
+                uv.x += 0.41;
+                uv.y -= 0.1;
+                
+                float3 fracCol = float3(0,0,0);
+                
+                //uv.x += 100;
+                for (float i = 0.0; i < 3.0; i++)
+                {
+                    uv = frac(uv*1.5) - 0.5;
+
+                    float d = length(uv);// / exp(length(nuv));
+                    
+                    float3 col = palette(i * 0.5 + _Time.y * 0.5 + length(uv),float3(0.5, 0.5, 1.5),float3(1.5, 0.5, 1.5),float3(1.0, 1.0, 1.0),float3(0.00, 0.33, 0.67));
+                    
+                    d = abs(sin(d * 20.0 + _Time.y) / 1);
+                    
+                    d = 0.01/d;
+                    
+                    //col *= d;
+                    fracCol += col * d;
+                }
+                
+                //return float4(float3(fc),1);
+    
 
                 //
-                /*
 
+                float4 finalCol = float4(float3(fracCol),1);
+                
+                return lerp(colTex,finalCol,maskTex);
+
+                /*
                 if(col.x > 0.01f)
                 {
-                    return float4(finalColor,1);
+                    return float4(float3(fc),1);
                 }
                 else
                 {
                     return starTexCol;
                 }
                 */
+                
             }
             ENDCG
         }
