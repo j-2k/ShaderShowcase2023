@@ -71,6 +71,8 @@ Shader "Unlit/RangerShader"
                 */
                 float2 uv = i.uv * 2 -1;
 
+                float2 nuv = i.uv;
+
                 uv.x += 0.41;
                 uv.y -= 0.1;
                 
@@ -81,7 +83,7 @@ Shader "Unlit/RangerShader"
                 {
                     uv = frac(uv*1.5) - 0.5;
 
-                    float d = length(uv);// / exp(length(nuv));
+                    float d = length(uv); // / exp(length(nuv));
                     
                     float3 col = palette(i * 0.5 + _Time.y * 0.5 + length(uv),float3(0.5, 0.5, 1.5),float3(1.5, 0.5, 1.5),float3(1.0, 1.0, 1.0),float3(0.00, 0.33, 0.67));
                     
