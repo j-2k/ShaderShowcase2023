@@ -4,18 +4,47 @@ using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.UI;
 
+class KeyHolder {
+    KeyCode keyholderKEY;
+    Image image;
+    RectTransform rt;
+    KeyHolder(GameObject go, KeyCode assignedKey)
+    {
+        image = go.GetComponent<Image>();
+        rt = go.GetComponent<RectTransform>();
+        keyholderKEY = assignedKey;
+    }
+
+    public void Initialize(GameObject go,KeyCode assignedKey)
+    {
+        image = go.GetComponent<Image>();
+        rt = go.GetComponent<RectTransform>();
+        keyholderKEY = assignedKey;
+    }
+
+    public bool isActive()
+    {
+        if(Input.GetKey(keyholderKEY))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
+
 public class KeyCheck : MonoBehaviour
 {
-    [SerializeField] Image WImage;
-    [SerializeField] Image AImage;
-    [SerializeField] Image SImage;
-    [SerializeField] Image DImage;
-    [SerializeField] Image SpaceImage;
+
+    KeyHolder[] kh = new KeyHolder[5];
+    [SerializeField] Image[] keyImages = new Image[5]; //ORDER = W, A, S, D, SPACE
+    KeyCode[] keys = new KeyCode[5];
+
     [SerializeField] Color inactiveCol;
     [SerializeField] Color activeCol;
     [SerializeField] bool isInputCustomColors = false;
-    RectTransform[] rts = new RectTransform[5];
-    //GameObject[] images =
 
     private void Start()
     {
@@ -24,11 +53,26 @@ public class KeyCheck : MonoBehaviour
             inactiveCol = new Color(1f, 1f, 1f, 1);
             activeCol = Color.green;
         }
-        for (int i = 0; i < rts.Length; i++)
+
+        for (int i = 0; i < kh.Length; i++)
         {
-            rts[i].GetComponent<RectTransform>();
+            kh[i].Initialize(keyImages[i].gameObject, keys[i]);
         }
     }
+
+    void Update()
+    {
+        
+    }
+
+
+
+    /* old aglo pretty decent ngl revamped it completely tho
+    [SerializeField] Image WImage;
+    [SerializeField] Image AImage;
+    [SerializeField] Image SImage;
+    [SerializeField] Image DImage;
+    [SerializeField] Image SpaceImage;
 
     // Update is called once per frame
     void Update()
@@ -51,4 +95,5 @@ public class KeyCheck : MonoBehaviour
             image.color = inactiveCol;
         }
     }
+    */
 }
