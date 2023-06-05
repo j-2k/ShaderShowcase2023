@@ -14,13 +14,19 @@ public class KeyCheck : MonoBehaviour
     [SerializeField] Color inactiveCol;
     [SerializeField] Color activeCol;
     [SerializeField] bool isInputCustomColors = false;
+    RectTransform[] rts = new RectTransform[5];
+    //GameObject[] images =
 
     private void Start()
     {
         if(!isInputCustomColors)
         {
-            inactiveCol = new Color(0.2f, 0.2f, 0.2f, 1);
+            inactiveCol = new Color(1f, 1f, 1f, 1);
             activeCol = Color.green;
+        }
+        for (int i = 0; i < rts.Length; i++)
+        {
+            rts[i].GetComponent<RectTransform>();
         }
     }
 
