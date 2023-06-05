@@ -8,11 +8,17 @@ class KeyHolder {
     KeyCode keyholderKEY;
     Image image;
     RectTransform rt;
+    Color inactiveCol = Color.white;    //defaulted to white for inactive
+    Color activeCol = Color.green;      //defaulted to green for active
+
+    KeyHolder()
+    {
+        Initialize(null,KeyCode.None);
+    }
+
     KeyHolder(GameObject go, KeyCode assignedKey)
     {
-        image = go.GetComponent<Image>();
-        rt = go.GetComponent<RectTransform>();
-        keyholderKEY = assignedKey;
+        Initialize(go, assignedKey);
     }
 
     public void Initialize(GameObject go,KeyCode assignedKey)
@@ -20,6 +26,12 @@ class KeyHolder {
         image = go.GetComponent<Image>();
         rt = go.GetComponent<RectTransform>();
         keyholderKEY = assignedKey;
+    }
+
+    public void ChangeColorStates(Color inactive, Color active)
+    {
+        inactiveCol = inactive;
+        activeCol = active;
     }
 
     public bool isActive()
@@ -33,14 +45,26 @@ class KeyHolder {
             return false;
         }
     }
+
+    public void LightImageWhenKeyPressed()
+    {
+        if(isActive())
+        {
+            image.color = activeCol;
+        }
+        else
+        {
+            image.color = inactiveCol;
+        }
+    }
 }
 
 public class KeyCheck : MonoBehaviour
 {
 
-    KeyHolder[] kh = new KeyHolder[5];
-    [SerializeField] Image[] keyImages = new Image[5]; //ORDER = W, A, S, D, SPACE
-    KeyCode[] keys = new KeyCode[5];
+    [SerializeField] Image[] keyImages = new Image[5];  //ORDER = W, A, S, D, SPACE
+    [SerializeField] KeyCode[] keys = new KeyCode[5];   //ORDER = W, A, S, D, SPACE
+    KeyHolder[] keyHolders = new KeyHolder[5];
 
     [SerializeField] Color inactiveCol;
     [SerializeField] Color activeCol;
@@ -48,21 +72,26 @@ public class KeyCheck : MonoBehaviour
 
     private void Start()
     {
-        if(!isInputCustomColors)
+        if(isInputCustomColors)
         {
-            inactiveCol = new Color(1f, 1f, 1f, 1);
-            activeCol = Color.green;
+            for (int i = 0; i < keyHolders.Length; i++)
+            {
+                keyHolders[i].ChangeColorStates(inactiveCol, activeCol);
+            }
         }
 
-        for (int i = 0; i < kh.Length; i++)
+        for (int i = 0; i < keyHolders.Length; i++)
         {
-            kh[i].Initialize(keyImages[i].gameObject, keys[i]);
+            keyHolders[i].Initialize(keyImages[i].gameObject, keys[i]);
         }
     }
 
     void Update()
     {
-        
+        for (int i = 0; i < keyHolders.Length; i++)
+        {
+            keyHolders[i].LightImageWhenKeyPressed();
+        }
     }
 
 
