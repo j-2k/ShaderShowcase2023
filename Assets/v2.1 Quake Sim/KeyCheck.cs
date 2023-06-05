@@ -10,6 +10,7 @@ class KeyHolder {
     RectTransform rt;
     Color inactiveCol = Color.white;    //defaulted to white for inactive
     Color activeCol = Color.green;      //defaulted to green for active
+    float downShiftAmount = -3;
 
     public KeyHolder()
     {
@@ -51,10 +52,12 @@ class KeyHolder {
         if(isActive())
         {
             image.color = activeCol;
+            rt.anchoredPosition = new Vector2(0,downShiftAmount);
         }
         else
         {
             image.color = inactiveCol;
+            rt.anchoredPosition = Vector2.zero;
         }
     }
 }
