@@ -11,12 +11,12 @@ class KeyHolder {
     Color inactiveCol = Color.white;    //defaulted to white for inactive
     Color activeCol = Color.green;      //defaulted to green for active
 
-    KeyHolder()
+    public KeyHolder()
     {
         Initialize(null,KeyCode.None);
     }
 
-    KeyHolder(GameObject go, KeyCode assignedKey)
+    public KeyHolder(GameObject go, KeyCode assignedKey)
     {
         Initialize(go, assignedKey);
     }
@@ -61,6 +61,8 @@ class KeyHolder {
 
 public class KeyCheck : MonoBehaviour
 {
+    //PLANS FOR THIS SCRIPT
+    //ADD A FUNCTIONALITY THAT CAN CHANGE KEY BINDS
 
     [SerializeField] Image[] keyImages = new Image[5];  //ORDER = W, A, S, D, SPACE
     [SerializeField] KeyCode[] keys = new KeyCode[5];   //ORDER = W, A, S, D, SPACE
@@ -72,6 +74,12 @@ public class KeyCheck : MonoBehaviour
 
     private void Start()
     {
+        for (int i = 0; i < keyHolders.Length; i++)
+        {
+            //keyHolders[i].Initialize(keyImages[i].gameObject, keys[i]);
+            keyHolders[i] = new KeyHolder(keyImages[i].gameObject, keys[i]);
+        }
+
         if(isInputCustomColors)
         {
             for (int i = 0; i < keyHolders.Length; i++)
@@ -80,10 +88,6 @@ public class KeyCheck : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < keyHolders.Length; i++)
-        {
-            keyHolders[i].Initialize(keyImages[i].gameObject, keys[i]);
-        }
     }
 
     void Update()
