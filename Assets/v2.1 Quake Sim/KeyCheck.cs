@@ -102,7 +102,7 @@ public class KeyCheck : MonoBehaviour
     }
 
 
-
+    #region old key algo
     /* old aglo pretty decent ngl revamped it completely tho
     [SerializeField] Image WImage;
     [SerializeField] Image AImage;
@@ -132,4 +132,5 @@ public class KeyCheck : MonoBehaviour
         }
     }
     */
+    #endregion
 }
