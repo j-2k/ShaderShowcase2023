@@ -4,7 +4,7 @@ Plans for this Q1 Sim project.
 - Make levels as colorful as possible
 - Player vector scene? not sure if important yet but should show player + all vectors in play
 - Simple cinematic with different ranger skin labeled Juma.
- 
+ my fav quote "I jumped from a big idea to another big idea not once having moved farther than the concept stage" the strongest quote to describe dev ideas
  
 //https://www.youtube.com/watch?v=v3zT3Z5apaM best video on bhopping to date.
 //https://github.com/id-Software/Quake/blob/master/WinQuake/sv_user.c#L190 original move code for q1 
