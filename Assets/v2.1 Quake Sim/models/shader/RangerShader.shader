@@ -8,30 +8,40 @@ Shader "Unlit/RangerShader"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" "LightMode"="ForwardBase"}
-        LOD 100
-
         Pass
         {
+            Tags { 
+            "RenderType"="Opaque" 
+            "LightMode"="ForwardBase" 
+            "PassFlags" = "OnlyDirectional"
+            }
+            LOD 100
+
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile_fwdbase
             // make fog work
-            #pragma multi_compile_fog
+            //#pragma multi_compile_fog
 
             #include "UnityCG.cginc"
+            #include "Lighting.cginc"
+            #include "AutoLight.cginc"
 
             struct appdata
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
+                float3 normal : NORMAL;
             };
 
             struct v2f
             {
                 float2 uv : TEXCOORD0;
-                UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
+                float3 worldNormal : TEXCOORD3;
+                UNITY_FOG_COORDS(1)
+                SHADOW_COORDS(2)
             };
 
             sampler2D _MainTex;
@@ -46,7 +56,10 @@ Shader "Unlit/RangerShader"
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                UNITY_TRANSFER_FOG(o,o.vertex);
+                //o.worldNormal = (v.normal);
+                o.worldNormal = UnityObjectToWorldNormal(v.normal);
+                //UNITY_TRANSFER_FOG(o,o.vertex);
+                TRANSFER_SHADOW(o);
                 return o;
             }
 
@@ -57,6 +70,15 @@ Shader "Unlit/RangerShader"
 
             fixed4 frag (v2f i) : SV_Target
             {
+                //light shit
+                float3 normal = normalize(i.worldNormal);
+                float NdotL = dot(_WorldSpaceLightPos0, normal);
+                float shadow = SHADOW_ATTENUATION(i);
+                float lightIntensity = smoothstep(0,0.1f, NdotL * shadow);
+                float4 light = lightIntensity * _LightColor0;
+
+
+
                 // sample the texture
                 fixed4 maskTex = 1 - (1 - tex2D(_MainTex, i.uv));
                 fixed4 colTex = (tex2D(_ColTex, i.uv));
@@ -96,15 +118,16 @@ Shader "Unlit/RangerShader"
                 }
                 
                 //return float4(float3(fc),1);
-    
-
-                //
-
-                float4 finalCol = float4(float3(fracCol),1);
                 
 
 
-                return saturate(lerp(colTex, finalCol * 2, saturate(maskTex * 10))) * 1;
+
+
+                //
+
+                float4 finalCol = float4(fracCol,1);
+                float4 unlitRanger = saturate(lerp(colTex, finalCol * 2, saturate(maskTex * 10))) * 1;
+                return (unlitRanger * light);
 
                 /*
                 if(maskTex.x > 0.01f)

@@ -1,0 +1,18 @@
+To do list/Ideas: (writing this incase i forget cuz i have like 50 ongoing things to do)
+
+===================QUAKE PROJ===================
+Map layout for quake bhop sim needs work. Music ideas anything pretty fast & high bpm is good reference most intial d osts for good starting point.
+Additional for fun references for quake level:
+Backrooms level & tp.
+
+Cinematics/Art
+Cinematic needs to have some sort of replay watching ranger in 3rd person?
+solutions could be a replay system with key presses & with a camera follow? might be too much work for something simple consider cinemachine.
+===================QUAKE PROJ===================
+
+===================UNTITLED PROJ===================
+Story of the jester & adelaide with a sad tone & setting. music references can be irrepressibles in this shirt.
+- jester has a gun + bullets resemble the amount of life left in the jester. Once 0 grim apears & scene freezes.
+- final scene to be a bloodbath with only adelaide alive and someone in the crowd.
+- grim reaps the soul of jester & dissapears.
+===================UNTITLED PROJ===================
