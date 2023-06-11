@@ -40,7 +40,7 @@ table header col 1 |  table header col 2
 Table Test | Table Test (Image commented here in source >) <!--![vhsimage](https://github.com/j-2k/ShaderShowcase/assets/52252068/578bf20b-7349-49dd-b77e-e402912c379a)-->
 
 <p float="left" align="middle">
-  <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/eb68c2ba-d5dc-4ba1-9ab0-dc99dd69c80f" alt="scene img" height="200" width="40%" />
-  <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/3c0ca444-442c-4d38-ae26-2f44d064394d" alt="ig img" height="200" width="35%" /> 
-  <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/578bf20b-7349-49dd-b77e-e402912c379a" alt="vhs filter" height="200" width="24%" />
+  <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/eb68c2ba-d5dc-4ba1-9ab0-dc99dd69c80f" alt="scene img" height="200" width="40%" title="QSIM SCENE img (6/12/2023)"/>
+  <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/3c0ca444-442c-4d38-ae26-2f44d064394d" alt="ig img" height="200" width="35%" title="QSIM INGAME img (6/12/2023)"/> 
+  <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/578bf20b-7349-49dd-b77e-e402912c379a" alt="vhs filter" height="200" width="24%" title="VHS SHADER/FILTER IDEA"/>
 </p>
