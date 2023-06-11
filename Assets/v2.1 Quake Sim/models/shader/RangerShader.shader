@@ -102,7 +102,9 @@ Shader "Unlit/RangerShader"
 
                 float4 finalCol = float4(float3(fracCol),1);
                 
-                return lerp(colTex,finalCol,maskTex);
+
+
+                return saturate(lerp(colTex, finalCol * 2, saturate(maskTex * 10))) * 1;
 
                 /*
                 if(maskTex.x > 0.01f)
