@@ -22,7 +22,7 @@ Shader "Unlit/RangerShader"
             #pragma fragment frag
             #pragma multi_compile_fwdbase
             // make fog work
-            //#pragma multi_compile_fog
+            #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
@@ -37,11 +37,11 @@ Shader "Unlit/RangerShader"
 
             struct v2f
             {
+                float4 pos : SV_POSITION;
                 float2 uv : TEXCOORD0;
-                float4 vertex : SV_POSITION;
-                float3 worldNormal : TEXCOORD3;
-                UNITY_FOG_COORDS(1)
-                SHADOW_COORDS(2)
+                float3 worldNormal : TEXCOORD1;
+                UNITY_FOG_COORDS(2)
+                SHADOW_COORDS(3)
             };
 
             sampler2D _MainTex;
@@ -54,12 +54,14 @@ Shader "Unlit/RangerShader"
             v2f vert (appdata v)
             {
                 v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
+                //o.VERTEX CAUSES TRANSFER SHADOW NOT TO WORK BUILT IN FUNCTION THING MAYBE??
+                //thank you toon shader for reminding me 100
+                o.pos = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 //o.worldNormal = (v.normal);
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
-                //UNITY_TRANSFER_FOG(o,o.vertex);
-                TRANSFER_SHADOW(o);
+                UNITY_TRANSFER_FOG(o,o.vertex);
+                TRANSFER_SHADOW(o)
                 return o;
             }
 
@@ -124,10 +126,10 @@ Shader "Unlit/RangerShader"
 
 
                 //
-
                 float4 finalCol = float4(fracCol,1);
                 float4 unlitRanger = saturate(lerp(colTex, finalCol * 2, saturate(maskTex * 10))) * 1;
-                return (unlitRanger * light);
+                UNITY_APPLY_FOG(i.fogCoord, unlitRanger);
+                return unlitRanger + ((unlitRanger * light) * 2);
 
                 /*
                 if(maskTex.x > 0.01f)
@@ -144,7 +146,7 @@ Shader "Unlit/RangerShader"
             }
             ENDCG
         }
-
+        UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
     }
-    FallBack "Diffuse"
+    //FallBack "Diffuse"
 }
