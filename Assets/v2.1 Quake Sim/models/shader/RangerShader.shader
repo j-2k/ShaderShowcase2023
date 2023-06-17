@@ -12,6 +12,7 @@ Shader "Unlit/RangerShader"
         {
             Tags { 
             "RenderType"="Opaque" 
+            "Queue" = "Opaque"
             "LightMode"="ForwardBase" 
             "PassFlags" = "OnlyDirectional"
             }
@@ -129,7 +130,7 @@ Shader "Unlit/RangerShader"
                 float4 finalCol = float4(fracCol,1);
                 float4 unlitRanger = saturate(lerp(colTex, finalCol * 2, saturate(maskTex * 10))) * 1;
                 UNITY_APPLY_FOG(i.fogCoord, unlitRanger);
-                return unlitRanger + ((unlitRanger * light) * 2);
+                return float4(unlitRanger + ((unlitRanger * light) * 2).xyz,0.0f);
 
                 /*
                 if(maskTex.x > 0.01f)
