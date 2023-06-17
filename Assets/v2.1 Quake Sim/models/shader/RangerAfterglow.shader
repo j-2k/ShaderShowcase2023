@@ -5,6 +5,7 @@ Shader "Unlit/RangerAfterglow"
         _MainTex ("Texture", 2D) = "white" {}
         [HDR] _Emission ("Fresnel Emission Color", color) = (1,1,1,1)
         _FresnelExponent ("Fresnel Exponent", float ) = 0.2
+        _FresnelOffset ("_FresnelOffset", Range(0,3) ) = 1
     }
     SubShader
     {
@@ -15,9 +16,10 @@ Shader "Unlit/RangerAfterglow"
         //ZClip True
         Blend SrcAlpha OneMinusSrcAlpha 
         LOD 100
-
         Pass
         {
+
+
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
@@ -47,16 +49,19 @@ Shader "Unlit/RangerAfterglow"
 
             float4 _Emission;
             float _FresnelExponent;
+            float _FresnelOffset;
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
+                
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
-                //o.worldNormal = UnityObjectToWorldNormal(v.normal);
-                o.worldNormal = (v.normal);
+                o.worldNormal = UnityObjectToWorldNormal(v.normal);
+                //o.worldNormal = (v.normal);
                 o.viewDir = WorldSpaceViewDir(v.vertex);
+
                 return o;
             }
 
@@ -67,9 +72,9 @@ Shader "Unlit/RangerAfterglow"
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
 
-                float f = dot(i.worldNormal,i.viewDir) - 0.5f;
+                float f = dot(i.worldNormal,i.viewDir) - _FresnelOffset;
                 f = saturate(f);
-                f = pow(f, _FresnelExponent);
+                f = pow(f, abs(_FresnelExponent));
 
                 float4 fc = (_Emission * f);
 
@@ -80,5 +85,7 @@ Shader "Unlit/RangerAfterglow"
             }
             ENDCG
         }
+
+
     }
 }
