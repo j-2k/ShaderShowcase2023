@@ -27,9 +27,9 @@ Material:
     m_Ints: []
     m_Floats:
     - _FresnelExponent: 5
-    - _FresnelOffset: 1.38
+    - _FresnelOffset: 5
     - _OutlineThick: 0.105
     m_Colors:
-    - _Emission: {r: 1, g: 1, b: 1, a: 1}
+    - _Emission: {r: 1, g: 1, b: 1, a: 0}
     - _OutlineCol: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

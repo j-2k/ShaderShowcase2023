@@ -17,10 +17,8 @@ public class Quake1Move : MonoBehaviour
     [SerializeField] float gravity;
     [SerializeField] float sens = 1;
 
-    public float currentSpeed
-    {
-        get{ return cc.velocity.magnitude; }
-    }
+    public float currentSpeed {get{ return cc.velocity.magnitude; }}
+    public Vector3 currentVelocityVector {get { return cc.velocity; }}
 
     // Start is called before the first frame update
     void Start()

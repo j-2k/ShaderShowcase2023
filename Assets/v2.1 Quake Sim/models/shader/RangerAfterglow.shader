@@ -5,7 +5,7 @@ Shader "Unlit/RangerAfterglow"
         _MainTex ("Texture", 2D) = "white" {}
         [HDR] _Emission ("Fresnel Emission Color", color) = (1,1,1,1)
         _FresnelExponent ("Fresnel Exponent", float ) = 0.2
-        _FresnelOffset ("_FresnelOffset", Range(0,3) ) = 1
+        _FresnelOffset ("_FresnelOffset", Range(0,10) ) = 1
     }
     SubShader
     {
@@ -76,12 +76,11 @@ Shader "Unlit/RangerAfterglow"
                 f = saturate(f);
                 f = pow(f, abs(_FresnelExponent));
 
-                float4 fc = (_Emission * f);
+                float4 fc = 1 - (f);
 
-                float4 frs = 1 - fc;
                 //return float4(fc,1) + _Color;
 
-                return frs;
+                return float4(_Emission.xyz * fc.xyz, fc.w);
             }
             ENDCG
         }
