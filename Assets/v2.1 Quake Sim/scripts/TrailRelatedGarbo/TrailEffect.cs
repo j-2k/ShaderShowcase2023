@@ -23,7 +23,7 @@ public class TrailEffect : MonoBehaviour
             if(t > 0.034f) //0.034 = 3 enabled @ one MAX
             {
                 //Instantiate is really bad but idc for now. Subsititue for ObjectPool or just an enabling algo.
-                GameObject currentTrail = Instantiate(trailingRanger,qm.transform.position + (Vector3.up * 1.25f) - qm.currentVelocityVector.normalized,qm.transform.rotation);
+                GameObject currentTrail = Instantiate(trailingRanger,transform.position - qm.currentVelocityVector.normalized,qm.transform.rotation);
                 GameObject.Destroy(currentTrail, 0.1f);
                 t = 0;
             }
