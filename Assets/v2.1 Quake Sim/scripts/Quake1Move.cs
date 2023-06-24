@@ -110,6 +110,18 @@ public class Quake1Move : MonoBehaviour
         playerVelocity.y -= gravity * Time.deltaTime;
     }
 
+    public void TeleportPlayer(Vector3 destination, bool isONLYSPEEDRESET = false)
+    {
+        if(isONLYSPEEDRESET)
+        {
+            playerVelocity = Vector3.zero;
+            return;
+        }
+        playerVelocity = Vector3.zero;
+        cc.enabled = false;
+        cc.transform.position = destination;
+        cc.enabled = true;
+    }
 
     #region DEBUGS & OTHERS
     CharacterController cc;
