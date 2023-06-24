@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Quake1Move : MonoBehaviour
@@ -121,6 +122,15 @@ public class Quake1Move : MonoBehaviour
         cc.enabled = false;
         cc.transform.position = destination;
         cc.enabled = true;
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if(hit.collider.tag == "bh_trigger")
+        {
+            TeleportPlayer(ExtraControls.Respawn1);
+        }
+        Debug.Log("OnControllerColliderHit");
     }
 
     #region DEBUGS & OTHERS

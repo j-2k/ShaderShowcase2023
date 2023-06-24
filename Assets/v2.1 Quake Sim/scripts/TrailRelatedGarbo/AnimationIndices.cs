@@ -5,15 +5,17 @@ using UnityEngine;
 public class AnimationIndices : MonoBehaviour
 {
     [SerializeField] Quake1Move qm;
+    [SerializeField] SkinnedMeshRenderer smrREF;
     public static SkinnedMeshRenderer smr;
     public static float[] smrIndices = new float[6];  
 
     // Start is called before the first frame update
     void Start()
     {
-        if(smr == null)
+        smr = smrREF;
+        if (smr == null)
         {
-            smr = GetComponent<SkinnedMeshRenderer>();
+            Debug.LogWarning("SKINNED MESH RENDERER IS MISSING!");
         }
 
         if(qm == null)
