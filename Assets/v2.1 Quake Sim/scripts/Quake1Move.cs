@@ -59,7 +59,7 @@ public class Quake1Move : MonoBehaviour
             Gravity();
             playerVelocity = MoveAir(wishDir, playerVelocity);
         }
-
+        //Gravity();
         cc.Move(playerVelocity * Time.deltaTime);
     }
 
@@ -74,7 +74,7 @@ public class Quake1Move : MonoBehaviour
         return finalVec;
     }
 
-    Vector3 Accelerate(Vector3 wishDirection, Vector3 currVelocity, float accelerate, float max_velocity)
+    Vector3 OldAccelerate(Vector3 wishDirection, Vector3 currVelocity, float accelerate, float max_velocity)
     {
         float projVel = Vector3.Dot(wishDirection, currVelocity); // Vector projection of Current velocity onto wishDirection.
         float accelVel = accelerate * Time.deltaTime; // Accelerated velocity in direction of movment
@@ -124,6 +124,8 @@ public class Quake1Move : MonoBehaviour
         cc.enabled = true;
     }
 
+    //Ontriggerenter for teleporting would be better but torus cant be trigger because of convex flattening it
+    //other solution was to use sphere triggers in the torus but yeah not a big fan of that rn 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if(hit.collider.tag == "bh_trigger")
@@ -131,6 +133,15 @@ public class Quake1Move : MonoBehaviour
             TeleportPlayer(ExtraControls.Respawn1);
         }
         Debug.Log("OnControllerColliderHit");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "bh_trigger")
+        {
+            TeleportPlayer(ExtraControls.Respawn1);
+        }
+        Debug.Log("OnTriggerEnter");
     }
 
     #region DEBUGS & OTHERS
