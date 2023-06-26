@@ -23,7 +23,7 @@ Shader "Unlit/RangerShader"
             #pragma fragment frag
             #pragma multi_compile_fwdbase
             // make fog work
-            #pragma multi_compile_fog
+            //#pragma multi_compile_fog
 
             #include "UnityCG.cginc"
             #include "Lighting.cginc"
@@ -41,7 +41,7 @@ Shader "Unlit/RangerShader"
                 float4 pos : SV_POSITION;
                 float2 uv : TEXCOORD0;
                 float3 worldNormal : TEXCOORD1;
-                UNITY_FOG_COORDS(2)
+                //UNITY_FOG_COORDS(2)
                 SHADOW_COORDS(3)
             };
 
@@ -61,7 +61,7 @@ Shader "Unlit/RangerShader"
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 //o.worldNormal = (v.normal);
                 o.worldNormal = UnityObjectToWorldNormal(v.normal);
-                UNITY_TRANSFER_FOG(o,o.vertex);
+                //UNITY_TRANSFER_FOG(o,o.pos);
                 TRANSFER_SHADOW(o)
                 return o;
             }
@@ -129,7 +129,7 @@ Shader "Unlit/RangerShader"
                 //
                 float4 finalCol = float4(fracCol,1);
                 float4 unlitRanger = saturate(lerp(colTex, finalCol * 2, saturate(maskTex * 10))) * 1;
-                UNITY_APPLY_FOG(i.fogCoord, unlitRanger);
+                //UNITY_APPLY_FOG(i.fogCoord, unlitRanger);
                 return float4(unlitRanger + ((unlitRanger * light) * 2).xyz,0.0f);
 
                 /*

@@ -132,9 +132,6 @@ Shader "Unlit/ULSkyboxSphere"
                 starTex = pow(saturate(starTex),_Vector.z) * (_ColorC  * noiseCol) * maskTop;//(sin(_Time.y*4) * 10 + _Vector.z)) * _ColorC;
                 //starTex = pow(saturate(starTex),round(sin(_Time.y) * 5 + _Vector.z)) * (_ColorC * (noiseCol.r));
 
-                // Apply Fog Default
-                UNITY_APPLY_FOG(i.fogCoord, col);
-
                 //Lerping Colors
                 float lerpUV = InverseLerp(_a,_b,i.uv.y) + _Offset2;
                 float4 finalColorLerp = lerp(_ColorH, _ColorS, saturate(lerpUV));
@@ -166,6 +163,9 @@ Shader "Unlit/ULSkyboxSphere"
                 //return noiseCol;
                 //return starTex;
                 //return cloudsCol;
+
+                // Apply Fog Default
+                UNITY_APPLY_FOG(i.fogCoord, starTex);
 
                 return starTex + finalColorLerp + (finalSuns + finalClouds);//+ 1;// + cloudsTex;
                 //return fixed4(i.worldPos,1);// * lerpUV;// return (col * mainCol);
