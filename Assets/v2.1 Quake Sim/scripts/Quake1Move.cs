@@ -7,16 +7,16 @@ using UnityEngine;
 
 public class Quake1Move : MonoBehaviour
 {
-    [SerializeField] Vector3 wishDir;
-    [SerializeField] Vector3 playerVelocity;
-    [SerializeField] float ground_accelerate;
-    [SerializeField] float max_velocity_ground;
-    [SerializeField] float air_accelerate;
-    [SerializeField] float max_velocity_air;
-    [SerializeField] float friction;
-    [SerializeField] float jumpSpeed;
-    [SerializeField] float gravity;
-    [SerializeField] float sens = 1;
+    [SerializeField] Vector3 wishDir;           //Vector3.zero
+    [SerializeField] Vector3 playerVelocity;    //Vector3.zero
+    [SerializeField] float ground_accelerate;   //100
+    [SerializeField] float max_velocity_ground; //10
+    [SerializeField] float air_accelerate;      //200-400
+    [SerializeField] float max_velocity_air;    //1-2
+    [SerializeField] float friction;            //7
+    [SerializeField] float jumpSpeed;           //12
+    [SerializeField] float gravity;             //30
+    [SerializeField] float sens = 1;            //1
 
     public float currentSpeed {get{ return cc.velocity.magnitude; }}
     public Vector3 currentVelocityVector {get { return cc.velocity; }}
