@@ -2,8 +2,6 @@ Shader "Custom/SimpleFresnel"
 {
     Properties
     {
-        _Color ("Color", Color) = (1,1,1,1)
-        //_MainTex ("Albedo (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
         [HDR] _Emission ("Emission", color) = (0,0,0)
@@ -11,7 +9,7 @@ Shader "Custom/SimpleFresnel"
         _FC ("Fresnel Color", color) = (1,1,1,1)
         [PowerSlider(4)] _FE ("Fresnel Exponent", Range(0.1,4)) = 1
 
-        _Cutoff ("Alpha Cutoff", Range(0, 2)) = 0.5
+        //_Cutoff ("Alpha Cutoff", Range(0, 1)) = 0.5
     }
     SubShader
     {
@@ -21,12 +19,10 @@ Shader "Custom/SimpleFresnel"
         LOD 200
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
-        #pragma surface surf Standard alpha//fullforwardshadows
+        #pragma surface surf Lambert alpha//fullforwardshadows
 
         // Use shader model 3.0 target, to get nicer looking lighting
         #pragma target 3.0
-
-        sampler2D _MainTex;
 
         struct Input
         {
@@ -36,13 +32,12 @@ Shader "Custom/SimpleFresnel"
             INTERNAL_DATA
         };
 
-        half _Glossiness;
-        half _Metallic;
-        fixed4 _Color;
+        //half _Glossiness;
+        //half _Metallic;
 
         float3 _Emission;
 
-        float3 _FC;
+        float4 _FC;
         float _FE;
 
         float _Cutoff;
@@ -54,22 +49,19 @@ Shader "Custom/SimpleFresnel"
             // put more per-instance properties here
         UNITY_INSTANCING_BUFFER_END(Props)
 
-        void surf (Input IN, inout SurfaceOutputStandard o)
+        void surf (Input IN, inout SurfaceOutput o)
         {
-            // Albedo comes from a texture tinted by color
-            //fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
-            //o.Albedo = _Color.rgb;
-            // Metallic and smoothness come from slider variables
-            o.Metallic = _Metallic;
-            o.Smoothness = _Glossiness;
-            //o.Alpha = c.a;
+            //o.Metallic = _Metallic;
+            //o.Smoothness = _Glossiness;
 
             float f = dot(IN.worldNormal,IN.viewDir);
             f = saturate(1 - f);
             f = pow(f, _FE);
-            float3 fc = f * _FC;
+            float4 fc = f * _FC;
+
             o.Emission = _Emission + fc;
-            o.Alpha = _Color.a;
+            o.Albedo = fc.rgb;
+            o.Alpha = fc.a;//saturate(f-_Cutoff);
         }
         ENDCG
     }

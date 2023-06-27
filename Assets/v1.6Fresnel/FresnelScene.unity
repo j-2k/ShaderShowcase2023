@@ -1157,7 +1157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: df41da93bd8e44a439c6118787917984, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.027
+      value: 0.101
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: df41da93bd8e44a439c6118787917984, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1191,13 +1191,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7813590141776298306, guid: df41da93bd8e44a439c6118787917984, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 40836db20db634fc2a1b573924b0257a, type: 2}
     - target: {fileID: -4706228988682842286, guid: df41da93bd8e44a439c6118787917984, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: df41da93bd8e44a439c6118787917984, type: 3}
       propertyPath: m_Name
       value: Y Bot@Flip Kick (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2484128538761520324, guid: df41da93bd8e44a439c6118787917984, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.381
       objectReference: {fileID: 0}
     - target: {fileID: 5822821947120931875, guid: df41da93bd8e44a439c6118787917984, type: 3}
       propertyPath: m_Materials.Array.data[0]

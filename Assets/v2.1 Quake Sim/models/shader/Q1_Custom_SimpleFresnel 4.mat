@@ -28,10 +28,10 @@ Material:
     m_Floats:
     - _Cutoff: 0
     - _FE: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0
     - _Metallic: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 0}
-    - _Emission: {r: 0, g: 0, b: 0, a: 1}
-    - _FC: {r: 1, g: 1, b: 1, a: 1}
+    - _Emission: {r: 1, g: 0, b: 0, a: 1}
+    - _FC: {r: 1, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
