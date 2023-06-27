@@ -9,7 +9,7 @@ Shader "Custom/SimpleFresnel"
         _FC ("Fresnel Color", color) = (1,1,1,1)
         [PowerSlider(4)] _FE ("Fresnel Exponent", Range(0.1,4)) = 1
 
-        //_Cutoff ("Alpha Cutoff", Range(0, 1)) = 0.5
+        _Cutoff ("Alpha Cutoff", Range(0, 1)) = 0
     }
     SubShader
     {
@@ -61,7 +61,7 @@ Shader "Custom/SimpleFresnel"
 
             o.Emission = _Emission + fc;
             o.Albedo = fc.rgb;
-            o.Alpha = fc.a;//saturate(f-_Cutoff);
+            o.Alpha = saturate(fc.a - _Cutoff);//saturate(f-_Cutoff);
         }
         ENDCG
     }

@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &816609449
 Transform:
   m_ObjectHideFlags: 0
@@ -339,6 +339,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smr: {fileID: 5579932676510608204}
+  fresnelMat: {fileID: 2100000, guid: 40836db20db634fc2a1b573924b0257a, type: 2}
 --- !u!137 &5579932676510608204 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: -3887185075125053422, guid: 47a345f7152b9b44ba5738622b4dc72a, type: 3}
