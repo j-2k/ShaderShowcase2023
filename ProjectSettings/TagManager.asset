@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Respawn1
   - bh_trigger
+  - bh_boundbox
   layers:
   - Default
   - TransparentFX

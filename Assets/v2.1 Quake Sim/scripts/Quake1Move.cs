@@ -144,6 +144,15 @@ public class Quake1Move : MonoBehaviour
         Debug.Log("OnTriggerEnter");
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "bh_boundbox")
+        {
+            TeleportPlayer(ExtraControls.Respawn1);
+        }
+        Debug.Log("OnTriggerExit");
+    }
+
     #region DEBUGS & OTHERS
     CharacterController cc;
     [SerializeField] TextMeshProUGUI currUUPS;

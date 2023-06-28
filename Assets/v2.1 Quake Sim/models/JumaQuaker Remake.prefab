@@ -291,7 +291,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartKey: 284
   respawnPos: {x: 0, y: 0, z: 0}
-  playerScript: {fileID: 0}
+  playerScript: {fileID: 2097148629617273123}
 --- !u!1 &2097148629866551496
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81eb0afc5666b294593da959abbedea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeSpawnRate: 0.04
+  timeSpawnRateMS: 0.034
   qm: {fileID: 2097148629617273123}
   trailingRanger: {fileID: 838653737730297359, guid: 29e10a3011cfaa84d89015a5e27bcd1c, type: 3}
   smrREF: {fileID: 6275590526220824610}
@@ -462,7 +462,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.06547189, b: 0, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 1}
       key1: {r: 0, g: 0, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 1}
       key3: {r: 0.2271074, g: 1, b: 0, a: 0}
@@ -470,8 +470,8 @@ TrailRenderer:
       key5: {r: 0.78431374, g: 0, b: 0.16787885, a: 0}
       key6: {r: 0, g: 0.32015663, b: 0.6627451, a: 0}
       key7: {r: 0.0075649684, g: 0.17227963, b: 0.3207547, a: 0}
-      ctime0: 0
-      ctime1: 45875
+      ctime0: 13107
+      ctime1: 52428
       ctime2: 56090
       ctime3: 65535
       ctime4: 65535
