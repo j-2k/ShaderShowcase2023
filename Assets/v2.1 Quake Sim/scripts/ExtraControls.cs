@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ExtraControls : MonoBehaviour
 {
@@ -24,6 +25,20 @@ public class ExtraControls : MonoBehaviour
         if(Input.GetKeyDown(restartKey))
         {
             playerScript.TeleportPlayer(respawnPos);
+        }
+
+        if(Input.GetKeyDown(KeyCode.F1))
+        {
+            if(SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                SceneManager.LoadScene(1);
+            }
+            else
+            {
+                SceneManager.LoadScene(0);
+            }    
+
+            
         }
     }
 }

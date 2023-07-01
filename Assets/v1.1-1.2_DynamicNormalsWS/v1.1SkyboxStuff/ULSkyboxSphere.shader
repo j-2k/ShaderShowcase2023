@@ -164,10 +164,11 @@ Shader "Unlit/ULSkyboxSphere"
                 //return starTex;
                 //return cloudsCol;
 
+                float4 finalColors = finalColorLerp + (finalSuns + finalClouds);
                 // Apply Fog Default
-                UNITY_APPLY_FOG(i.fogCoord, finalColorLerp);
+                UNITY_APPLY_FOG(i.fogCoord, finalColors);
 
-                return starTex + finalColorLerp + (finalSuns + finalClouds);//+ 1;// + cloudsTex;
+                return starTex + finalColors;//+ 1;// + cloudsTex;
                 //return fixed4(i.worldPos,1);// * lerpUV;// return (col * mainCol);
             }
             ENDCG
