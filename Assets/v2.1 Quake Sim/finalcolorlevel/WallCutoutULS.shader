@@ -52,21 +52,25 @@ Shader "Unlit/WallCutoutULS"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float2 uv = i.uv + _Time.y * 5;
+                float2 uv = i.uv + _Time.y * 10;
 
-                
+                float uv1 = sin(uv.y * 2);
+                float uv2 = sin(uv.y * 2 + 3.5);
 
                 float3 cp = float3(palette(_Time.y,float3(0.5,0.5,0.5),float3(0.5,0.5,0.5),float3(1,1,1),float3(0,0.33,0.67)).rgb);
                 
-                float mainCol = sin(uv.y * 2);
-                mainCol = saturate(mainCol);
+                float mc1 = uv1;
+                mc1 = saturate(mc1);
+
+                float mc2 = uv2;
+                mc2 = saturate(mc2);
 
                 //float3 finalColor = float3(mainCol * cp.x, mainCol * cp.y, mainCol * cp.z);
-                float3 fc1 = float3(mainCol * cp);
-                float3 fc2 = float3((1-mainCol) * cp);
+                float3 fc1 = (mc1 * palette(_Time.y,float3(0.5,0.5,0.5),float3(0.5,0.5,0.5),float3(1,1,1),float3(0,0.33,0.67)));
+                float3 fc2 = (mc2 * palette(_Time.y + 0.5,float3(0.5,0.5,0.5),float3(0.5,0.5,0.5),float3(1,1,1),float3(0,0.33,0.67)));
 
                 //return fc;
-                return float4(fc1,1);
+                return float4(fc1 + fc2 ,1);
                 /*
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);

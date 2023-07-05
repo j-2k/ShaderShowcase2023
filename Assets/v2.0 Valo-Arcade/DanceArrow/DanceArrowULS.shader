@@ -56,7 +56,7 @@ Shader "Unlit/DanceArrowULS"
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
-                o.wNormal = normalize(UnityObjectToWorldNormal(v.normal));
+                o.wNormal = normalize((v.normal));
                 return o;
             }
 

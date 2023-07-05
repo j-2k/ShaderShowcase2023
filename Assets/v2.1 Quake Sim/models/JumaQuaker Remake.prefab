@@ -119,7 +119,7 @@ MonoBehaviour:
   volumeLayer:
     serializedVersion: 2
     m_Bits: 257
-  stopNaNPropagation: 1
+  stopNaNPropagation: 0
   finalBlitToCameraTarget: 1
   antialiasingMode: 1
   temporalAntialiasing:
