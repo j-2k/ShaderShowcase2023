@@ -23,6 +23,7 @@ public class ArcadeDanceController : MonoBehaviour
     [Header("Might wanna ignore these:")]
     [SerializeField] Material deformShaderMat;
     [SerializeField] List<GameObject> horizontalArrowsList;
+    [SerializeField] List<DanceArrowScript> horizontalArrowsListScripts;
     [SerializeField] float angleTheta;
     [SerializeField] int maxEDDanceArrows;
     [SerializeField] List<GameObject> edDanceArrowsList;
@@ -72,6 +73,7 @@ public class ArcadeDanceController : MonoBehaviour
 
             arrowH.SetActive(false);
             horizontalArrowsList.Add(arrowH);
+            horizontalArrowsListScripts.Add(arrowScript);
         }
 
         dir = Vector3.up * directionMagnitude;
@@ -87,7 +89,7 @@ public class ArcadeDanceController : MonoBehaviour
             edDanceArrowsList.Add(endingArrow);
         }
 
-        MainIcoSphere = Instantiate(icoSphereFab, transformPos + Vector3.up * 2, Quaternion.identity);
+        MainIcoSphere = Instantiate(icoSphereFab, transformPos + dir, Quaternion.identity);
 
     }
 
@@ -337,6 +339,7 @@ public class ArcadeDanceController : MonoBehaviour
             if (!horizontalArrowsList[i].activeSelf) { continue; }
             if (Vector3.Distance(horizontalArrowsList[i].transform.position, transformPos) < 0.5f)
             {
+                horizontalArrowsListScripts[i].trailingOrbs.transform.SetParent(null);
                 horizontalArrowsList[i].gameObject.SetActive(false);
             }
         }

@@ -8,12 +8,18 @@ public class DanceArrowScript : MonoBehaviour
     public float acceleration = 1;
     public bool isVertical = false;
     public static float allSpeed = 1;
+    public ParticleSystem trailingOrbs;
     // Update is called once per frame
 
     float originalStartingSpeed = 0;
+
     private void Start()
     {
         originalStartingSpeed = speed;
+        if (isVertical)
+        {
+            trailingOrbs.gameObject.SetActive(false);
+        }
     }
 
     //float t = 0;
@@ -25,6 +31,14 @@ public class DanceArrowScript : MonoBehaviour
             //speed += Mathf.Lerp(acceleration/2,acceleration*2, t) * Time.deltaTime;
             speed += acceleration * 1f * Time.deltaTime;
             transform.position += transform.forward * speed * Time.deltaTime;
+            if (trailingOrbs.transform.parent == null)
+            {
+                Debug.Log("ARE WE INSIDE THE DANCE PARTICLE PARENT?");
+                trailingOrbs.transform.SetParent(transform);
+                trailingOrbs.transform.position = transform.position;
+                trailingOrbs.transform.localRotation = Quaternion.identity;
+                trailingOrbs.Play();
+            }
         }
         else
         {
@@ -38,6 +52,7 @@ public class DanceArrowScript : MonoBehaviour
         if(!isVertical)
         {
             speed = originalStartingSpeed;
+
             //t = 0;
         }
     }
