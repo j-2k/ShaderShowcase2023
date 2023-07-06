@@ -2,8 +2,8 @@ Shader "Custom/SimpleFresnel"
 {
     Properties
     {
-        _Glossiness ("Smoothness", Range(0,1)) = 0.5
-        _Metallic ("Metallic", Range(0,1)) = 0.0
+        //_Glossiness ("Smoothness", Range(0,1)) = 0.5
+        //_Metallic ("Metallic", Range(0,1)) = 0.0
         [HDR] _Emission ("Emission", color) = (0,0,0)
 
         _FC ("Fresnel Color", color) = (1,1,1,1)
@@ -19,7 +19,7 @@ Shader "Custom/SimpleFresnel"
         LOD 200
         CGPROGRAM
         // Physically based Standard lighting model, and enable shadows on all light types
-        #pragma surface surf Lambert alpha//fullforwardshadows
+        #pragma surface surf Lambert alpha fullforwardshadows vertex:vert 
 
         // Use shader model 3.0 target, to get nicer looking lighting
         #pragma target 3.0
@@ -73,8 +73,8 @@ Shader "Custom/SimpleFresnel"
             float4 fc = f * _FC;
 
             o.Emission = _Emission + fc;
-            o.Albedo = IN.Custom1;
-            o.Alpha = saturate(fc.a - _Cutoff);//saturate(f-_Cutoff);
+            o.Albedo = fc.rgb;////IN.Custom1;
+            o.Alpha = saturate(fc.a - _Cutoff - IN.Custom1);//saturate(f-_Cutoff);
         }
         ENDCG
     }
