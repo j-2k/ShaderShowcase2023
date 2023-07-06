@@ -24,13 +24,26 @@ Shader "Custom/SimpleFresnel"
         // Use shader model 3.0 target, to get nicer looking lighting
         #pragma target 3.0
 
+        struct appdata_particles {
+        float4 vertex : POSITION;
+        float3 normal : NORMAL;
+        float4 color : COLOR;
+        float4 texcoords : TEXCOORD0;
+        };
+
         struct Input
         {
             float2 uv_MainTex;
             float3 worldNormal;
             float3 viewDir;
+            float Custom1;
             INTERNAL_DATA
         };
+
+        void vert(inout appdata_particles v, out Input o) {
+        UNITY_INITIALIZE_OUTPUT(Input,o);
+        o.Custom1 = v.texcoords.z;
+        }
 
         //half _Glossiness;
         //half _Metallic;
@@ -60,7 +73,7 @@ Shader "Custom/SimpleFresnel"
             float4 fc = f * _FC;
 
             o.Emission = _Emission + fc;
-            o.Albedo = fc.rgb;
+            o.Albedo = IN.Custom1;
             o.Alpha = saturate(fc.a - _Cutoff);//saturate(f-_Cutoff);
         }
         ENDCG
