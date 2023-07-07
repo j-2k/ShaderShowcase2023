@@ -9,6 +9,7 @@ public class DanceArrowScript : MonoBehaviour
     public bool isVertical = false;
     public static float allSpeed = 1;
     public ParticleSystem trailingOrbs;
+    [SerializeField] GameObject parentPFX;
     // Update is called once per frame
 
     float originalStartingSpeed = 0;
@@ -19,6 +20,7 @@ public class DanceArrowScript : MonoBehaviour
         if (isVertical)
         {
             trailingOrbs.gameObject.SetActive(false);
+            parentPFX.gameObject.SetActive(false);
         }
     }
 
