@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: WallCutoutULS
+  m_Name: surface
   m_Shader: {fileID: 4800000, guid: 4784ecb9bdd0940759ed1b14db2107c0, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -26,6 +26,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _TimeScale: 5
+    - _TimeScale: 3
     m_Colors: []
   m_BuildTextureStacks: []

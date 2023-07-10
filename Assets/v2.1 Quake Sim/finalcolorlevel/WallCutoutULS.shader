@@ -3,6 +3,7 @@ Shader "Unlit/WallCutoutULS"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _TimeScale ("Time Scale", float) = 5
     }
     SubShader
     {
@@ -35,6 +36,7 @@ Shader "Unlit/WallCutoutULS"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
+            float _TimeScale;
 
             float3 palette( in float t, in float3 a, in float3 b, in float3 c, in float3 d )
             {
@@ -52,7 +54,7 @@ Shader "Unlit/WallCutoutULS"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                float2 uv = i.uv + _Time.y * 10;
+                float2 uv = i.uv + _Time.y * _TimeScale;
 
                 float uv1 = sin(uv.y * 2);
                 float uv2 = sin(uv.y * 2 + 3.5);
