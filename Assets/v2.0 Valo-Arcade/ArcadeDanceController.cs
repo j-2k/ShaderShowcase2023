@@ -8,6 +8,7 @@ public class ArcadeDanceController : MonoBehaviour
     [SerializeField] GameObject danceArrowFab;
     [SerializeField] GameObject icoSphereFab;
     [SerializeField] DanceStages currentEnum;
+    [SerializeField] ParticleSystem edSplash;
 
     //float speed;
     [SerializeField] float directionMagnitude = 5; //def 5
@@ -257,6 +258,10 @@ public class ArcadeDanceController : MonoBehaviour
                     if (Vector3.Distance(currArrow.position, transformPos) < 0.5)
                     {
                         //speed = 1;
+                        if(i == 0)
+                        {
+                            edSplash.Play();
+                        }
                         currArrow.gameObject.SetActive(false);
                         if(currArrow == edDanceArrowsList[maxEDDanceArrows-1].transform)
                         {
