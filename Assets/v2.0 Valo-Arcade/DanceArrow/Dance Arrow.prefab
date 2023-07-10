@@ -135,6 +135,7 @@ MonoBehaviour:
   isVertical: 0
   trailingOrbs: {fileID: 9049671354215163811}
   parentPFX: {fileID: 2868429150795719777}
+  arrowObj: {fileID: 1108406841020793375}
 --- !u!1 &2868429150795719777
 GameObject:
   m_ObjectHideFlags: 0

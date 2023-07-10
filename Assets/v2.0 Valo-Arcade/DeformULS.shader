@@ -15,7 +15,7 @@ Shader "Unlit/DeformULS"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Transparent" "Queue" = "Geometry"}
         LOD 100
 
         Pass

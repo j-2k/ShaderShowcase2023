@@ -10,9 +10,11 @@ public class DanceArrowScript : MonoBehaviour
     public static float allSpeed = 1;
     public ParticleSystem trailingOrbs;
     [SerializeField] GameObject parentPFX;
+    [SerializeField] Transform arrowObj;
     // Update is called once per frame
 
     float originalStartingSpeed = 0;
+    float originalStartingScale = 0.25f;
 
     IEnumerator currRoutine;
 
@@ -26,12 +28,13 @@ public class DanceArrowScript : MonoBehaviour
         }
     }
 
-    //float t = 0;
+    float t = 0;
     void Update()
     {
-        if(!isVertical)
+
+        if (!isVertical)
         {
-            //t += Time.deltaTime;
+            t += Time.deltaTime;
             //speed += Mathf.Lerp(acceleration/2,acceleration*2, t) * Time.deltaTime;
             speed += acceleration * 1f * Time.deltaTime;
             transform.position += transform.forward * speed * Time.deltaTime;
@@ -56,7 +59,7 @@ public class DanceArrowScript : MonoBehaviour
         if(!isVertical)
         {
             speed = originalStartingSpeed;
-
+            t = 0;
             //t = 0;
         }
     }
@@ -73,11 +76,18 @@ public class DanceArrowScript : MonoBehaviour
             StopCoroutine(routine);
         }
         routine = routineRotScale();
+
+        arrowObj.localScale = Vector3.one * originalStartingScale;
+        t = 0;
+
         StartCoroutine(routine);
     }
 
     IEnumerator routineRotScale()
     {
+        arrowObj.localScale = Vector3.one * (originalStartingScale + (t));
+        arrowObj.Rotate(0, 0, 150 * (Time.deltaTime*2));
         yield return new WaitForEndOfFrame();
+        StartCoroutine(routineRotScale());
     }
 }
