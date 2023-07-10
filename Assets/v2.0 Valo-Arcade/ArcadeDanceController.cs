@@ -82,7 +82,7 @@ public class ArcadeDanceController : MonoBehaviour
         {
             GameObject endingArrow = Instantiate(danceArrowFab, transformPos + dir,
             Quaternion.LookRotation(transformPos - (transformPos + dir)));
-            endingArrow.transform.localScale = (Vector3.one * (((i * 0.1f) * 0.8f) + 1f));
+            endingArrow.transform.localScale = (Vector3.one * (((i * 0.1f) * 0.8f) + 0.4f));
             endingArrow.GetComponent<DanceArrowScript>().isVertical = true;
             
             endingArrow.SetActive(false);
@@ -236,6 +236,12 @@ public class ArcadeDanceController : MonoBehaviour
                 if (Time.time >= maxTime && edArrowIndex < maxEDDanceArrows)
                 {
                     edDanceArrowsList[edArrowIndex].SetActive(true);
+
+                    //rotatingdownarrows to face cam
+                    Vector3 camDir = (Camera.main.transform.position - transform.position).normalized;
+                    camDir.y = 0; //XZ plane only
+                    float zRot = Vector3.SignedAngle(camDir, transform.right, transform.up);
+                    edDanceArrowsList[edArrowIndex].transform.rotation = Quaternion.Euler(90, 0, zRot);
                     edArrowIndex++;
                     maxTime = Time.time + edTimeOffset;
                     //edTimeOffset -= 0.005f;//-= 0.003f;
