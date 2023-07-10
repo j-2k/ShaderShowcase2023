@@ -9,6 +9,7 @@ public class ArcadeDanceController : MonoBehaviour
     [SerializeField] GameObject icoSphereFab;
     [SerializeField] DanceStages currentEnum;
     [SerializeField] ParticleSystem edSplash;
+    [SerializeField] List<GameObject> centerModels;
 
     //float speed;
     [SerializeField] float directionMagnitude = 5; //def 5
@@ -47,6 +48,12 @@ public class ArcadeDanceController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        for (int i = 0; i < centerModels.Count; i++)
+        {
+            centerModels[i].SetActive(false);
+        }
+        centerModels[0].SetActive(true);
+
         originalEDTimeOffset = edTimeOffset;
         originalGenOffset = genOffset;
         if (maxEDDanceArrows == 0)
@@ -56,7 +63,11 @@ public class ArcadeDanceController : MonoBehaviour
         //speed = 1;
         transformPos = transform.position + Vector3.up * 1.0f;
         currentEnum = DanceStages.EMPTY;
-        deformShaderMat = transform.GetChild(0).Find("Surface").GetComponent<Renderer>().material;
+        if(deformShaderMat == null)
+        {
+            deformShaderMat = transform.GetChild(0).Find("Surface").GetComponent<Renderer>().material;
+        }
+        
 
         DanceArrowScript.allSpeed = allSpeedAmount;
 

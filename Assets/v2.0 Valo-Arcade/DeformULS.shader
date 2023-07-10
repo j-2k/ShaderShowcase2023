@@ -11,7 +11,7 @@ Shader "Unlit/DeformULS"
         _TimeScale ("Time Scale", float) = 0.5
         _TimeOffset ("Time Offset", float) = 0.5
         _Amount("Wave Amount", float) = 0.2
-        _Strength("_Strength", Range(0,1)) = 0.2
+        _Strength("_Strength", Range(0,2)) = 0.2
     }
     SubShader
     {

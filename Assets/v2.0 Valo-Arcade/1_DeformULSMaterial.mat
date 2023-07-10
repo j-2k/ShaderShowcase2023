@@ -26,9 +26,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amount: 2
+    - _Amount: 2.8
     - _FresnelExponent: 1.5
-    - _Strength: 0.514
+    - _Strength: 0.5958557
     - _TimeOffset: 24
     - _TimeScale: 7
     m_Colors:
