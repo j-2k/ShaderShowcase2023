@@ -161,7 +161,7 @@ Transform:
   m_GameObject: {fileID: 2868429150795719777}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.75, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8219764220934949251}
@@ -178,10 +178,6 @@ PrefabInstance:
     - target: {fileID: 8494330703242958654, guid: 18a408a61c22f4402b446e0965784137, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8494330703242958654, guid: 18a408a61c22f4402b446e0965784137, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.3333334
       objectReference: {fileID: 0}
     - target: {fileID: 8494330703242958654, guid: 18a408a61c22f4402b446e0965784137, type: 3}
       propertyPath: m_LocalPosition.x
@@ -242,43 +238,11 @@ PrefabInstance:
     m_TransformParent: {fileID: 642716614448705775}
     m_Modifications:
     - target: {fileID: 1158926378844142175, guid: ac85596743b2842f59e35d7d9f4a5868, type: 3}
-      propertyPath: EmissionModule.rateOverDistance.scalar
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1158926378844142175, guid: ac85596743b2842f59e35d7d9f4a5868, type: 3}
-      propertyPath: EmissionModule.rateOverDistance.maxCurve.m_Curve.Array.data[0].value
-      value: 0.45612875
-      objectReference: {fileID: 0}
-    - target: {fileID: 1158926378844142175, guid: ac85596743b2842f59e35d7d9f4a5868, type: 3}
-      propertyPath: EmissionModule.rateOverDistance.maxCurve.m_Curve.Array.data[0].inSlope
-      value: 0.116341025
-      objectReference: {fileID: 0}
-    - target: {fileID: 1158926378844142175, guid: ac85596743b2842f59e35d7d9f4a5868, type: 3}
-      propertyPath: EmissionModule.rateOverDistance.maxCurve.m_Curve.Array.data[1].inSlope
-      value: -0.07013777
-      objectReference: {fileID: 0}
-    - target: {fileID: 1158926378844142175, guid: ac85596743b2842f59e35d7d9f4a5868, type: 3}
-      propertyPath: EmissionModule.rateOverDistance.maxCurve.m_Curve.Array.data[0].outSlope
-      value: 0.116341025
-      objectReference: {fileID: 0}
-    - target: {fileID: 1158926378844142175, guid: ac85596743b2842f59e35d7d9f4a5868, type: 3}
-      propertyPath: EmissionModule.rateOverDistance.maxCurve.m_Curve.Array.data[1].inWeight
-      value: 0.2252132
-      objectReference: {fileID: 0}
-    - target: {fileID: 1158926378844142175, guid: ac85596743b2842f59e35d7d9f4a5868, type: 3}
-      propertyPath: EmissionModule.rateOverDistance.maxCurve.m_Curve.Array.data[1].outSlope
-      value: -0.07013777
-      objectReference: {fileID: 0}
-    - target: {fileID: 1158926378844142175, guid: ac85596743b2842f59e35d7d9f4a5868, type: 3}
-      propertyPath: EmissionModule.rateOverDistance.maxCurve.m_Curve.Array.data[0].outWeight
-      value: 0.20270586
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1682834007423940061, guid: ac85596743b2842f59e35d7d9f4a5868, type: 3}
       propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1682834007423940061, guid: ac85596743b2842f59e35d7d9f4a5868, type: 3}
-      propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1682834007423940061, guid: ac85596743b2842f59e35d7d9f4a5868, type: 3}

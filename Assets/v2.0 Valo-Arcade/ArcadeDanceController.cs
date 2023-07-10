@@ -340,9 +340,9 @@ public class ArcadeDanceController : MonoBehaviour
             if (Vector3.Distance(horizontalArrowsList[i].transform.position, transformPos) < 0.5f)
             {
                 horizontalArrowsListScripts[i].trailingOrbs.transform.SetParent(null);
+                horizontalArrowsListScripts[i].trailingOrbs.Play();
                 horizontalArrowsList[i].gameObject.SetActive(false);
             }
         }
     }
-
 }
