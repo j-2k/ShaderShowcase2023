@@ -14,6 +14,8 @@ public class DanceArrowScript : MonoBehaviour
 
     float originalStartingSpeed = 0;
 
+    IEnumerator currRoutine;
+
     private void Start()
     {
         originalStartingSpeed = speed;
@@ -57,5 +59,25 @@ public class DanceArrowScript : MonoBehaviour
 
             //t = 0;
         }
+    }
+
+    public void StartRotScaleRoutine()
+    {
+        CheckStartCouroutine(currRoutine);
+    }
+
+    void CheckStartCouroutine(IEnumerator routine)
+    {
+        if(routine != null)
+        {
+            StopCoroutine(routine);
+        }
+        routine = routineRotScale();
+        StartCoroutine(routine);
+    }
+
+    IEnumerator routineRotScale()
+    {
+        yield return new WaitForEndOfFrame();
     }
 }

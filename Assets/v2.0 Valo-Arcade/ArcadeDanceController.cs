@@ -162,6 +162,7 @@ public class ArcadeDanceController : MonoBehaviour
                     horizontalArrowsList[stateIterator].transform.position = transformPos + dir;
                     horizontalArrowsList[stateIterator].transform.rotation = Quaternion.LookRotation(transformPos - (transformPos + dir));
                     horizontalArrowsList[stateIterator].SetActive(true);
+                    horizontalArrowsListScripts[stateIterator].StartRotScaleRoutine();
                     stateIterator++;
                 }
 
@@ -226,7 +227,6 @@ public class ArcadeDanceController : MonoBehaviour
                 }
                 break;
                 */
-
 
             case DanceStages.Ending:
                 Debug.Log("Ending");
