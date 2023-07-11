@@ -123,6 +123,11 @@ public class ArcadeDanceController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && currentEnum == DanceStages.EMPTY)
         {
             currentEnum = DanceStages.Generate;
+            if (!centerModels[0].activeSelf)
+            {
+                centerModels[0].SetActive(true);
+                centerModels[centerModels.Count - 1].gameObject.SetActive(false);
+            }
         }
     }
 
@@ -364,6 +369,11 @@ public class ArcadeDanceController : MonoBehaviour
                 horizontalArrowsListScripts[i].trailingOrbs.transform.SetParent(null);
                 horizontalArrowsListScripts[i].trailingOrbs.Play();
                 horizontalArrowsList[i].gameObject.SetActive(false);
+                centerModels[i].gameObject.SetActive(false);
+                if (centerModels[i+1] != null)
+                {
+                    centerModels[i + 1].gameObject.SetActive(true);
+                }
             }
         }
     }

@@ -67,7 +67,7 @@ Shader "Unlit/DeformULS"
                 o.viewDir = normalize(ObjSpaceViewDir(v.vertex));
                 o.worldPos = mul (unity_ObjectToWorld, v.vertex).xyz;
                 o.normal = v.normal;
-                o.wNormal = normalize(UnityObjectToWorldNormal(v.normal));
+                o.wNormal = normalize(v.normal);
                 float3 origin = v.vertex.xyz;
 
                 //v.vertex.x += (sin(v.vertex.y * _Amount + (_Time.y * _TimeScale)) * 0.03);
