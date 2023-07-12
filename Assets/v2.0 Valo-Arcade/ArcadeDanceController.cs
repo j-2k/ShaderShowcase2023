@@ -18,8 +18,8 @@ public class ArcadeDanceController : MonoBehaviour
     [SerializeField] float allSpeedAmount = 20;//def 20
 
     [Header("Horizontal Arrows:")]
-    [SerializeField] float HA_Speed = 0f;
-    [SerializeField] float HA_Accel = 1f;
+    //[SerializeField] float HA_Speed = 0f;
+    //[SerializeField] float HA_Accel = 1f;
     [SerializeField] float genOffset = 0.5f;
 
     [Header("Might wanna ignore these:")]
@@ -34,6 +34,7 @@ public class ArcadeDanceController : MonoBehaviour
 
     GameObject MainDanceArrow;
     GameObject MainIcoSphere;
+    [SerializeField] AudioSource testToAudio;
 
     enum DanceStages {
         EMPTY,
@@ -48,6 +49,7 @@ public class ArcadeDanceController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         for (int i = 0; i < centerModels.Count; i++)
         {
             centerModels[i].SetActive(false);
@@ -80,8 +82,8 @@ public class ArcadeDanceController : MonoBehaviour
             GameObject arrowH = GameObject.Instantiate(danceArrowFab, Vector3.zero,
                 Quaternion.identity);
             DanceArrowScript arrowScript = arrowH.GetComponent<DanceArrowScript>();
-            arrowScript.speed = HA_Speed;
-            arrowScript.acceleration = HA_Accel;
+            //arrowScript.speed = HA_Speed;
+            //arrowScript.acceleration = HA_Accel;
 
             arrowH.SetActive(false);
             horizontalArrowsList.Add(arrowH);
@@ -128,6 +130,11 @@ public class ArcadeDanceController : MonoBehaviour
                 centerModels[0].SetActive(true);
                 centerModels[centerModels.Count - 1].gameObject.SetActive(false);
             }
+
+            if(testToAudio != null)
+            {
+                testToAudio.Play();
+            }
         }
     }
 
@@ -147,6 +154,7 @@ public class ArcadeDanceController : MonoBehaviour
 
     float maxGenTime = 0;
 
+    float tempAccel = 0;
     void EnumDanceStates()
     {
         switch (currentEnum)
@@ -166,13 +174,15 @@ public class ArcadeDanceController : MonoBehaviour
                     if (stateIterator >= 5)
                     {
                         genOffset = originalGenOffset;
+                        tempAccel = -3;
                         
                         currentEnum = DanceStages.Waiting;
                         break;
                     }
                     maxGenTime = Time.time + genOffset;
-                    genOffset = genOffset * 0.9f - 0.012f;
+                    //genOffset = genOffset * 0.9f - 0.012f;
                     //genOffset -= 0.09f;
+                    HardGenOffsets();
 
                     //Reposition
                     dir = GetRandomDirection() * directionMagnitude;
@@ -180,6 +190,8 @@ public class ArcadeDanceController : MonoBehaviour
                     horizontalArrowsList[stateIterator].transform.rotation = Quaternion.LookRotation(transformPos - (transformPos + dir));
                     horizontalArrowsList[stateIterator].SetActive(true);
                     horizontalArrowsListScripts[stateIterator].StartRotScaleRoutine();
+                    //tempAccel += 3;
+                    horizontalArrowsListScripts[stateIterator].acceleration += tempAccel;
                     stateIterator++;
                 }
 
@@ -375,6 +387,35 @@ public class ArcadeDanceController : MonoBehaviour
                     centerModels[i + 1].gameObject.SetActive(true);
                 }
             }
+        }
+    }
+
+    void HardGenOffsets()
+    {
+        if(stateIterator == 0)
+        {
+            genOffset = 1;
+            tempAccel = 5f;
+        }
+        else if(stateIterator == 1)
+        {
+            genOffset = 0.3f;
+            tempAccel = 10f;
+        }
+        else if(stateIterator == 2)
+        {
+            genOffset = 0.3f;
+            tempAccel = 14f;
+        }
+        else if(stateIterator == 3)
+        {
+            genOffset = 0.2f;
+            tempAccel = 14f;
+        }
+        else if (stateIterator == 4)
+        {
+            genOffset = 0.1f;
+            tempAccel = 16f;
         }
     }
 }

@@ -13,7 +13,8 @@ public class DanceArrowScript : MonoBehaviour
     [SerializeField] Transform arrowObj;
     // Update is called once per frame
 
-    float originalStartingSpeed = 0;
+    float originalStartingSpeed = -5;
+    float originalStartingAcc = 10;
     float originalStartingScale = 0.25f;
 
     IEnumerator currRoutine;
@@ -21,6 +22,7 @@ public class DanceArrowScript : MonoBehaviour
     private void Start()
     {
         originalStartingSpeed = speed;
+        originalStartingAcc = acceleration;
         if (isVertical)
         {
             trailingOrbs.gameObject.SetActive(false);
@@ -59,6 +61,7 @@ public class DanceArrowScript : MonoBehaviour
         if(!isVertical)
         {
             speed = originalStartingSpeed;
+            acceleration = originalStartingAcc;
             t = 0;
             //t = 0;
         }
