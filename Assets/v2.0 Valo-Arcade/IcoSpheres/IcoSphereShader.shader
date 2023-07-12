@@ -6,10 +6,13 @@ Shader "Unlit/NewUnlitShader"
         [HDR] _Emission ("Fresnel Emission Color", color) = (1,1,1,1)
         _FresnelExponent ("Fresnel Exponent", float ) = 0.2
         _Color ("Base Col", color) = (1,1,1,1)
+        _DownPow("Down power", Range(0,2)) = 1
+        _UpPow("Up power", Range(-2,0)) = 1
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType" = "Cutout" }
+
         LOD 100
 
         Pass
@@ -43,14 +46,30 @@ Shader "Unlit/NewUnlitShader"
             float4 _Emission;
             float _FresnelExponent;
             float4 _Color;
+            float _DownPow;
+            float _UpPow;
 
             v2f vert (appdata v)
             {
                 v2f o;
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                //float upwardLerp = lerp(0.1,1.2,(v.vertex.y+1)/2);
+                //v.vertex.y += _DownPow + (v.vertex.y * _DownPow);
+                //v.vertex.y -= (v.vertex.y * _UpPow);
+                float lerpUp = lerp(0,2,v.vertex.y + 0.5f);
+                float lerpDown = lerp(2,0,v.vertex.y + 0.5f);
+                //if(v.vertex.y >= 0.45f)
+                {
+                    v.vertex.y += lerpUp * _UpPow;
+                    v.vertex.y -= lerpDown * _DownPow;
+                }
+
+
+                o.vertex = UnityObjectToClipPos(v.vertex);
                 o.wNormal = (v.normal);
                 o.viewDir = normalize(ObjSpaceViewDir(v.vertex));
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+
+                
                 UNITY_TRANSFER_FOG(o,o.vertex);
                 return o;
             }
@@ -61,7 +80,7 @@ Shader "Unlit/NewUnlitShader"
                 fixed4 col = tex2D(_MainTex, i.uv);
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
-                                float f = dot(i.wNormal,i.viewDir);
+                float f = dot(i.wNormal,i.viewDir);
                 f = saturate(f);
                 f = pow(f, _FresnelExponent);
 
