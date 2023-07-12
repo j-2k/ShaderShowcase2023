@@ -405,17 +405,17 @@ public class ArcadeDanceController : MonoBehaviour
         else if(stateIterator == 2)
         {
             genOffset = 0.3f;
-            tempAccel = 14f;
+            tempAccel = 15f;
         }
         else if(stateIterator == 3)
         {
             genOffset = 0.2f;
-            tempAccel = 14f;
+            tempAccel = 16f;
         }
         else if (stateIterator == 4)
         {
             genOffset = 0.1f;
-            tempAccel = 16f;
+            tempAccel = 17f;
         }
     }
 }
