@@ -26,10 +26,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amount: 3
+    - _Amount: 5
     - _FresnelExponent: 3.35
-    - _TimeScale: 5
+    - _Strength: 0.281
+    - _TimeOffset: 0.5
+    - _TimeScale: 10
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
-    - _Emission: {r: 14.234787, g: 0, b: 15.104688, a: 1}
+    - _Color: {r: 0.48157963, g: 0, b: 0.6226415, a: 1}
+    - _Emission: {r: 26.923115, g: 26.923115, b: 26.923115, a: 1}
   m_BuildTextureStacks: []

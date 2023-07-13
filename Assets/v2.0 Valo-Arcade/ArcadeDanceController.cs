@@ -9,6 +9,7 @@ public class ArcadeDanceController : MonoBehaviour
     [SerializeField] GameObject icoSphereFab;
     [SerializeField] DanceStages currentEnum;
     [SerializeField] ParticleSystem edSplash;
+    [SerializeField] ParticleSystem ed2Splash;
     [SerializeField] List<GameObject> centerModels;
 
     //float speed;
@@ -293,9 +294,13 @@ public class ArcadeDanceController : MonoBehaviour
                             edSplash.Play();
                         }
                         currArrow.gameObject.SetActive(false);
-                        if(currArrow == edDanceArrowsList[maxEDDanceArrows-1].transform)
+                        if (currArrow == edDanceArrowsList[maxEDDanceArrows - 2].transform)
                         {
                             MainIcoSphereController.isExploding = true;
+                        }
+                        else if (currArrow == edDanceArrowsList[maxEDDanceArrows - 1].transform)
+                        {
+                            ed2Splash.Play();
                             edArrowIndex = 0;
                             maxTime = 0;
                             //speed = 1;
