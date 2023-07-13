@@ -1989,26 +1989,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: df41da93bd8e44a439c6118787917984, type: 3}
   m_PrefabInstance: {fileID: 353597353}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1761824909 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6834294990754786612, guid: f13107a822fe040e19e706a02c801227, type: 3}
-  m_PrefabInstance: {fileID: 5915797811951806444}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1761824912
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1761824909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f085838c26374481892841ddf9047c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  matToControll: {fileID: 2100000, guid: 750f0f192394c466bb1e8dc607feb894, type: 2}
-  isExploding: 0
-  timeScale: 1
 --- !u!1 &1776485227
 GameObject:
   m_ObjectHideFlags: 0

@@ -33,6 +33,7 @@ public class TimerBasedController : MonoBehaviour
                     transform.position = transform.position - transform.up * 4;
                     oneRun = true;
                 }
+                transform.localScale -= (transform.localScale * 5f) * Time.deltaTime;
             }
         }
         else
@@ -43,6 +44,7 @@ public class TimerBasedController : MonoBehaviour
             if (oneRun)
             {
                 transform.position = transform.position + transform.up * 4;
+                transform.localScale = Vector3.one;
                 oneRun = false;
             }
         }

@@ -33,7 +33,7 @@ public class ArcadeDanceController : MonoBehaviour
     Vector3 dir;
 
     GameObject MainDanceArrow;
-    GameObject MainIcoSphere;
+    TimerBasedController MainIcoSphereController;
     [SerializeField] AudioSource testToAudio;
 
     enum DanceStages {
@@ -42,6 +42,7 @@ public class ArcadeDanceController : MonoBehaviour
         Waiting, //this approach for waiting is overkill (check implementation below) but whatever it works quickly.
         //Playing,
         Ending,
+        Ending2
     }
 
     float originalEDTimeOffset = 0;
@@ -103,8 +104,7 @@ public class ArcadeDanceController : MonoBehaviour
             edDanceArrowsList.Add(endingArrow);
         }
 
-        MainIcoSphere = Instantiate(icoSphereFab, transformPos + dir, Quaternion.identity);
-
+        MainIcoSphereController = Instantiate(icoSphereFab, transformPos + dir, Quaternion.identity).GetComponent<TimerBasedController>();
     }
 
 
@@ -155,6 +155,8 @@ public class ArcadeDanceController : MonoBehaviour
     float maxGenTime = 0;
 
     float tempAccel = 0;
+
+    float edTime = 0;
     void EnumDanceStates()
     {
         switch (currentEnum)
@@ -293,14 +295,24 @@ public class ArcadeDanceController : MonoBehaviour
                         currArrow.gameObject.SetActive(false);
                         if(currArrow == edDanceArrowsList[maxEDDanceArrows-1].transform)
                         {
+                            MainIcoSphereController.isExploding = true;
                             edArrowIndex = 0;
                             maxTime = 0;
                             //speed = 1;
                             areArrowsReset = true;
                             edTimeOffset = originalEDTimeOffset;
-                            currentEnum = DanceStages.EMPTY;
+                            edTime = Time.time + 2;
+                            currentEnum = DanceStages.Ending2;
                         }
                     }
+                }
+                break;
+
+            case DanceStages.Ending2:
+                if (Time.time >= edTime)
+                {
+                    MainIcoSphereController.isExploding = false;
+                    currentEnum = DanceStages.EMPTY;
                 }
                 break;
 

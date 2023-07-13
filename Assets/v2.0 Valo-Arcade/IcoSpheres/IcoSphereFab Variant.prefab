@@ -96,4 +96,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matToControll: {fileID: 2100000, guid: 750f0f192394c466bb1e8dc607feb894, type: 2}
   isExploding: 0
-  timeScale: 2.5
+  timeScale: 3
