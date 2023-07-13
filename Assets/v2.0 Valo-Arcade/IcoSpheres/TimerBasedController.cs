@@ -6,52 +6,52 @@ using UnityEngine;
 public class TimerBasedController : MonoBehaviour
 {
     [SerializeField] Material matToControll;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    float result = 0;
+    public bool isExploding;
+    [SerializeField,Range(1,3)] float timeScale = 1;
+    bool oneRun = false;
     // Update is called once per frame
     void Update()
     {
-        matToControll.SetFloat("_DownPow", TimeToFinish(0,2,ref t,1));
-        //TimeToFinish(0, 2, ref t, 5);
-        
-        //Debug.Log("Res: " + result + " | currTime: " + t);
-    }
-    
+        //TimeToFinish(0, 2, ref t, 1);
+        if (isExploding)
+        {
+            t += Time.deltaTime * timeScale;
 
-    /*
-    [SerializeField] float ct = 0;
-    [SerializeField] float result = 0;
-    void Update()
-    {
-        if (ct > 5)
-        {
-            isChangingDir = !isChangingDir;
-        }
-        else if(ct < 0)
-        {
-            isChangingDir = !isChangingDir;
-        }
+            float x = (Mathf.Pow(t, 2) + t) * 2;
+            //float x = Mathf.Clamp01(Mathf.Log(t) + 1 + 0.1f);
+            float t2 = t * x;
 
-        if (!isChangingDir)
-        {
-            ct += Time.deltaTime;
+            matToControll.SetFloat("_DownPow", Mathf.Lerp(0,2, x));
+            matToControll.SetFloat("_UpPow", Mathf.Lerp(0,-2, t2));
+
+            if(t2 > 1 && x > 1)
+            {
+                matToControll.SetFloat("_DownPow", 0);
+                matToControll.SetFloat("_UpPow", 0);
+                if(!oneRun)
+                {
+                    transform.position = transform.position - transform.up * 4;
+                    oneRun = true;
+                }
+            }
         }
         else
         {
-            ct -= Time.deltaTime;
+            t = 0;
+            matToControll.SetFloat("_DownPow", 0);
+            matToControll.SetFloat("_UpPow", 0);
+            if (oneRun)
+            {
+                transform.position = transform.position + transform.up * 4;
+                oneRun = false;
+            }
         }
 
-        result = Mathf.Lerp(0, 2, ct / 5);
 
-        
+        //matToControll.SetFloat("_DownPow", TimeToFinish(0,2,ref t,1));
+        //result = TimeToFinish(0, 2, ref t, 5);
+        //Debug.Log("Res: " + result + " | currTime: " + t);
     }
-    */
 
 
     float t = 0;
@@ -59,7 +59,7 @@ public class TimerBasedController : MonoBehaviour
     float TimeToFinish(float start, float end, ref float currTime, float maxTime)
     {
         if(maxTime == 0) { return 0; }
-
+        
         if (currTime > maxTime)
         {
             isChangingDir = !isChangingDir;
@@ -77,7 +77,7 @@ public class TimerBasedController : MonoBehaviour
         {
             currTime -= Time.deltaTime;
         }
-
+        
         //result = Mathf.Lerp(start, end, currTime / maxTime);
         return Mathf.Lerp(start, end, currTime / maxTime);
         //return currTime;

@@ -11,7 +11,7 @@ Shader "Unlit/NewUnlitShader"
     }
     SubShader
     {
-        Tags { "RenderType" = "Cutout" }
+        Tags { "RenderType" = "Transparent" }
 
         LOD 100
 
