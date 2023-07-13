@@ -66,7 +66,7 @@ Shader "Unlit/NewUnlitShader"
 
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.wNormal = (v.normal);
+                o.wNormal = normalize(v.normal);
                 o.viewDir = normalize(ObjSpaceViewDir(v.vertex));
 
                 
