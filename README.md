@@ -19,8 +19,9 @@ A lot of these shaders are incomplete but I will add more & finish them up when 
 - Valorant Arcade Kill Effect (Dance Version)
 - More to come later...
 
-# Other WIP Projects
-- Quake 1 Player Sim
+# WIP Projects
+- Arcade Kill Effect Video
+- Quake 1 Player Movement Video
 
 ## My Personal Notes
 #### ***FIX FOR SKYBOX STRETCHING THROUGH SHADER CODE***
