@@ -106,6 +106,7 @@ public class ArcadeDanceController : MonoBehaviour
         }
 
         MainIcoSphereController = Instantiate(icoSphereFab, transformPos + dir, Quaternion.identity).GetComponent<TimerBasedController>();
+        MainIcoSphereController.isBouncing = true;
     }
 
 
@@ -317,6 +318,7 @@ public class ArcadeDanceController : MonoBehaviour
                 if (Time.time >= edTime)
                 {
                     MainIcoSphereController.isExploding = false;
+                    MainIcoSphereController.isBouncing = true;
                     currentEnum = DanceStages.EMPTY;
                 }
                 break;
@@ -399,6 +401,7 @@ public class ArcadeDanceController : MonoBehaviour
                 horizontalArrowsListScripts[i].trailingOrbs.Play();
                 horizontalArrowsList[i].gameObject.SetActive(false);
                 centerModels[i].gameObject.SetActive(false);
+                MainIcoSphereController.ControlBounce(1, (i + 1) * 2 + 2);
                 if (centerModels[i+1] != null)
                 {
                     centerModels[i + 1].gameObject.SetActive(true);
@@ -435,4 +438,5 @@ public class ArcadeDanceController : MonoBehaviour
             tempAccel = 17f;
         }
     }
+
 }

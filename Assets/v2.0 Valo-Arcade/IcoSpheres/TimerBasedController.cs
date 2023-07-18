@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class TimerBasedController : MonoBehaviour
 {
     [SerializeField] Material matToControll;
-    public bool isExploding;
-    [SerializeField,Range(1,3)] float timeScale = 1;
+    public bool isExploding = false;
+    [SerializeField, Range(2, 4)] float timeScale = 3;
     bool oneRun = false;
-
 
     Vector3 coreOriginPos;
     Vector3 originPos;
     Vector3 targetPos;
-    [SerializeField] bool testBounce;
+    float t = 0;
+
+    public bool isBouncing = false;
+
     private void Start()
     {
         coreOriginPos = transform.position;
@@ -26,24 +29,21 @@ public class TimerBasedController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        //TimeToFinish(0, 2, ref t, 1);
         if (isExploding)
         {
             t += Time.deltaTime * timeScale;
 
             float x = (Mathf.Pow(t, 2) + t) * 2;
-            //float x = Mathf.Clamp01(Mathf.Log(t) + 1 + 0.1f);
             float t2 = t * x;
 
-            matToControll.SetFloat("_DownPow", Mathf.Lerp(0,2, x));
-            matToControll.SetFloat("_UpPow", Mathf.Lerp(0,-2, t2));
+            matToControll.SetFloat("_DownPow", Mathf.Lerp(0, 2, x));
+            matToControll.SetFloat("_UpPow", Mathf.Lerp(0, -2, t2));
 
-            if(t2 > 1 && x > 1)
+            if (t2 > 1 && x > 1)
             {
                 matToControll.SetFloat("_DownPow", 0);
                 matToControll.SetFloat("_UpPow", 0);
-                if(!oneRun)
+                if (!oneRun)
                 {
                     transform.position = transform.position - transform.up * 4;
                     oneRun = true;
@@ -64,28 +64,92 @@ public class TimerBasedController : MonoBehaviour
             }
         }
 
+        if(isBouncing)
+        {
+            if(isExploding)
+            {
+                isBouncing = false;
+            }
+            BounceManager();
+        }
+    }
 
+    [SerializeField] int bouncesAmount = 0;
+    [SerializeField] float bSpeedMultiplier = 5;
+    float bT = 0;
+    void BounceManager()
+    {
+        if(bouncesAmount > 0)
+        {
+            bT += Time.deltaTime * bSpeedMultiplier;                                                //Thanks gpt for reminding me about cool pingpong function cuz i forgor abt it
+            Vector3 lerpedPos = new Vector3(originPos.x, Mathf.SmoothStep(originPos.y, targetPos.y, Mathf.PingPong(bT, 1)), originPos.z);
+            transform.position = lerpedPos;
+
+            if(bT > 2)
+            {
+                bT = 0;
+                bouncesAmount--;
+            }
+        }
+    }
+
+    public void ControlBounce(int amountToAdd, float bounceSpeedMultiplier)
+    {
+        bouncesAmount += amountToAdd;
+        bSpeedMultiplier = bounceSpeedMultiplier;
+    }
+}
+
+
+
+
+
+
+
+
+    /*
         //matToControll.SetFloat("_DownPow", TimeToFinish(0,2,ref t,1));
         //result = TimeToFinish(0, 2, ref t, 5);
         //Debug.Log("Res: " + result + " | currTime: " + t);
 
         if(testBounce)
         {
-            bTime += Time.deltaTime * 4;
-            if(bTime > 1.0f)
-            {
-                Vector3 tempPos = originPos;
-                originPos = targetPos;
-                targetPos = tempPos;
-                bTime = 0;
-            }
-            Bounce(bTime);
-        }
-        else
-        {
+            float timeElapsed = (Time.time - startTime) / duration;
+            float bounceTime = Mathf.PingPong(timeElapsed, 1f / numberOfBounces);
 
+            float smoothStepValue = Mathf.SmoothStep(0f, 1f, bounceTime);
+            float currentHeight = Mathf.Lerp(0f, maxHeight, smoothStepValue);
+
+            Vector3 newPosition = initialPosition + Vector3.up * currentHeight;
+            transform.position = newPosition;
+
+            if (timeElapsed >= 1f)
+            {
+                completedBounces++;
+                startTime = Time.time;
+                if (completedBounces >= numberOfBounces)
+                {
+                    testBounce = false; // Disable the script once all bounces are completed
+                }
+            }
+        }
+
+        if(newBounces)
+        {
+            SetNumberOfBounces(5);
         }
     }
+    public bool newBounces = false;
+    // Method to change the number of bounces during runtime
+    public void SetNumberOfBounces(int bounces)
+    {
+        numberOfBounces = bounces;
+        completedBounces = 0;
+        startTime = Time.time;
+
+        testBounce = true; // Enable the script again if it was disabled
+    }
+
     float bTime = 0;
 
 
@@ -163,3 +227,4 @@ public class TimerBasedController : MonoBehaviour
     }
     public bool runOnce = false;
 }
+    */
