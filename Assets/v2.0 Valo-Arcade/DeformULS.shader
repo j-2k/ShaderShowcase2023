@@ -12,6 +12,7 @@ Shader "Unlit/DeformULS"
         _TimeOffset ("Time Offset", float) = 0.5
         _Amount("Wave Amount", float) = 0.2
         _Strength("_Strength", Range(0,2)) = 0.2
+        _UpPow("Up power", Range(-1,0)) = 1
     }
     SubShader
     {
@@ -59,6 +60,8 @@ Shader "Unlit/DeformULS"
 
             float _FresnelExponent;
 
+            float _UpPow;
+
             
 
             v2f vert (appdata v)
@@ -68,16 +71,22 @@ Shader "Unlit/DeformULS"
                 o.worldPos = mul (unity_ObjectToWorld, v.vertex).xyz;
                 o.normal = v.normal;
                 o.wNormal = normalize(v.normal);
-                float3 origin = v.vertex.xyz;
 
                 //v.vertex.x += (sin(v.vertex.y * _Amount + (_Time.y * _TimeScale)) * 0.03);
                 float upwardLerp = lerp(0.1,1.2,(v.vertex.y+1)/2);
+                //all giga under here
                 //if(v.vertex.y >= -0.2)
                 {
                     v.vertex.xz += sin(((v.vertex.xz+1)/2) * _Amount + (_Time.y * _TimeScale + _TimeOffset * 2)) * 0.1  * (pow(upwardLerp,1) * _Strength);
                     v.vertex.y += cos(((v.vertex.y+1)/2) * _Amount + (_Time.y * _TimeScale + _TimeOffset * 2))* 0.1 * (pow(upwardLerp,1) * _Strength);
                 }
                 //v.vertex.y += (cos(v.vertex.x * _Amount + (_Time.y * _TimeScale)) * 0.03);
+
+
+                {
+                    float lerpUp = lerp(0.5,2,v.vertex.y + 0.5);
+                    v.vertex.y -= lerpUp * _UpPow;
+                }
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 //o.vertex.y += abs(sin(_Time.y * 0));
