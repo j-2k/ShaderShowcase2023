@@ -58,7 +58,7 @@ public class TimerBasedController : MonoBehaviour
             matToControll.SetFloat("_UpPow", 0);
             if (oneRun)
             {
-                transform.position = transform.position + transform.up * 4;
+                transform.position = originPos;
                 transform.localScale = Vector3.one;
                 oneRun = false;
             }
@@ -68,9 +68,16 @@ public class TimerBasedController : MonoBehaviour
         {
             if(isExploding)
             {
+                
                 isBouncing = false;
+                isMultiBouncing = false;
             }
             BounceManager();
+
+            if(isMultiBouncing)
+            {
+                MultiBounceManager();
+            }
         }
     }
 
@@ -91,6 +98,13 @@ public class TimerBasedController : MonoBehaviour
                 bouncesAmount--;
             }
         }
+    }
+
+    public bool isMultiBouncing = false;
+    void MultiBounceManager()
+    {
+        Vector3 movementVec = new Vector3(Random.Range(-1, 2), Random.Range(0, 2), Random.Range(-1, 2));
+        transform.position += (movementVec * 2) * Time.deltaTime;
     }
 
     public void ControlBounce(int amountToAdd, float bounceSpeedMultiplier)

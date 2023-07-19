@@ -639,7 +639,7 @@ MonoBehaviour:
   - {fileID: 1620392895}
   - {fileID: 1714319624}
   - {fileID: 902086584}
-  directionMagnitude: 4
+  directionMagnitude: 3
   edTimeOffset: 0.05
   allSpeedAmount: 25
   genOffset: 1

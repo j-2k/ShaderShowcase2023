@@ -293,6 +293,7 @@ public class ArcadeDanceController : MonoBehaviour
                         if(i == 0)
                         {
                             edSplash.Play();
+                            MainIcoSphereController.isMultiBouncing = true;
                         }
                         currArrow.gameObject.SetActive(false);
                         if (currArrow == edDanceArrowsList[maxEDDanceArrows - 2].transform)
