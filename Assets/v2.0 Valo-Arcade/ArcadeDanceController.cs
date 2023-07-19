@@ -24,7 +24,7 @@ public class ArcadeDanceController : MonoBehaviour
     [SerializeField] float genOffset = 0.5f;
 
     [Header("Might wanna ignore these:")]
-    [SerializeField] Material deformShaderMat;
+    [SerializeField] Material deformShaderMat;//_FresnelExponent (Insta 1, Lerp to 5)//_Strength (Insta 3 or 2, lerp to 0.5 or 0)
     [SerializeField] List<GameObject> horizontalArrowsList;
     [SerializeField] List<DanceArrowScript> horizontalArrowsListScripts;
     [SerializeField] float angleTheta;
@@ -145,9 +145,19 @@ public class ArcadeDanceController : MonoBehaviour
         Debug.DrawRay(transformPos, dir, Color.green);
     }
 
+
+    float shaderT;
+    float shaderSpeedT;
     void ShaderHandler()
     {
-        deformShaderMat.SetFloat("_Strength", Mathf.PingPong(Time.time * 2, 1));//(-0.5f,0.5f, Mathf.Abs(Mathf.Sin(Time.time))));
+        if(shaderT < 1)
+        { 
+            shaderT += Time.deltaTime * shaderSpeedT;
+
+            //deformShaderMat.SetFloat("_Strength", Mathf.PingPong(Time.time * 2, 1));//(-0.5f,0.5f, Mathf.Abs(Mathf.Sin(Time.time))));
+            deformShaderMat.SetFloat("_Strength", Mathf.Lerp(3,0.5f,shaderT));
+            deformShaderMat.SetFloat("_FresnelExponent", Mathf.Lerp(0.5f, 5, shaderT));
+        }
     }
 
     int stateIterator = 0;
@@ -403,6 +413,17 @@ public class ArcadeDanceController : MonoBehaviour
                 horizontalArrowsList[i].gameObject.SetActive(false);
                 centerModels[i].gameObject.SetActive(false);
                 MainIcoSphereController.ControlBounce(1, (i + 1) * 2 + 2);
+                shaderT = 0;
+
+                if(i<2)
+                {
+                    shaderSpeedT = 1;
+                }
+                else
+                {
+                    shaderSpeedT = i - 1;
+                }
+                
                 if (centerModels[i+1] != null)
                 {
                     centerModels[i + 1].gameObject.SetActive(true);
