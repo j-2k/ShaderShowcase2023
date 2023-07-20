@@ -29,7 +29,7 @@ Material:
     - _Amount: 2.8
     - _DownPow: 0
     - _FresnelExponent: 5
-    - _Strength: 0.46
+    - _Strength: 0.099999905
     - _TimeOffset: 24
     - _TimeScale: 7
     - _UpPow: 0
