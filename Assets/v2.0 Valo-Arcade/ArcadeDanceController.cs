@@ -149,7 +149,7 @@ public class ArcadeDanceController : MonoBehaviour
     float shaderT;
     float shaderSpeedT;
     void ShaderHandler()
-    {
+    {/*
         if (currentEnum == DanceStages.Ending)
         {
             if (shaderT < 1)
@@ -168,10 +168,18 @@ public class ArcadeDanceController : MonoBehaviour
                 deformShaderMat.SetFloat("_FresnelExponent", Mathf.Lerp(0.5f, 5, shaderT));
                 deformShaderMat.SetFloat("_UpPow", Mathf.Lerp(-0.2f, 0, shaderT));
             }
+        }*/
+        if (shaderT < 1)
+        {
+            shaderT += Time.deltaTime * shaderSpeedT;
+
+            //deformShaderMat.SetFloat("_Strength", Mathf.PingPong(Time.time * 2, 1));//(-0.5f,0.5f, Mathf.Abs(Mathf.Sin(Time.time))));
+            deformShaderMat.SetFloat("_Strength", Mathf.Lerp(2, 0.1f, shaderT));
+            deformShaderMat.SetFloat("_FresnelExponent", Mathf.Lerp(0.5f, 5, shaderT));
+            deformShaderMat.SetFloat("_UpPow", Mathf.Lerp(-0.2f, 0, shaderT));
         }
 
-        
-        
+
     }
 
     int stateIterator = 0;
@@ -334,6 +342,8 @@ public class ArcadeDanceController : MonoBehaviour
                             edTimeOffset = originalEDTimeOffset;
                             edTime = Time.time + 2;
                             currentEnum = DanceStages.Ending2;
+                            centerModelIndex++;
+                            CycleNextCenterModel(centerModelIndex, 0.5f);
                         }
                     }
                 }
@@ -426,24 +436,32 @@ public class ArcadeDanceController : MonoBehaviour
                 horizontalArrowsListScripts[i].trailingOrbs.transform.SetParent(null);
                 horizontalArrowsListScripts[i].trailingOrbs.Play();
                 horizontalArrowsList[i].gameObject.SetActive(false);
-                centerModels[i].gameObject.SetActive(false);
                 MainIcoSphereController.ControlBounce(1, (i + 1) * 2 + 2);
-                shaderT = 0;
-
-                if(i<2)
+                /*shaderT = 0;
+                shaderSpeedT = 1;
+                if (i<2)
                 {
                     shaderSpeedT = 1;
                 }
                 else
                 {
                     shaderSpeedT = i - 1;
-                }
-                
-                if (centerModels[i+1] != null)
-                {
-                    centerModels[i + 1].gameObject.SetActive(true);
-                }
+                }*/
+                centerModelIndex = i;
+                CycleNextCenterModel(centerModelIndex,1);
             }
+        }
+    }
+
+    [SerializeField] int centerModelIndex = 0;
+    void CycleNextCenterModel(int i,float shaderTimeSpeed)
+    {
+        shaderT = 0;
+        shaderSpeedT = shaderTimeSpeed;
+        centerModels[i].gameObject.SetActive(false);
+        if (centerModels[i + 1] != null)
+        {
+            centerModels[i + 1].gameObject.SetActive(true);
         }
     }
 
