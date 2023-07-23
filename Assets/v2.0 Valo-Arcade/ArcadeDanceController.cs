@@ -149,12 +149,18 @@ public class ArcadeDanceController : MonoBehaviour
     float shaderT;
     float shaderSpeedT;
     void ShaderHandler()
-    {/*
+    {
         if (currentEnum == DanceStages.Ending)
         {
             if (shaderT < 1)
             {
                 //algo idea is for the spam visual use ping pong + add to base 
+                shaderT += Time.deltaTime * shaderSpeedT;
+
+                //deformShaderMat.SetFloat("_Strength", Mathf.PingPong(Time.time * 2, 1));//(-0.5f,0.5f, Mathf.Abs(Mathf.Sin(Time.time))));
+                deformShaderMat.SetFloat("_Strength", Mathf.Lerp(0.1f, 3, shaderT));
+                deformShaderMat.SetFloat("_FresnelExponent", Mathf.Lerp(5, 0.5f,  shaderT));
+                deformShaderMat.SetFloat("_UpPow", Mathf.Lerp(0, -0.2f, shaderT));
             }
         }
         else
@@ -168,8 +174,8 @@ public class ArcadeDanceController : MonoBehaviour
                 deformShaderMat.SetFloat("_FresnelExponent", Mathf.Lerp(0.5f, 5, shaderT));
                 deformShaderMat.SetFloat("_UpPow", Mathf.Lerp(-0.2f, 0, shaderT));
             }
-        }*/
-        if (shaderT < 1)
+        }
+        /*if (shaderT < 1)
         {
             shaderT += Time.deltaTime * shaderSpeedT;
 
@@ -177,7 +183,7 @@ public class ArcadeDanceController : MonoBehaviour
             deformShaderMat.SetFloat("_Strength", Mathf.Lerp(2, 0.1f, shaderT));
             deformShaderMat.SetFloat("_FresnelExponent", Mathf.Lerp(0.5f, 5, shaderT));
             deformShaderMat.SetFloat("_UpPow", Mathf.Lerp(-0.2f, 0, shaderT));
-        }
+        }*/
 
 
     }
