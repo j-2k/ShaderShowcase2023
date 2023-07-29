@@ -17,6 +17,7 @@ A lot of these shaders are incomplete but I will add more & finish them up when 
 - SDF Testing (Learning Signed Distance Fields)
 - Mandelbrot Fractal Shader (Learning Fractals)
 - Valorant Arcade Kill Effect (Dance Version)
+- Various shaders relating to the Q1 Movement Sim
 - More to come later...
 
 # WIP Projects
