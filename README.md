@@ -24,6 +24,9 @@ A lot of these shaders are incomplete but I will add more & finish them up when 
 - Arcade Kill Effect Video
 - Quake 1 Player Movement Video
 
+# License?
+Please be careful since I'm using ripped models from popular games. This isn't commercial just going to be for testing & making a video for fun out of it.
+
 ## My Personal Notes
 #### ***FIX FOR SKYBOX STRETCHING THROUGH SHADER CODE***
 ```
