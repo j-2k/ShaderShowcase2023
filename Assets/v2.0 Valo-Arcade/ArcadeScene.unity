@@ -1747,6 +1747,7 @@ GameObject:
   - component: {fileID: 154098243}
   - component: {fileID: 154098242}
   - component: {fileID: 154098241}
+  - component: {fileID: 154098246}
   m_Layer: 0
   m_Name: Mainbase
   m_TagString: Untagged
@@ -2899,6 +2900,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &154098246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154098239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!1001 &177391376
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2974,6 +2989,7 @@ GameObject:
   - component: {fileID: 181749216}
   - component: {fileID: 181749215}
   - component: {fileID: 181749214}
+  - component: {fileID: 181749219}
   m_Layer: 0
   m_Name: MainBase
   m_TagString: Untagged
@@ -4126,6 +4142,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &181749219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181749212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!1 &185106500
 GameObject:
   m_ObjectHideFlags: 0
@@ -5089,6 +5119,7 @@ GameObject:
   - component: {fileID: 203080704}
   - component: {fileID: 203080703}
   - component: {fileID: 203080702}
+  - component: {fileID: 203080707}
   m_Layer: 0
   m_Name: MainBase
   m_TagString: Untagged
@@ -6241,6 +6272,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &203080707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 203080700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!1 &208381133
 GameObject:
   m_ObjectHideFlags: 0
@@ -7106,6 +7151,7 @@ GameObject:
   - component: {fileID: 253136687}
   - component: {fileID: 253136686}
   - component: {fileID: 253136685}
+  - component: {fileID: 253136690}
   m_Layer: 0
   m_Name: MainBase
   m_TagString: Untagged
@@ -8258,6 +8304,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &253136690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253136683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!43 &254609927
 Mesh:
   m_ObjectHideFlags: 0
@@ -11387,6 +11447,7 @@ GameObject:
   - component: {fileID: 465629129}
   - component: {fileID: 465629128}
   - component: {fileID: 465629127}
+  - component: {fileID: 465629132}
   m_Layer: 0
   m_Name: Mainbase
   m_TagString: Untagged
@@ -12539,6 +12600,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &465629132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 465629125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!4 &467399861 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6166443533748926350, guid: f13107a822fe040e19e706a02c801227, type: 3}
@@ -12727,6 +12802,7 @@ GameObject:
   - component: {fileID: 507790318}
   - component: {fileID: 507790317}
   - component: {fileID: 507790316}
+  - component: {fileID: 507790321}
   m_Layer: 0
   m_Name: MainBase
   m_TagString: Untagged
@@ -13879,6 +13955,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &507790321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507790314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!4 &520798631 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 642716614448705775, guid: ccfe5bfab6296423d9edf2a460ee010d, type: 3}
@@ -14937,6 +15027,7 @@ GameObject:
   - component: {fileID: 575526657}
   - component: {fileID: 575526656}
   - component: {fileID: 575526655}
+  - component: {fileID: 575526660}
   m_Layer: 0
   m_Name: MainBase
   m_TagString: Untagged
@@ -16089,6 +16180,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &575526660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575526653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!1 &584738548 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: df41da93bd8e44a439c6118787917984, type: 3}
@@ -16108,6 +16213,7 @@ GameObject:
   - component: {fileID: 591212767}
   - component: {fileID: 591212766}
   - component: {fileID: 591212765}
+  - component: {fileID: 591212770}
   m_Layer: 0
   m_Name: Mainbase
   m_TagString: Untagged
@@ -17260,6 +17366,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &591212770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591212763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!1 &607687568
 GameObject:
   m_ObjectHideFlags: 0
@@ -19381,6 +19501,7 @@ GameObject:
   - component: {fileID: 738392532}
   - component: {fileID: 738392531}
   - component: {fileID: 738392530}
+  - component: {fileID: 738392536}
   m_Layer: 0
   m_Name: MainBase
   m_TagString: Untagged
@@ -20533,6 +20654,20 @@ Transform:
   m_Father: {fileID: 937892575}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 20, y: 30, z: 0}
+--- !u!114 &738392536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738392529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!1 &738806590
 GameObject:
   m_ObjectHideFlags: 0
@@ -21703,8 +21838,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   floorLightsHolder: {fileID: 296435303}
-  setLights: []
-  lightPairs: []
+  lpMats: []
 --- !u!1 &911610803
 GameObject:
   m_ObjectHideFlags: 0
@@ -21996,6 +22130,7 @@ GameObject:
   - component: {fileID: 938465760}
   - component: {fileID: 938465759}
   - component: {fileID: 938465758}
+  - component: {fileID: 938465763}
   m_Layer: 0
   m_Name: Mainbase
   m_TagString: Untagged
@@ -23148,6 +23283,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &938465763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938465756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!43 &983755084
 Mesh:
   m_ObjectHideFlags: 0
@@ -23982,6 +24131,7 @@ GameObject:
   - component: {fileID: 1192861992}
   - component: {fileID: 1192861991}
   - component: {fileID: 1192861990}
+  - component: {fileID: 1192861995}
   m_Layer: 0
   m_Name: Mainbase
   m_TagString: Untagged
@@ -25134,6 +25284,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &1192861995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192861988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!1 &1195103659
 GameObject:
   m_ObjectHideFlags: 0
@@ -25674,6 +25838,7 @@ GameObject:
   - component: {fileID: 1210994940}
   - component: {fileID: 1210994939}
   - component: {fileID: 1210994938}
+  - component: {fileID: 1210994943}
   m_Layer: 0
   m_Name: Mainbase
   m_TagString: Untagged
@@ -26826,6 +26991,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &1210994943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210994936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!1001 &1228813850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33388,6 +33567,7 @@ GameObject:
   - component: {fileID: 1687258599}
   - component: {fileID: 1687258598}
   - component: {fileID: 1687258597}
+  - component: {fileID: 1687258602}
   m_Layer: 0
   m_Name: Mainbase
   m_TagString: Untagged
@@ -34540,6 +34720,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &1687258602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687258595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!1 &1714319624 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: df41da93bd8e44a439c6118787917984, type: 3}
@@ -34559,6 +34753,7 @@ GameObject:
   - component: {fileID: 1716515594}
   - component: {fileID: 1716515593}
   - component: {fileID: 1716515592}
+  - component: {fileID: 1716515597}
   m_Layer: 0
   m_Name: Mainbase
   m_TagString: Untagged
@@ -35711,6 +35906,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &1716515597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716515590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!1 &1729810276
 GameObject:
   m_ObjectHideFlags: 0
@@ -36872,6 +37081,7 @@ GameObject:
   - component: {fileID: 1776005497}
   - component: {fileID: 1776005496}
   - component: {fileID: 1776005495}
+  - component: {fileID: 1776005500}
   m_Layer: 0
   m_Name: Mainbase
   m_TagString: Untagged
@@ -38024,6 +38234,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &1776005500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1776005493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!1 &1776485227
 GameObject:
   m_ObjectHideFlags: 0
@@ -40028,6 +40252,7 @@ GameObject:
   - component: {fileID: 1933097081}
   - component: {fileID: 1933097080}
   - component: {fileID: 1933097079}
+  - component: {fileID: 1933097084}
   m_Layer: 0
   m_Name: Mainbase
   m_TagString: Untagged
@@ -41180,6 +41405,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &1933097084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1933097077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!1 &1937633451
 GameObject:
   m_ObjectHideFlags: 0
@@ -42143,6 +42382,7 @@ GameObject:
   - component: {fileID: 1973893208}
   - component: {fileID: 1973893207}
   - component: {fileID: 1973893206}
+  - component: {fileID: 1973893211}
   m_Layer: 0
   m_Name: Mainbase
   m_TagString: Untagged
@@ -43295,6 +43535,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &1973893211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973893204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!1 &1976528667
 GameObject:
   m_ObjectHideFlags: 0
@@ -43899,6 +44153,7 @@ GameObject:
   - component: {fileID: 2022005154}
   - component: {fileID: 2022005153}
   - component: {fileID: 2022005152}
+  - component: {fileID: 2022005157}
   m_Layer: 0
   m_Name: Mainbase
   m_TagString: Untagged
@@ -45051,6 +45306,20 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &2022005157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022005150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bb1ae0b5c2264554a51bc8605f3108e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightBase: {fileID: 0}
+  lightShaft: {fileID: 0}
 --- !u!43 &2027766461
 Mesh:
   m_ObjectHideFlags: 0

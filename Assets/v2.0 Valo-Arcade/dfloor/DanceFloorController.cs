@@ -22,11 +22,13 @@ public class DanceFloorController : MonoBehaviour
                         //& update the values like that but i thought that would be bad? maybe im micro optimizing here since adding a
                         //whole script will likely result in the same result where it goes through all the objs updates???
                         //
+                        //im goign to keep this mess here to i learn from my mistake in the future haha
     [SerializeField] LightPairMats[] lpMats;
 
     // Start is called before the first frame update
     void Start()
     {
+        /*
         GameObject[] setLights;
         setLights = new GameObject[floorLightsHolder.transform.childCount];
         for (int i = 0; i < floorLightsHolder.transform.childCount; i++)
@@ -55,20 +57,25 @@ public class DanceFloorController : MonoBehaviour
         }
 
         lpMats = new LightPairMats[lightPairsHolder.Length];
-        Debug.Log(lpMats.Length);
+        //Debug.Log(lpMats.Length);
         for (int i = 0; i < lightPairsHolder.Length; i++)
         {
-            lightPairsHolder[i].AddComponent<LightPairMats>();
+            //lightPairsHolder[i].AddComponent<LightPairMats>(); <NO NEED TO DO THIS ANYMORE JUST ADD COMPONENT MANUALLY IS BETTER WILL SPEED LOADING TIME BY A LOT
+            //^^ THIS MIGHT BE GOOD IN SPECIAL CASEs WHERE WE DONT HAVE COMPS ADDED TO CERTAIN OBJS & THE LOOPS ABOVE WILL HELP WITH IT
             
-
-            /*
-            LightPairMats lpm = new LightPairMats();
-            lpm.lightBase = lightPairsHolder[i].transform.GetChild(0).GetComponent<Renderer>().material;
-            lpm.lightShaft = lightPairsHolder[i].transform.GetChild(1).GetComponent<Renderer>().material;
-            lpMats[i] = lpm;
             */
+        /*
+        LightPairMats lpm = new LightPairMats();
+        lpm.lightBase = lightPairsHolder[i].transform.GetChild(0).GetComponent<Renderer>().material;
+        lpm.lightShaft = lightPairsHolder[i].transform.GetChild(1).GetComponent<Renderer>().material;
+        lpMats[i] = lpm;
+
         }
-        Debug.Log(lpMats[0].lightBase + " " +  lpMats[0].lightShaft);
+        //Debug.Log(lpMats[0].lightBase + " " +  lpMats[0].lightShaft);
+        */
+
+        //NEW START METHOD condensed from 43 lines to 1 line 
+        lpMats = GetComponentsInChildren<LightPairMats>();
     }
 
 
@@ -77,12 +84,16 @@ public class DanceFloorController : MonoBehaviour
     void Update()
     {
         t += Time.deltaTime;
-        if (t >= 2)
+        if (t >= 1)
         {
             //Test Lights here
             int r = Random.Range(0, lpMats.Length);
-            lpMats[r].lightBase.SetFloat("_Alpha", 0);
-            lpMats[r].lightShaft.SetFloat("_Alpha", 0);
+            //steps = enable lp mat script and set alpha to 1
+            for (int i = 0; i < r; i++)
+            {
+                lpMats[i].enabled = true;
+                lpMats[i].StartLightLerp();//USE ON ENABLE ONLY IF U WANT MORE RANDOMIZED LIGHT EFFECTS? (ITS A BUG)
+            }
             t = 0;
         }
     }
