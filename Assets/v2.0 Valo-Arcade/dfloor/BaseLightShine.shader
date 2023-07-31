@@ -2,9 +2,8 @@ Shader "Unlit/BaseLightShine"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
         _Color ("Main Color", color) = (0.83,0,1,0.5)
-        _Alpha ("Alpha", Range(0,1)) = 1
+        _Alpha ("_Alpha", Range(0,1)) = 1
     }
     SubShader
     {
@@ -58,9 +57,11 @@ Shader "Unlit/BaseLightShine"
                 //UNITY_APPLY_FOG(i.fogCoord, col);
                 float l = smoothstep(1.9,3,uv.y);
                 //l += 1;
-                float sl =  smoothstep(2.8,3,uv.y);
+                float sl =  smoothstep(2.9,3,uv.y);
                 l -= sl;
-                l = max(l,0);
+                //l = max(l,0);
+                //l *= -1;
+                _Alpha = 1 - _Alpha;
 
                 return float4(_Color.xyz,max(l - _Alpha,0));
             }

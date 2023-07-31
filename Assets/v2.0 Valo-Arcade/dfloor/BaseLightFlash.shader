@@ -2,8 +2,7 @@ Shader "Unlit/BaseLightFlash"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
-        _Alpha ("Alpha", float) = 0.5
+        _Alpha ("_Alpha", Range(0,1)) = 1
     }
     SubShader
     {
