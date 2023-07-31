@@ -11,6 +11,7 @@ public class TimerBasedController : MonoBehaviour
     public bool isExploding = false;
     [SerializeField, Range(2, 4)] float timeScale = 3;
     bool oneRun = false;
+    [SerializeField] ParticleSystem shinePS;
 
     Vector3 coreOriginPos;
     Vector3 originPos;
@@ -48,7 +49,7 @@ public class TimerBasedController : MonoBehaviour
                     transform.position = transform.position - transform.up * 4;
                     oneRun = true;
                 }
-                transform.localScale -= (transform.localScale * 5f) * Time.deltaTime;
+                transform.localScale -= (transform.localScale * 5f) * Time.deltaTime*2;
             }
         }
         else
@@ -58,6 +59,7 @@ public class TimerBasedController : MonoBehaviour
             matToControll.SetFloat("_UpPow", 0);
             if (oneRun)
             {
+                shinePS.Play();
                 transform.position = originPos;
                 transform.localScale = Vector3.one;
                 oneRun = false;
@@ -68,7 +70,6 @@ public class TimerBasedController : MonoBehaviour
         {
             if(isExploding)
             {
-                
                 isBouncing = false;
                 isMultiBouncing = false;
             }
@@ -111,6 +112,11 @@ public class TimerBasedController : MonoBehaviour
     {
         bouncesAmount += amountToAdd;
         bSpeedMultiplier = bounceSpeedMultiplier;
+    }
+
+    public void StopParticleEmitting()
+    {
+        shinePS.Stop(true, ParticleSystemStopBehavior.StopEmitting);
     }
 }
 

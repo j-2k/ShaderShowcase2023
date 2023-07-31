@@ -1322,8 +1322,8 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 6554
-        atime2: 58982
+        atime1: 19661
+        atime2: 45875
         atime3: 65535
         atime4: 0
         atime5: 0
@@ -4789,7 +4789,7 @@ ParticleSystemRenderer:
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
-  m_LengthScale: 5
+  m_LengthScale: 3
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
@@ -4800,7 +4800,7 @@ ParticleSystemRenderer:
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
   m_AllowRoll: 1
-  m_FreeformStretching: 1
+  m_FreeformStretching: 0
   m_RotateWithStretchDirection: 0
   m_VertexStreams: 00010304
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
@@ -4885,7 +4885,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 750f0f192394c466bb1e8dc607feb894, type: 2}
     - target: {fileID: 919132149155446097, guid: a296597cc7c754be2a3baddfa6a70e87, type: 3}
       propertyPath: m_Name
-      value: IcoSphereFab
+      value: IcoSphereFab Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a296597cc7c754be2a3baddfa6a70e87, type: 3}
@@ -4914,6 +4914,7 @@ MonoBehaviour:
   matToControll: {fileID: 2100000, guid: 750f0f192394c466bb1e8dc607feb894, type: 2}
   isExploding: 0
   timeScale: 3
+  shinePS: {fileID: 1831038530}
   isBouncing: 0
   bouncesAmount: 0
   bSpeedMultiplier: 5

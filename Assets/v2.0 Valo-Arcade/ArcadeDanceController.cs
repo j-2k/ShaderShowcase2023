@@ -335,11 +335,13 @@ public class ArcadeDanceController : MonoBehaviour
                         {
                             edSplash.Play();
                             MainIcoSphereController.isMultiBouncing = true;
+                            MainIcoSphereController.StopParticleEmitting();
                         }
                         currArrow.gameObject.SetActive(false);
                         if (currArrow == edDanceArrowsList[maxEDDanceArrows - 2].transform)
                         {
                             MainIcoSphereController.isExploding = true;
+                            
                         }
                         else if (currArrow == edDanceArrowsList[maxEDDanceArrows - 1].transform)
                         {

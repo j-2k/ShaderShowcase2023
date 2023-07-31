@@ -37,7 +37,7 @@ Shader "Unlit/BaseLightShine"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-
+            float3 _Color;
             float _Alpha;
 
             v2f vert (appdata v)
@@ -52,16 +52,17 @@ Shader "Unlit/BaseLightShine"
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
+                //fixed4 col = tex2D(_MainTex, i.uv);
                 float2 uv = i.uv + 2.8;
                 // apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
+                //UNITY_APPLY_FOG(i.fogCoord, col);
                 float l = smoothstep(1.9,3,uv.y);
                 //l += 1;
                 float sl =  smoothstep(2.8,3,uv.y);
                 l -= sl;
                 l = max(l,0);
-                return float4(l,0,l,max(l - _Alpha,0));
+
+                return float4(_Color.xyz,max(l - _Alpha,0));
             }
             ENDCG
         }
