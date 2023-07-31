@@ -8,14 +8,21 @@ public class DanceFloorController : MonoBehaviour
     //[SerializeField] GameObject[] setLights;          //Added these here for debug, However moved them to start function to save memory -
     //[SerializeField] GameObject[] lightPairsHolder;   //when exiting start function & i dont need the refs anymore (uncomment these for debugging)
 
-
-
+    /*
     class LightPairMats//maybe could have used a dictionary here but this seems nicer
     {
         public Material lightBase;
         public Material lightShaft;
     }
-    LightPairMats[] lpMats;
+    */                  //NVM I forgot one small thing, i didnt think about how to manage the update for each alpha var (I want it to only update when the val is not 0 & disable it for optimization)
+                        //so now I will change the whole structure to work on a script on the root of each lightpairholder
+                        //so 80% of the start function is now useless LMFAO
+                        //======
+                        //I was going to think of another solution where i just forloop through the whole lightpair holders
+                        //& update the values like that but i thought that would be bad? maybe im micro optimizing here since adding a
+                        //whole script will likely result in the same result where it goes through all the objs updates???
+                        //
+    [SerializeField] LightPairMats[] lpMats;
 
     // Start is called before the first frame update
     void Start()
@@ -51,10 +58,15 @@ public class DanceFloorController : MonoBehaviour
         Debug.Log(lpMats.Length);
         for (int i = 0; i < lightPairsHolder.Length; i++)
         {
+            lightPairsHolder[i].AddComponent<LightPairMats>();
+            
+
+            /*
             LightPairMats lpm = new LightPairMats();
             lpm.lightBase = lightPairsHolder[i].transform.GetChild(0).GetComponent<Renderer>().material;
             lpm.lightShaft = lightPairsHolder[i].transform.GetChild(1).GetComponent<Renderer>().material;
             lpMats[i] = lpm;
+            */
         }
         Debug.Log(lpMats[0].lightBase + " " +  lpMats[0].lightShaft);
     }
@@ -65,9 +77,15 @@ public class DanceFloorController : MonoBehaviour
     void Update()
     {
         t += Time.deltaTime;
-        if (t >= 0.5)
+        if (t >= 2)
         {
             //Test Lights here
+            int r = Random.Range(0, lpMats.Length);
+            lpMats[r].lightBase.SetFloat("_Alpha", 0);
+            lpMats[r].lightShaft.SetFloat("_Alpha", 0);
+            t = 0;
         }
     }
+
+
 }
