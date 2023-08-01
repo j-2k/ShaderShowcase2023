@@ -4,7 +4,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class ArcadeDanceController : MonoBehaviour
-{
+{//Main Controller for the whole Kill Effect
     [SerializeField] GameObject danceArrowFab;
     [SerializeField] GameObject icoSphereFab;
     [SerializeField] DanceStages currentEnum;
