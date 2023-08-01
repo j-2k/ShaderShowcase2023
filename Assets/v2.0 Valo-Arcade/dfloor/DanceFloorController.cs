@@ -83,7 +83,7 @@ public class DanceFloorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        t += Time.deltaTime;
+        t = Time.deltaTime;
         if (t >= 1)
         {
             //Test Lights here
@@ -97,6 +97,14 @@ public class DanceFloorController : MonoBehaviour
             t = 0;
         }
     }
-
+    
+    public void LightAllOnce(float timeToTake = 1)
+    {
+        for (int i = 0; i < lpMats.Length; i++)
+        {
+            lpMats[i].enabled = true;
+            lpMats[i].StartLightLerp(timeToTake);//USE ON ENABLE ONLY IF U WANT MORE RANDOMIZED LIGHT EFFECTS? (ITS A BUG)
+        }
+    }
 
 }

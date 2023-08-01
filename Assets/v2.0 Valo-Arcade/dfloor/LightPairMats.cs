@@ -17,10 +17,11 @@ public class LightPairMats : MonoBehaviour
     }
 
     float tl = 0;
+    float timeMultiplier = 1;
     // Update is called once per frame
     void Update()
     {
-        tl += Time.deltaTime;
+        tl += Time.deltaTime * timeMultiplier;
         if (tl <= 1)
         {
             SetAlpha(Mathf.Lerp(1,0,tl));
@@ -31,14 +32,18 @@ public class LightPairMats : MonoBehaviour
         }
     }
 
+    /*
     private void OnEnable()
     {
         tl = 0;
     }
+    */
 
-    public void StartLightLerp()
+    public void StartLightLerp(float timeToFade = 1)
     {
         tl = 0;
+        timeToFade = (timeToFade == 0) ? 1 : timeToFade;
+        timeMultiplier = 1 / timeToFade;
     }
 
     void SetAlpha(float alpha)

@@ -11,6 +11,7 @@ public class ArcadeDanceController : MonoBehaviour
     [SerializeField] ParticleSystem edSplash;
     [SerializeField] ParticleSystem ed2Splash;
     [SerializeField] List<GameObject> centerModels;
+    [SerializeField] DanceFloorController danceFloorController;
 
     //float speed;
     [SerializeField] float directionMagnitude = 5; //def 5
@@ -237,6 +238,7 @@ public class ArcadeDanceController : MonoBehaviour
                     horizontalArrowsListScripts[stateIterator].StartRotScaleRoutine();
                     //tempAccel += 3;
                     horizontalArrowsListScripts[stateIterator].acceleration += tempAccel;
+                    
                     stateIterator++;
                 }
 
@@ -448,6 +450,7 @@ public class ArcadeDanceController : MonoBehaviour
                 horizontalArrowsListScripts[i].trailingOrbs.Play();
                 horizontalArrowsList[i].gameObject.SetActive(false);
                 MainIcoSphereController.ControlBounce(1, (i + 1) * 2 + 2);
+                danceFloorController.LightAllOnce(1/((i * 0.5f) +1f));
                 /*shaderT = 0;
                 shaderSpeedT = 1;
                 if (i<2)
