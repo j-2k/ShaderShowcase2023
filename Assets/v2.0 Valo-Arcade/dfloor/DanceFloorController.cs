@@ -76,7 +76,7 @@ public class DanceFloorController : MonoBehaviour
 
         //NEW START METHOD condensed from 43 lines to 1 line 
         lpMats = GetComponentsInChildren<LightPairMats>();
-        currentFloorLightMode = FloorLightModes.Off;
+        currentFloorLightMode = FloorLightModes.Random;
     }
 
 
