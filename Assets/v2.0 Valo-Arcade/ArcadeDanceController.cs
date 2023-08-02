@@ -128,6 +128,7 @@ public class ArcadeDanceController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && currentEnum == DanceStages.EMPTY)
         {
             currentEnum = DanceStages.Generate;
+            danceFloorController.ChangeCurrentLightMode(DanceFloorController.FloorLightModes.Off);
             if (!centerModels[0].activeSelf)
             {
                 centerModels[0].SetActive(true);
@@ -273,6 +274,7 @@ public class ArcadeDanceController : MonoBehaviour
                 if(!shouldBreak)
                 {
                     currentEnum = DanceStages.Ending;
+                    danceFloorController.ChangeCurrentLightMode(DanceFloorController.FloorLightModes.Circular);
                 }
 
                 /*
@@ -343,7 +345,6 @@ public class ArcadeDanceController : MonoBehaviour
                         if (currArrow == edDanceArrowsList[maxEDDanceArrows - 2].transform)
                         {
                             MainIcoSphereController.isExploding = true;
-                            
                         }
                         else if (currArrow == edDanceArrowsList[maxEDDanceArrows - 1].transform)
                         {
@@ -357,6 +358,7 @@ public class ArcadeDanceController : MonoBehaviour
                             currentEnum = DanceStages.Ending2;
                             centerModelIndex++;
                             CycleNextCenterModel(centerModelIndex, 0.5f);
+                            danceFloorController.ChangeCurrentLightMode(DanceFloorController.FloorLightModes.Random);
                         }
                     }
                 }

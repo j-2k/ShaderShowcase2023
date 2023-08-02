@@ -76,25 +76,47 @@ public class DanceFloorController : MonoBehaviour
 
         //NEW START METHOD condensed from 43 lines to 1 line 
         lpMats = GetComponentsInChildren<LightPairMats>();
+        currentFloorLightMode = FloorLightModes.Off;
     }
 
 
     float t = 0;
+    public enum FloorLightModes
+    {
+        Off,
+        Random,
+        Circular
+    }
+
+    [SerializeField] FloorLightModes currentFloorLightMode;
+
+
     // Update is called once per frame
     void Update()
     {
-        t = Time.deltaTime;
-        if (t >= 1)
+        switch(currentFloorLightMode)
         {
-            //Test Lights here
-            int r = Random.Range(0, lpMats.Length);
-            //steps = enable lp mat script and set alpha to 1
-            for (int i = 0; i < r; i++)
-            {
-                lpMats[i].enabled = true;
-                lpMats[i].StartLightLerp();//USE ON ENABLE ONLY IF U WANT MORE RANDOMIZED LIGHT EFFECTS? (ITS A BUG)
-            }
-            t = 0;
+            case FloorLightModes.Off:
+                t = 0;
+                break;
+            case FloorLightModes.Random:
+                t += Time.deltaTime;
+                if (t >= 1)
+                {
+                    //Test Lights here
+                    int r = Random.Range(1, lpMats.Length);
+                    //steps = enable lp mat script and set alpha to 1
+                    for (int i = 0; i < r; i++)
+                    {
+                        lpMats[i].enabled = true;
+                        lpMats[i].StartLightLerp();//USE ON ENABLE ONLY IF U WANT MORE RANDOMIZED LIGHT EFFECTS? (ITS A BUG)
+                    }
+                    t = 0;
+                }
+                break;
+            case FloorLightModes.Circular:
+                LightCircular(circleLightTime, circleLightStep);
+                break;
         }
     }
     
@@ -105,6 +127,42 @@ public class DanceFloorController : MonoBehaviour
             lpMats[i].enabled = true;
             lpMats[i].StartLightLerp(timeToTake);//USE ON ENABLE ONLY IF U WANT MORE RANDOMIZED LIGHT EFFECTS? (ITS A BUG)
         }
+    }
+
+
+    float circleLightTime = 0.4f;
+    float circleLightStep = 0.03f;
+    int indexCircular = 0;
+    void LightCircular(float timeToTake = 0.25f,float stepTime = 0.05f)
+    {
+        t += Time.deltaTime;
+        if(t >= stepTime)
+        {
+            if(indexCircular >= lpMats.Length)
+            {
+                indexCircular = 0;
+            }
+
+            for (; indexCircular < lpMats.Length;)
+            {
+                lpMats[indexCircular].enabled = true;
+                lpMats[indexCircular].StartLightLerp(timeToTake);//USE ON ENABLE ONLY IF U WANT MORE RANDOMIZED LIGHT EFFECTS? (ITS A BUG)
+                break;
+            }
+            indexCircular++;
+            t = 0;
+        }
+    }
+
+    public void ControlCircularLight(float timeToTake = 1, float stepTime = 0.25f)
+    {
+        circleLightTime = timeToTake;
+        circleLightStep = stepTime;
+    }
+
+    public void ChangeCurrentLightMode(FloorLightModes targetLightMode)
+    {
+        currentFloorLightMode = targetLightMode;
     }
 
 }
