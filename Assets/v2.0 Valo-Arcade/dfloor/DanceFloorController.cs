@@ -147,6 +147,14 @@ public class DanceFloorController : MonoBehaviour
             {
                 lpMats[indexCircular].enabled = true;
                 lpMats[indexCircular].StartLightLerp(timeToTake);//USE ON ENABLE ONLY IF U WANT MORE RANDOMIZED LIGHT EFFECTS? (ITS A BUG)
+                //2nd/double spiral below
+                int secondSpiralIndex = indexCircular + (lpMats.Length / 2);
+                if(secondSpiralIndex >= lpMats.Length)//wraparound handler
+                {
+                    secondSpiralIndex -= lpMats.Length;
+                }
+                lpMats[secondSpiralIndex].enabled = true;
+                lpMats[secondSpiralIndex].StartLightLerp(timeToTake);
                 break;
             }
             indexCircular++;
