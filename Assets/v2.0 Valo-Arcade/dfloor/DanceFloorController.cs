@@ -79,7 +79,6 @@ public class DanceFloorController : MonoBehaviour
         currentFloorLightMode = FloorLightModes.Random;
     }
 
-
     float t = 0;
     public enum FloorLightModes
     {
@@ -90,7 +89,7 @@ public class DanceFloorController : MonoBehaviour
 
     [SerializeField] FloorLightModes currentFloorLightMode;
 
-
+    int curRand = 0;
     // Update is called once per frame
     void Update()
     {
@@ -103,6 +102,25 @@ public class DanceFloorController : MonoBehaviour
                 t += Time.deltaTime;
                 if (t >= 1)
                 {
+                    for (int i = 0; i < 3; i++)
+                    {   //0 + (i * 6) = LOWERBOUND ARRAY LIGHT BRACKET THAT IS DIVISIBLE BY 3
+                        //6 + (i * 6) = UPPERBOUND ARRAY LIGHT BRACKET THAT IS DIVISIBLE BY 3
+                        //(i * 6) = lpmats.len / 3 = 6, 6 elements is the # of lights we go through in the total 3 loops 3*6 = 18
+                        curRand = Random.Range(0 + (i * 6), 6 + (i * 6));
+                        lpMats[curRand].enabled = true;
+                        lpMats[curRand].StartLightLerp();
+                        //Second Opposite Light Constant
+                        curRand += 3;
+                        if (curRand >= 6 + (i * 6))//wraparound handler
+                        {
+                            curRand -= 6 + (i * 6);
+                            curRand += 0 + (i * 6);
+                        }
+                        lpMats[curRand].enabled = true;
+                        lpMats[curRand].StartLightLerp();
+                    }
+                    
+                    /*
                     //Test Lights here
                     int r = Random.Range(1, lpMats.Length);
                     //steps = enable lp mat script and set alpha to 1
@@ -111,6 +129,7 @@ public class DanceFloorController : MonoBehaviour
                         lpMats[i].enabled = true;
                         lpMats[i].StartLightLerp();//USE ON ENABLE ONLY IF U WANT MORE RANDOMIZED LIGHT EFFECTS? (ITS A BUG)
                     }
+                    */
                     t = 0;
                 }
                 break;
