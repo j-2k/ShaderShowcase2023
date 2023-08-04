@@ -2,7 +2,8 @@ Shader "Unlit/ValDanceFloorULS"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
+        _MainTex ("Hexagon Texture", 2D) = "white" {}
+        _EmTex ("Texture Test", 2D) = "white" {}
         _Color ("Main Color", color) = (0.83,0,1,0.5)
     }
     SubShader
@@ -37,6 +38,9 @@ Shader "Unlit/ValDanceFloorULS"
             sampler2D _MainTex;
             float4 _MainTex_ST;
 
+            sampler2D _EmTex;
+            float4 _EmTex_ST;
+
             float4 _Color;
 
             v2f vert (appdata v)
@@ -55,10 +59,12 @@ Shader "Unlit/ValDanceFloorULS"
 
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
+                fixed4 emCol = tex2D(_EmTex, i.uv);
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 //fixed4 col = fixed4(i.uv.xy,0,1);
                 clip(col.x - 0.5f);
+                col *= emCol;
                 col.xyz *= _Color.xyz;
                 i.uv *= 2;
                 return float4(col.xyz,_Color.a);
