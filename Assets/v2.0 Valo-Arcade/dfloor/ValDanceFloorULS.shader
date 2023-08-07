@@ -3,8 +3,9 @@ Shader "Unlit/ValDanceFloorULS"
     Properties
     {
         _MainTex ("Hexagon Texture", 2D) = "white" {}
-        _EmTex ("Texture Test", 2D) = "white" {}
-        _Color ("Main Color", color) = (0.83,0,1,0.5)
+        _EmTex ("Emission Texture", 2D) = "white" {}
+        [HDR] _Color ("Emission Color / W IS ALPHA CONTROL", color) = (0.83,0,1,0.5)
+        _ArrowStr("Arrow Strength", Range(0,2)) = 0
     }
     SubShader
     {
@@ -43,6 +44,8 @@ Shader "Unlit/ValDanceFloorULS"
 
             float4 _Color;
 
+            float _ArrowStr;
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -60,14 +63,20 @@ Shader "Unlit/ValDanceFloorULS"
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
                 fixed4 emCol = tex2D(_EmTex, i.uv);
+                emCol = smoothstep(0.6,1,emCol);
+                emCol.xyz *= _Color.xyz * _ArrowStr;
+                
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 //fixed4 col = fixed4(i.uv.xy,0,1);
                 clip(col.x - 0.5f);
-                col *= emCol;
-                col.xyz *= _Color.xyz;
-                i.uv *= 2;
-                return float4(col.xyz,_Color.a);
+                col.xyz *= emCol.xyz;
+                //col.xyz *= abs(sin(_Time.y*2));
+
+                //col.w = _ArrowAlpha;
+                //col.xyz *= _Color.xyz;
+                return float4(col.xyz,_Color.w);
+                
             }
             ENDCG
         }
