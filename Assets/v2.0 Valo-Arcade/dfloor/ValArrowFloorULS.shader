@@ -1,9 +1,8 @@
-Shader "Unlit/ValDanceFloorULS"
+Shader "Unlit/ValArrowFloorULS"
 {
     Properties
     {
         _MainTex ("Hexagon Texture", 2D) = "white" {}
-        _CheckerTex ("Checker Texture", 2D) = "white" {}
         [HDR] _Color ("Emission Color / W IS ALPHA CONTROL", color) = (0.83,0,1,0.5)
         _ArrowStr("Arrow Strength", Range(0,2)) = 0
     }
@@ -38,9 +37,6 @@ Shader "Unlit/ValDanceFloorULS"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-            
-            sampler2D _CheckerTex;
-            float4 _CheckerTex_ST;
 
             float4 _Color;
 
@@ -55,25 +51,18 @@ Shader "Unlit/ValDanceFloorULS"
                 return o;
             }
 
-            float3 palette( in float t, in float3 a, in float3 b, in float3 c, in float3 d )
-            {
-                return a + b*cos( 6.28318*(c*t+d) );
-            }            
+            
 
             fixed4 frag (v2f i) : SV_Target
             {
 
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-                fixed4 sqTex = tex2D(_CheckerTex, i.uv + _Time.y * 0.1);
-                clip(col.xyz - 0.5f);
-
+                clip(col.xyz - 0.01f);
+                col.xyz = lerp(_Color.xyz,1,1 - col) * _ArrowStr;
+                
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
-                
-                float3 col1 = (palette(_Time.y*0.3,float3(0.5,0.5,0.5),float3(0.5,0.5,0.5),float3(1.0,1.0,1.0),float3(0.5,0.2,0.90)).rgb);
-                float3 col2 = (palette(_Time.y*0.3,float3(0.1,0.5,0.9),float3(0.8,0.5,0.6),float3(2.0,1.0,2.0),float3(0.9,0.2,0.60)).rgb);
-                col.xyz *=  col1 * sqTex + col2 * (1 - sqTex);
             
                 return float4(col.xyz,_Color.w);
                 

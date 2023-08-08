@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Unlit_ValDanceFloorULS
-  m_Shader: {fileID: 4800000, guid: f1f424065860a424696b8059097aa460, type: 3}
+  m_Name: Unlit_ValArrowFloorULS
+  m_Shader: {fileID: 4800000, guid: 31d6fbb6d1bc74bd88b1579f40b4ec20, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -20,22 +20,17 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _CheckerTex:
-        m_Texture: {fileID: 2800000, guid: 48794f56eae235448ad38591ce739b67, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _EmTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 8931a0cf02812417b840f52c2005efae, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 64abd5ebd8bfd45f4adee2a8f6bd22b3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8931a0cf02812417b840f52c2005efae, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ArrowAlpha: 0.973
-    - _ArrowStr: 2
+    - _ArrowStr: 1
     m_Colors:
-    - _Color: {r: 0.8580092, g: 1, b: 0, a: 1}
+    - _Color: {r: 4.0949597, g: 0, b: 4.0949597, a: 1}
   m_BuildTextureStacks: []
