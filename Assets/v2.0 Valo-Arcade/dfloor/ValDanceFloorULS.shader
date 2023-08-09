@@ -76,8 +76,9 @@ Shader "Unlit/ValDanceFloorULS"
                 //col.xyz *=  col1 * sqTex + col2 * (1 - sqTex);
                 //col.xyz *= sqTex;
 
-                float3 xyz = lerp(float3(0.25,0,0.25),float3(1,0,1), sqTex.rgb);
-                return float4(xyz,_Color.w);
+                float3 xyz = lerp(float3(0,0,0), float3(0.5,0.5,0.5), sin(sqTex + _Time.y)*0.5 + 0.5);
+
+                return float4((xyz),_Color.w);
             }
             ENDCG
         }
