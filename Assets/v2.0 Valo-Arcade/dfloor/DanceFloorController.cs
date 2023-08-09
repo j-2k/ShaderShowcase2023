@@ -159,6 +159,7 @@ public class DanceFloorController : MonoBehaviour
                 //6 + (i * 6) = UPPERBOUND ARRAY LIGHT BRACKET THAT IS DIVISIBLE BY 3
                 //(i * 6) = lpmats.len / 3 = 6, 6 elements is the # of lights we go through in the total 3 loops 3*6 = 18
                 curRand = Random.Range(0 + (i * 6), 6 + (i * 6));
+                Debug.Log(curRand);
                 lpMats[curRand].enabled = true;
                 lpMats[curRand].StartLightLerp();
                 //Second Opposite Light Constant
