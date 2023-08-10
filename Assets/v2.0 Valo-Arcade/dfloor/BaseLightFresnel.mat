@@ -27,7 +27,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Cutoff: 0
-    - _FE: 2
+    - _FE: 1
     - _Glossiness: 0
     - _Metallic: 0
     m_Colors:

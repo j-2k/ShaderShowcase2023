@@ -5,7 +5,7 @@ Shader "Unlit/ValDanceFloorULS"
         _MainTex ("Hexagon Texture", 2D) = "white" {}
         _CheckerTex ("Checker Texture", 2D) = "white" {}
         [HDR] _Color ("Emission Color / W IS ALPHA CONTROL", color) = (0.83,0,1,0.5)
-        _ArrowStr("Arrow Strength", Range(0,2)) = 0
+        _HitLight("Hit Light", Range(0,0.5)) = 0
     }
     SubShader
     {
@@ -44,7 +44,7 @@ Shader "Unlit/ValDanceFloorULS"
 
             float4 _Color;
 
-            float _ArrowStr;
+            float _HitLight;
 
             v2f vert (appdata v)
             {
@@ -67,6 +67,8 @@ Shader "Unlit/ValDanceFloorULS"
                 fixed4 sqTex = tex2D(_CheckerTex, i.uv + _Time.y * 0.05);
                 clip(col.xyz - 0.5f);
 
+                col = 1 - tex2D(_MainTex, i.uv*1.05-0.025);
+
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 
@@ -76,9 +78,11 @@ Shader "Unlit/ValDanceFloorULS"
                 //col.xyz *=  col1 * sqTex + col2 * (1 - sqTex);
                 //col.xyz *= sqTex;
 
-                float3 xyz = lerp(float3(0,0,0), float3(0.5,0.5,0.5), sin(sqTex + _Time.y)*0.5 + 0.5);
-
-                return float4((xyz),_Color.w);
+                float3 purple = float3(0.9,-0.1,0.9);           //abs(sin(2*sqTex.rgb+_Time.y)));
+                float3 xyz = lerp(sqTex.rgb, 1 - sqTex.rgb, sin(2*sqTex.rgb + _Time.y*2) * 0.5 + 0.5);//sin(2*sqTex.rgb + _Time.y*2) * 0.5 + 0.5); //frac(sin(sqTex + _Time.y)*0.5 + 0.5));
+                //return float4(col.rgb,_Color.w);
+                
+                return float4(saturate(xyz+purple+col.rgb)+_HitLight,_Color.w);
             }
             ENDCG
         }

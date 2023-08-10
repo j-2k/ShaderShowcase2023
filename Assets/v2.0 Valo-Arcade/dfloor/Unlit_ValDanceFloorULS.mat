@@ -35,7 +35,8 @@ Material:
     m_Ints: []
     m_Floats:
     - _ArrowAlpha: 0.973
-    - _ArrowStr: 2
+    - _ArrowStr: 0
+    - _HitLight: 0
     m_Colors:
-    - _Color: {r: 0.8580092, g: 1, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
