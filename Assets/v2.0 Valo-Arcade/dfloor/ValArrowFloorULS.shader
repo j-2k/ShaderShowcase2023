@@ -55,17 +55,28 @@ Shader "Unlit/ValArrowFloorULS"
 
             fixed4 frag (v2f i) : SV_Target
             {
-
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-                clip(col.xyz - 0.01f);
-                col.xyz = lerp(_Color.xyz,1,1 - col) * _ArrowStr;
+                //col.xyz += length(i.uv);
+
+                //clip(col.xyz - 0.01f);
+                col.xyz = lerp(0,1,col) * _ArrowStr;
                 
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
-            
-                return float4(col.xyz,_Color.w);
-                
+
+                float3 l = (1 - (length(i.uv - 0.5) * 8));// * float3(1,0,1);
+                float3 l2 = 1 - step(0.4,l) + l * float3(1,0,1);
+                //clip(l-0.3);
+
+                clip(l-0.3);
+                //clip(col.xyz - 0.01f);
+                float3 fc = col.xyz + l2;
+
+
+                //float4 fc = float4(l2,1);
+                //return fc;
+                return float4(l2.xyz,_Color.w);
             }
             ENDCG
         }
