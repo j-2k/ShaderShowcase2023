@@ -60,7 +60,7 @@ Shader "Unlit/ValArrowFloorULS"
                 //col.xyz += length(i.uv);
 
                 //clip(col.xyz - 0.01f);
-                col.xyz = (lerp(0,1,col) * _ArrowStr);
+                col.xyz = (lerp(0,1,col) * _ArrowStr) * float3(1,0,1);
                 
                 
                 // apply fog
@@ -72,7 +72,7 @@ Shader "Unlit/ValArrowFloorULS"
 
                 //clip(l-0.3);
                 col.xyz += l2;
-                clip(col.xyz - 0.01f);
+                clip(col.x - 0.01);
 
 
 

@@ -96,7 +96,7 @@ Material:
     - _ColorC: {r: 4, g: 4, b: 4, a: 1}
     - _ColorCloud: {r: 5.3403134, g: 4.2837157, b: 0, a: 0}
     - _ColorH: {r: 0.019312933, g: 0.034067586, b: 0.5849056, a: 1}
-    - _ColorS: {r: 1, g: 0, b: 1, a: 1}
+    - _ColorS: {r: 0.5471698, g: 0, b: 0.5471698, a: 1}
     - _ColorSun: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Vector: {r: 0.02, g: 0.01, b: 20, a: 0.04}
