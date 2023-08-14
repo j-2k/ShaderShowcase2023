@@ -56,17 +56,22 @@ Shader "Unlit/DDRArrowFloor"
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                float2 uv = i.uv * 1.5 - 0.25;//* sin(_Time.y);
+                //float2 uv = i.uv * 1.5 - 0.25;//* sin(_Time.y);
+                float2 uv = i.uv * (sin(_Time.y * 2) * 0.25 + 1.25) - (sin(_Time.y*2) * 0.125 + 0.125);
                 fixed4 col = tex2D(_MainTex, uv);
                 clip(col.z - 0.1);
+
                 //col = saturate(smoothstep(0,1,col) + 2);
-                col = smoothstep(0,1,col.x);
+                //col = smoothstep(0,1,col.x); //black white arrow
+                float l = saturate(1 - length(i.uv - 0.5) * 4);
+                col = smoothstep(0,1,col);
+
                 
 
 
                 //float4 fc = float4(l2,1);
                 //return fc;
-                return float4(col.xyz,_Color.w);
+                return float4(l.xxx + col.xyz,_Color.w);
             }
             ENDCG
         }
