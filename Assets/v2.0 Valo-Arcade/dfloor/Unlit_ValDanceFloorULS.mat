@@ -36,6 +36,7 @@ Material:
     m_Floats:
     - _ArrowAlpha: 0.973
     - _ArrowStr: 0
+    - _Bloom: 5
     - _HitLight: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

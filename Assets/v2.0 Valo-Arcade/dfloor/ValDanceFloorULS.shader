@@ -6,6 +6,7 @@ Shader "Unlit/ValDanceFloorULS"
         _CheckerTex ("Checker Texture", 2D) = "white" {}
         [HDR] _Color ("Emission Color / W IS ALPHA CONTROL", color) = (0.83,0,1,0.5)
         _HitLight("Hit Light", Range(0,0.5)) = 0
+        _Bloom("Rim Bloom Strength", Range(1,10)) = 3
     }
     SubShader
     {
@@ -45,6 +46,7 @@ Shader "Unlit/ValDanceFloorULS"
             float4 _Color;
 
             float _HitLight;
+            float _Bloom;
 
             v2f vert (appdata v)
             {
@@ -82,7 +84,7 @@ Shader "Unlit/ValDanceFloorULS"
                 float3 xyz = lerp(sqTex.rgb, 1 - sqTex.rgb, sin(2*sqTex.rgb + _Time.y*2) * 0.5 + 0.5);//sin(2*sqTex.rgb + _Time.y*2) * 0.5 + 0.5); //frac(sin(sqTex + _Time.y)*0.5 + 0.5));
                 //return float4(col.rgb,_Color.w);
                 
-                return float4(saturate(xyz+purple+col.rgb)+_HitLight,_Color.w);
+                return float4((col.rgb * _Bloom) + pow(saturate(xyz+purple+_HitLight),2) ,_Color.w);
             }
             ENDCG
         }
