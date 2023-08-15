@@ -5,6 +5,7 @@ using UnityEngine;
 public class DanceFloorController : MonoBehaviour
 {
     [SerializeField] GameObject floorLightsHolder;
+    [SerializeField] ArrowMaster arrowControl;
     //[SerializeField] GameObject[] setLights;          //Added these here for debug, However moved them to start function to save memory -
     //[SerializeField] GameObject[] lightPairsHolder;   //when exiting start function & i dont need the refs anymore (uncomment these for debugging)
 
@@ -76,6 +77,7 @@ public class DanceFloorController : MonoBehaviour
 
         //NEW START METHOD condensed from 43 lines to 1 line 
         lpMats = GetComponentsInChildren<LightPairMats>();
+        arrowControl = GetComponentInChildren<ArrowMaster>();
         currentFloorLightMode = FloorLightModes.Random;
     }
 
@@ -195,5 +197,14 @@ public class DanceFloorController : MonoBehaviour
     {
         currentFloorLightMode = targetLightMode;
     }
+
+    public void BeginArrowLerp()
+    {
+        arrowControl.enabled = true;
+        arrowControl.StartArrowLerp(0.5f);
+    }
+
+
+
 
 }

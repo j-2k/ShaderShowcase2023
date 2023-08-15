@@ -28,8 +28,8 @@ Material:
     m_Floats:
     - _Alpha: 1
     - _ArrowStr: 0
-    - _Bloom: 5.76
-    - _Size: 1
+    - _Bloom: 6
+    - _Size: 2
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

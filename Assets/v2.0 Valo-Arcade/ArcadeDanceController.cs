@@ -453,6 +453,7 @@ public class ArcadeDanceController : MonoBehaviour
                 horizontalArrowsList[i].gameObject.SetActive(false);
                 MainIcoSphereController.ControlBounce(1, (i + 1) * 2 + 2);
                 danceFloorController.LightAllOnce(1/((i * 0.5f) +1f));
+                danceFloorController.BeginArrowLerp();
                 /*shaderT = 0;
                 shaderSpeedT = 1;
                 if (i<2)
