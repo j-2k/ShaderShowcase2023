@@ -9,8 +9,9 @@ Shader "Unlit/DDRArrowFloor"
     SubShader
     {
         Tags { "RenderType"="Transparent" "Queue"="Transparent"}
-        Blend SrcAlpha OneMinusSrcAlpha 
+        Blend SrcAlpha  OneMinusSrcAlpha 
         LOD 100
+        
 
         Pass
         {
@@ -56,22 +57,23 @@ Shader "Unlit/DDRArrowFloor"
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                //float2 uv = i.uv * 1.5 - 0.25;//* sin(_Time.y);
-                float2 uv = i.uv * (sin(_Time.y * 2) * 0.25 + 1.25) - (sin(_Time.y*2) * 0.125 + 0.125);
+                float2 uv = i.uv * 1.5 - 0.25;//* sin(_Time.y);
+                //float2 uv = i.uv * (sin(_Time.y * 5) * 0.25 + 1.25) - (sin(_Time.y*5) * 0.125 + 0.125);
                 fixed4 col = tex2D(_MainTex, uv);
-                clip(col.z - 0.1);
-
+                //clip(col.z - 0.1);
+                clip(col.a - 0.1);
+                fixed3 iCol = 1 - col.x;
                 //col = saturate(smoothstep(0,1,col) + 2);
                 //col = smoothstep(0,1,col.x); //black white arrow
-                float l = saturate(1 - length(i.uv - 0.5) * 4);
-                col = smoothstep(0,1,col);
-
+                //float l = (length(i.uv - 0.5) + 1 * sin(_Time.y * 5 + 2) * 0.5 + 0.5);
+                //col = 1 - lerp(0,1,col.x);
                 
-
+                float3 fc = lerp(0,1,col);//sin(_Time.y * 2.5) * 0.5 + 0.5);
 
                 //float4 fc = float4(l2,1);
                 //return fc;
-                return float4(l.xxx + col.xyz,_Color.w);
+                return float4(fc,_Color.w);
+                //return float4(l.xxx + col.xyz,_Color.w);
             }
             ENDCG
         }
