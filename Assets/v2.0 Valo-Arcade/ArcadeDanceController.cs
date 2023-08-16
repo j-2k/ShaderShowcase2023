@@ -360,7 +360,7 @@ public class ArcadeDanceController : MonoBehaviour
                             centerModelIndex++;
                             CycleNextCenterModel(centerModelIndex, 0.5f);
                             danceFloorController.ChangeCurrentLightMode(DanceFloorController.FloorLightModes.Random);
-                            danceFloorController.TargetCustomLerps(2, 0, 6, 2);
+                            danceFloorController.TargetCustomLerps(2, 0, 6, 1);
                         }
                     }
                 }
