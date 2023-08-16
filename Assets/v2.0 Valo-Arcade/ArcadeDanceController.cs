@@ -341,6 +341,7 @@ public class ArcadeDanceController : MonoBehaviour
                             MainIcoSphereController.isMultiBouncing = true;
                             MainIcoSphereController.StopParticleEmitting();
                         }
+                        danceFloorController.BeginArrowLerp(0.15f);
                         currArrow.gameObject.SetActive(false);
                         if (currArrow == edDanceArrowsList[maxEDDanceArrows - 2].transform)
                         {
@@ -359,6 +360,7 @@ public class ArcadeDanceController : MonoBehaviour
                             centerModelIndex++;
                             CycleNextCenterModel(centerModelIndex, 0.5f);
                             danceFloorController.ChangeCurrentLightMode(DanceFloorController.FloorLightModes.Random);
+                            danceFloorController.TargetCustomLerps(2, 0, 6, 2);
                         }
                     }
                 }

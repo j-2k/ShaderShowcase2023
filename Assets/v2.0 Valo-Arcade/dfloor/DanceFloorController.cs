@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class DanceFloorController : MonoBehaviour
 {
@@ -198,13 +199,16 @@ public class DanceFloorController : MonoBehaviour
         currentFloorLightMode = targetLightMode;
     }
 
-    public void BeginArrowLerp()
+    public void BeginArrowLerp(float time = 0.5f)
     {
         arrowControl.enabled = true;
-        arrowControl.StartArrowLerp(0.5f);
+        arrowControl.StartArrowLerp(time);
     }
 
-
-
-
+    public void TargetCustomLerps(float newSize, float newStr, float newBloom, float time = 0.5f)
+    {
+        BeginArrowLerp(time);
+        arrowControl.TargetLerps(newSize, newStr, newBloom);
+        arrowControl.isCustomLerped = true;
+    }
 }
