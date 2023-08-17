@@ -121,7 +121,6 @@ public class ArcadeDanceController : MonoBehaviour
         DebugDirectionRay();
         ShaderHandler();
         EnumDanceStates();
-
     }
 
     void InputHandling()

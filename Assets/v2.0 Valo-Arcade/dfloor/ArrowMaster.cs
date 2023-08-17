@@ -49,8 +49,11 @@ public class ArrowMaster : MonoBehaviour
             {
                 if (randomLerp)
                 {
-                    l = Mathf.Lerp(1, 0, t);
+                    //l = Mathf.Lerp(1, 0, t);
+                    l = Mathf.PingPong(t*2f, Mathf.SmoothStep(0,0.5f,t*2f));
+                    Debug.Log(l);
                     AllLerp(1.5f - l * 0.5f, l * 0.5f, 6 + l * 5);
+
                 }
                 else 
                 {
