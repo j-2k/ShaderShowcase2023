@@ -211,4 +211,16 @@ public class DanceFloorController : MonoBehaviour
         arrowControl.TargetLerps(newSize, newStr, newBloom);
         arrowControl.isCustomLerped = true;
     }
+
+    public void StartRandomLerps()
+    {
+        arrowControl.enabled = true;
+        arrowControl.StartRandomControl();
+    }
+
+    public void DisableRandomLerps()
+    {
+        arrowControl.randomLerp = false;
+        arrowControl.isCustomLerped = false;
+    }
 }

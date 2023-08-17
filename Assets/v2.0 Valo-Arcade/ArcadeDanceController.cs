@@ -108,6 +108,7 @@ public class ArcadeDanceController : MonoBehaviour
 
         MainIcoSphereController = Instantiate(icoSphereFab, transformPos + dir, Quaternion.identity).GetComponent<TimerBasedController>();
         MainIcoSphereController.isBouncing = true;
+        danceFloorController.StartRandomLerps();
     }
 
 
@@ -129,6 +130,7 @@ public class ArcadeDanceController : MonoBehaviour
         {
             currentEnum = DanceStages.Generate;
             danceFloorController.ChangeCurrentLightMode(DanceFloorController.FloorLightModes.Off);
+            danceFloorController.DisableRandomLerps();
             if (!centerModels[0].activeSelf)
             {
                 centerModels[0].SetActive(true);
@@ -360,7 +362,7 @@ public class ArcadeDanceController : MonoBehaviour
                             centerModelIndex++;
                             CycleNextCenterModel(centerModelIndex, 0.5f);
                             danceFloorController.ChangeCurrentLightMode(DanceFloorController.FloorLightModes.Random);
-                            danceFloorController.TargetCustomLerps(2, 0, 6, 1);
+                            danceFloorController.TargetCustomLerps(2, 0, 6, 2);
                         }
                     }
                 }
@@ -371,6 +373,7 @@ public class ArcadeDanceController : MonoBehaviour
                 {
                     MainIcoSphereController.isExploding = false;
                     MainIcoSphereController.isBouncing = true;
+                    danceFloorController.StartRandomLerps();
                     currentEnum = DanceStages.EMPTY;
                 }
                 break;

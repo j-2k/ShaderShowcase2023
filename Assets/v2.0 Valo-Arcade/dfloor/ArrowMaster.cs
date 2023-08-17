@@ -13,6 +13,9 @@ public class ArrowMaster : MonoBehaviour
     float t = 0;
     float timeMultiplier = 1;
     int children = 0;
+
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +32,7 @@ public class ArrowMaster : MonoBehaviour
 
     float l = 0;//, p = 0;
     // Update is called once per frame
-    void Update()
+    void Update()// the if elses here are nasty and can be fixed with a state enum but im too lazy rn
     {
         t += Time.deltaTime * timeMultiplier;
         if (t <= 1)
@@ -44,18 +47,34 @@ public class ArrowMaster : MonoBehaviour
             }
             else
             {
-                //i cant find a good way yet to make it all use just 1 lerp so i made 3 just to continue forward
-                //l = Mathf.Lerp(0, 1, t);
-                float lSize = Mathf.Lerp(startSize, _size, t);
-                float lStr = Mathf.Lerp(startStr, _str, t);
-                float lBloom = Mathf.Lerp(startBloom, _bloom, t);
+                if (randomLerp)
+                {
+                    l = Mathf.Lerp(1, 0, t);
+                    AllLerp(1.5f - l * 0.5f, l * 0.5f, 6 + l * 5);
+                }
+                else 
+                {
+                    //i cant find a good way yet to make it all use just 1 lerp so i made 3 just to continue forward
+                    //l = Mathf.Lerp(0, 1, t);
+                    float lSize = Mathf.Lerp(startSize, _size, t);
+                    float lStr = Mathf.Lerp(startStr, _str, t);
+                    float lBloom = Mathf.Lerp(startBloom, _bloom, t);
 
-                AllLerp(lSize, lStr, lBloom);
+                    AllLerp(lSize, lStr, lBloom);
+                }
             }
         }
         else
         {
-            this.enabled = false;
+            if(randomLerp)
+            {
+                t = 0;
+            }
+            else
+            {
+                this.enabled = false;
+            }
+
         }
     }
 
@@ -68,7 +87,7 @@ public class ArrowMaster : MonoBehaviour
 
     float _size, _str, _bloom;
 
-    public bool isCustomLerped = false;
+    public bool isCustomLerped = false, randomLerp = false;
 
     public void AllLerp(float size,float str, float bloom)
     {
@@ -92,6 +111,7 @@ public class ArrowMaster : MonoBehaviour
 
     public void TargetLerps(float newSize, float newStr, float newBloom)
     {
+        randomLerp = false;
         InitializeStartingVals();
         _size = newSize;
         _str = newStr;
@@ -102,4 +122,16 @@ public class ArrowMaster : MonoBehaviour
     {
         isCustomLerped = false;
     }
+
+    public void StartRandomControl()
+    {
+        isCustomLerped = true;
+        randomLerp = true;
+    }
+
+    public void StopRandomLerp()
+    {
+
+    }
+
 }
