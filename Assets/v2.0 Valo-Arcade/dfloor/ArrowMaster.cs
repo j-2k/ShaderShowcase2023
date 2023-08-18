@@ -100,8 +100,8 @@ public class ArrowMaster : MonoBehaviour
             arrowMat[i].SetFloat("_ArrowStr", str);
             arrowMat[i].SetFloat("_Bloom", bloom);
         }
-        floorMat.SetFloat("_HitLight", str*0.5f);
-        floorMat.SetFloat("_Bloom", bloom);
+        floorMat.SetFloat("_HitLight", str*0.35f);
+        floorMat.SetFloat("_Bloom", bloom*0.75f);
     }
 
     float startSize, startStr, startBloom;
