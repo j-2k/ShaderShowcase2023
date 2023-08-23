@@ -22,7 +22,7 @@ Material:
     m_TexEnvs:
     - _CheckerTex:
         m_Texture: {fileID: 2800000, guid: 98bc3c62c1bdf4304b11ac31b7228262, type: 3}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - _EmTex:
         m_Texture: {fileID: 0}
@@ -36,7 +36,7 @@ Material:
     m_Floats:
     - _ArrowAlpha: 0.973
     - _ArrowStr: 0
-    - _Bloom: 5
+    - _Bloom: 1
     - _HitLight: 0
     m_Colors:
     - _Color: {r: 1, g: 0, b: 1, a: 1}

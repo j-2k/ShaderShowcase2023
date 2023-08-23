@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Unlit_DDRArrowFloor
-  m_Shader: {fileID: 4800000, guid: 8b16860ce496d4714a84d03a9f323ad9, type: 3}
+  m_Name: LOOPDDRArrows
+  m_Shader: {fileID: 4800000, guid: 3fa8f60e154694a3b85a18e766f5e874, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -28,8 +28,7 @@ Material:
     m_Floats:
     - _Alpha: 1
     - _ArrowStr: 0
-    - _Bloom: 6
+    - _Bloom: 7
     - _Size: 1
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    m_Colors: []
   m_BuildTextureStacks: []
