@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MyShaderMaterial
-  m_Shader: {fileID: 4800000, guid: 4caef84d733f3445fa2721fa7976d63f, type: 3}
+  m_Name: GradientScreen
+  m_Shader: {fileID: 4800000, guid: f1f424065860a424696b8059097aa460, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -20,12 +20,24 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _CheckerTex:
+        m_Texture: {fileID: 2800000, guid: 20dab5221f21f4b0ead0f477ef8a6561, type: 3}
+        m_Scale: {x: 100, y: 50}
+        m_Offset: {x: 0, y: 0}
+    - _EmTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 362075d1f55dc45569f52e979cf39905, type: 3}
-        m_Scale: {x: 2, y: 2}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _ArrowAlpha: 0.973
+    - _ArrowStr: 0
+    - _Bloom: 1
+    - _HitLight: 0
     m_Colors:
-    - _Tint: {r: 0.91265774, g: 0, b: 1, a: 1}
+    - _Color: {r: 0, g: 0, b: 1, a: 1}
   m_BuildTextureStacks: []

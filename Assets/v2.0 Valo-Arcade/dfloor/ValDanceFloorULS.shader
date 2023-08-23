@@ -4,7 +4,7 @@ Shader "Unlit/ValDanceFloorULS"
     {
         _MainTex ("Hexagon Texture", 2D) = "white" {}
         _CheckerTex ("Checker Texture", 2D) = "white" {}
-        [HDR] _Color ("Emission Color / W IS ALPHA CONTROL", color) = (0.83,0,1,0.5)
+        [HDR] _Color ("Emission Color / W IS ALPHA CONTROL", color) = (0.9,0,0.9,1)
         _HitLight("Hit Light", Range(0,0.5)) = 0
         _Bloom("Rim Bloom Strength", Range(1,10)) = 3
     }
@@ -66,7 +66,7 @@ Shader "Unlit/ValDanceFloorULS"
             {
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
-                fixed4 sqTex = tex2D(_CheckerTex, i.uv + _Time.y * 0.05);
+                fixed4 sqTex = tex2D(_CheckerTex, _CheckerTex_ST.xy * i.uv + _Time.y * 0.05);
                 clip(col.xyz - 0.5f);
 
                 col = 1 - tex2D(_MainTex, i.uv*1.05-0.025);
@@ -80,7 +80,7 @@ Shader "Unlit/ValDanceFloorULS"
                 //col.xyz *=  col1 * sqTex + col2 * (1 - sqTex);
                 //col.xyz *= sqTex;
 
-                float3 purple = float3(0.9,-0.1,0.9);           //abs(sin(2*sqTex.rgb+_Time.y)));
+                float3 purple = _Color.xyz;           //abs(sin(2*sqTex.rgb+_Time.y)));
                 float3 xyz = lerp(sqTex.rgb, 1 - sqTex.rgb, sin(2*sqTex.rgb + _Time.y*2) * 0.5 + 0.5);//sin(2*sqTex.rgb + _Time.y*2) * 0.5 + 0.5); //frac(sin(sqTex + _Time.y)*0.5 + 0.5));
                 //return float4(col.rgb,_Color.w);
                 
