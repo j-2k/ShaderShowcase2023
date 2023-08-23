@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 1_DeformULSMaterial
-  m_Shader: {fileID: 4800000, guid: e4e1da104e0ee4bb8bc10f8640b5d94f, type: 3}
+  m_Name: ShelfMat
+  m_Shader: {fileID: 4800000, guid: 86bde4a61fcad4b9caa2aa2247671e39, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -22,18 +22,12 @@ Material:
     m_TexEnvs:
     - _MainTex:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amount: 2.8
-    - _DownPow: 0
-    - _FresnelExponent: 0.5
-    - _Strength: 3
-    - _TimeOffset: 24
-    - _TimeScale: 7
-    - _UpPow: -0.2
+    - _LineDensity: 10
+    - _LineThickness: 10
     m_Colors:
-    - _Color: {r: 0.26918706, g: 0, b: 0.5188679, a: 1}
-    - _Emission: {r: 5.3403134, g: 5.3403134, b: 5.3403134, a: 1}
+    - _Color: {r: 2.6082377, g: 2.6082377, b: 2.6082377, a: 1}
   m_BuildTextureStacks: []

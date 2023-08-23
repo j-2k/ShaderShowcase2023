@@ -32,7 +32,7 @@ Material:
     m_Floats:
     - _Glossiness: 32
     - _RimAmount: 0.716
-    - _RimThreshold: 0.1
+    - _RimThreshold: 0.145
     m_Colors:
     - _AmbientColor: {r: 0.4, g: 0.4, b: 0.4, a: 1}
     - _Color: {r: 0.32159984, g: 1, b: 0, a: 1}
