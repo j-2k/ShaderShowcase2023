@@ -5,7 +5,7 @@ Shader "Hidden/MandelbrotUI"
         _MainTex ("Gradient Texture", 2D) = "white" {}
         _Area("Area Center", vector) = (0,0,4,4)
         _Angle("Angle", Range(-3.14,3.14)) = 0
-        _MaxIteration("Max Iteration", Range(100,500)) = 0
+        _MaxIteration("Max Iteration", Range(0,500)) = 0
         _Color("Color", Range(0,1)) = 0.5
         _Repeat("Repeat", float) = 1
         _Speed("Time Speed", float) = 0.5
@@ -13,7 +13,15 @@ Shader "Hidden/MandelbrotUI"
     SubShader
     {
         // No culling or depth
-        Cull Off ZWrite Off ZTest Always
+        Cull Off
+        ZWrite On //should be off, but since I have it on a scene need depth buffer
+        //ZTest Always
+
+        /* default for ui image
+        Cull Off
+        ZWrite Off
+        ZTest Always
+        */
 
         Pass
         {
@@ -123,7 +131,7 @@ Shader "Hidden/MandelbrotUI"
 
                 finalCol *= 1 + sin(angleOrigin * 3 + _Time.y * 6) * .2;
 
-                return finalCol;
+                return saturate(finalCol);
 
                 //return col;
             }
