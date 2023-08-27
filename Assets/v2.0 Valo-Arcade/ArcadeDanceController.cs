@@ -66,7 +66,7 @@ public class ArcadeDanceController : MonoBehaviour
             maxEDDanceArrows = 20;
         }
         //speed = 1;
-        transformPos = transform.position + Vector3.up * 1.0f;
+        transformPos = transform.position + Vector3.up * 1f;
         currentEnum = DanceStages.EMPTY;
         if(deformShaderMat == null)
         {
@@ -117,7 +117,7 @@ public class ArcadeDanceController : MonoBehaviour
     void Update()
     {
         InputHandling();
-        transformPos = transform.position + Vector3.up * 1.0f;
+        transformPos = transform.position + Vector3.up * 2.0f;
         DebugDirectionRay();
         ShaderHandler();
         EnumDanceStates();

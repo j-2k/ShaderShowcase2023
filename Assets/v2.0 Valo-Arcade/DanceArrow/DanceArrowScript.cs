@@ -36,7 +36,7 @@ public class DanceArrowScript : MonoBehaviour
 
         if (!isVertical)
         {
-            t += Time.deltaTime;
+            t += Time.deltaTime * 1;
             //speed += Mathf.Lerp(acceleration/2,acceleration*2, t) * Time.deltaTime;
             speed += acceleration * 1f * Time.deltaTime;
             transform.position += transform.forward * speed * Time.deltaTime;
@@ -89,7 +89,7 @@ public class DanceArrowScript : MonoBehaviour
     IEnumerator routineRotScale()
     {
         arrowObj.localScale = Vector3.one * (originalStartingScale + (t));
-        arrowObj.Rotate(0, 0, 150 * (Time.deltaTime*2));
+        arrowObj.Rotate(0, 0, 150 * (Time.deltaTime*3));
         yield return new WaitForEndOfFrame();
         StartCoroutine(routineRotScale());
     }
