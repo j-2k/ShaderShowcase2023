@@ -28,6 +28,10 @@ A lot of these shaders are incomplete but I will add more & finish them up when 
 Please be careful since I'm using ripped models from popular games. This isn't commercial just going to be for testing & making a video for fun out of it.
 
 ## My Personal Notes
+I know this is late but I realized the formula is written on the bottom of the Wikipedia page for UV maps
+insanely useful for spherically wrapped objects that need a sphere based UV map
+
+https://en.wikipedia.org/wiki/UV_mapping
 #### ***FIX FOR SKYBOX STRETCHING THROUGH SHADER CODE***
 ```
 in vert shader:
@@ -39,6 +43,7 @@ float arcSineY = asin(worldPos.y)/(PI/2); //PI/2;
 float arcTan2X = atan2(worldPos.x,worldPos.z)/TAU;
 float2 skyUV = float2(arcTan2X,arcSineY);
 ```
+
 
 table header col 1 |  table header col 2
 :-------------------------:|:-------------------------:
