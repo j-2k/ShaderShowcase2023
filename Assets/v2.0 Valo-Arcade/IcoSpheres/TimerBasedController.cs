@@ -12,12 +12,13 @@ public class TimerBasedController : MonoBehaviour
     [SerializeField, Range(2, 4)] float timeScale = 3;
     bool oneRun = false;
     [SerializeField] ParticleSystem shinePS;
+    public bool isDead = false;
 
     Vector3 coreOriginPos;
     Vector3 originPos;
     Vector3 targetPos;
     float t = 0;
-
+    float t2 = 0;
     public bool isBouncing = false;
 
     private void Start()
@@ -30,13 +31,27 @@ public class TimerBasedController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        if(t2 < 1 && isDead)
+        {
+            t2 += Time.deltaTime;
+            transform.localScale = Vector3.one * t2;
+        }
+        else
+        {
+            t2 = 0;
+            transform.localScale = Vector3.one * t2;
+        }
+
+        
+
         if (isExploding)
         {
             t += Time.deltaTime * timeScale;
 
             float x = (Mathf.Pow(t, 2) + t) * 2;
             float t2 = t * x;
-
+            transform.rotation = Quaternion.identity;
             matToControll.SetFloat("_DownPow", Mathf.Lerp(0, 2, x));
             matToControll.SetFloat("_UpPow", Mathf.Lerp(0, -2, t2));
 
@@ -54,6 +69,7 @@ public class TimerBasedController : MonoBehaviour
         }
         else
         {
+            transform.Rotate(30 * Time.deltaTime, 60 * Time.deltaTime, 90 * Time.deltaTime);
             t = 0;
             matToControll.SetFloat("_DownPow", 0);
             matToControll.SetFloat("_UpPow", 0);
@@ -118,6 +134,12 @@ public class TimerBasedController : MonoBehaviour
     {
         shinePS.Stop(true, ParticleSystemStopBehavior.StopEmitting);
     }
+
+    public void StartUpsizing()
+    {
+        t2 = 0;
+    }
+
 }
 
 

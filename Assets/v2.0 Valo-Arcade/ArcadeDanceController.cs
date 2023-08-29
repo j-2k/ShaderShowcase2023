@@ -37,6 +37,7 @@ public class ArcadeDanceController : MonoBehaviour
     GameObject MainDanceArrow;
     TimerBasedController MainIcoSphereController;
     [SerializeField] AudioSource testToAudio;
+    bool isCharDead = false;
 
     enum DanceStages {
         EMPTY,
@@ -372,6 +373,7 @@ public class ArcadeDanceController : MonoBehaviour
                 {
                     MainIcoSphereController.isExploding = false;
                     MainIcoSphereController.isBouncing = true;
+                    MainIcoSphereController.StartUpsizing();
                     danceFloorController.StartRandomLerps();
                     currentEnum = DanceStages.EMPTY;
                 }
