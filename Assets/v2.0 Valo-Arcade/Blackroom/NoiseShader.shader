@@ -1,13 +1,12 @@
-Shader "Unlit/BaseLightFlash"
+Shader "Unlit/NoiseShader"
 {
     Properties
     {
-        _Alpha ("_Alpha", Range(0,1)) = 1
+        _MainTex ("Texture", 2D) = "white" {}
     }
     SubShader
     {
-        Tags { "RenderType"="Transparent" "Queue" = "Transparent"}
-        Blend SrcAlpha OneMinusSrcAlpha 
+        Tags { "RenderType"="Opaque" }
         LOD 100
 
         Pass
@@ -35,7 +34,6 @@ Shader "Unlit/BaseLightFlash"
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-            float _Alpha;
 
             v2f vert (appdata v)
             {
@@ -46,16 +44,19 @@ Shader "Unlit/BaseLightFlash"
                 return o;
             }
 
+            float random (in float2 st) {
+                return frac(sin(dot(st.xy,float2(12.9898,78.233))) * 43758.5453123);
+            }
+
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
                 //fixed4 col = tex2D(_MainTex, i.uv);
-                float2 uv = i.uv * 2 - 1;
                 // apply fog
                 //UNITY_APPLY_FOG(i.fogCoord, col);
-                float l = 1-smoothstep(0.9,1,length(uv));
-                clip(l - 0.5f);
-                return float4(l.xxx,max(_Alpha,0));
+                float2 uv = (i.uv + sin(_Time.y));
+                float noiseRandom = random(uv);
+                return float4(pow(noiseRandom.xxx,2),1);
             }
             ENDCG
         }
