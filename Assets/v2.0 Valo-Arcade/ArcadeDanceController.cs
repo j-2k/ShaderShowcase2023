@@ -37,7 +37,7 @@ public class ArcadeDanceController : MonoBehaviour
     GameObject MainDanceArrow;
     TimerBasedController MainIcoSphereController;
     [SerializeField] AudioSource testToAudio;
-    bool isCharDead = false;
+    
 
     enum DanceStages {
         EMPTY,
@@ -48,12 +48,22 @@ public class ArcadeDanceController : MonoBehaviour
         Ending2
     }
 
+    Animator deathAnim;
+    bool isDeadStatus = false;
+    public void DeathAnimController(bool isStarting = true)
+    {
+        isDeadStatus = isStarting;
+        deathAnim.SetBool("isDead", isDeadStatus);
+        MainIcoSphereController.isDead = isDeadStatus;
+        Invoke(nameof(StartDance), 0.75f);//instead of animation event im just going to do this cuz its fast.
+    }
+
     float originalEDTimeOffset = 0;
     float originalGenOffset = 0;
     // Start is called before the first frame update
     void Start()
     {
-
+        deathAnim = centerModels[0].GetComponent<Animator>();
         for (int i = 0; i < centerModels.Count; i++)
         {
             centerModels[i].SetActive(false);
@@ -126,7 +136,15 @@ public class ArcadeDanceController : MonoBehaviour
 
     void InputHandling()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && currentEnum == DanceStages.EMPTY)
+        if(Input.GetKeyDown(KeyCode.Space) && !isDeadStatus)
+        {
+            DeathAnimController(true);
+        }
+    }
+
+    public void StartDance()
+    {
+        if (currentEnum == DanceStages.EMPTY && isDeadStatus)
         {
             currentEnum = DanceStages.Generate;
             danceFloorController.ChangeCurrentLightMode(DanceFloorController.FloorLightModes.Off);
@@ -137,12 +155,13 @@ public class ArcadeDanceController : MonoBehaviour
                 centerModels[centerModels.Count - 1].gameObject.SetActive(false);
             }
 
-            if(testToAudio != null)
+            if (testToAudio != null)
             {
                 testToAudio.Play();
             }
         }
     }
+
 
     void DebugDirectionRay()
     {
@@ -373,6 +392,7 @@ public class ArcadeDanceController : MonoBehaviour
                 {
                     MainIcoSphereController.isExploding = false;
                     MainIcoSphereController.isBouncing = true;
+                    DeathAnimController(false);
                     MainIcoSphereController.StartUpsizing();
                     danceFloorController.StartRandomLerps();
                     currentEnum = DanceStages.EMPTY;

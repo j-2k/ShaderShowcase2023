@@ -37,7 +37,7 @@ public class TimerBasedController : MonoBehaviour
             t2 += Time.deltaTime;
             transform.localScale = Vector3.one * t2;
         }
-        else
+        else if(!isDead)
         {
             t2 = 0;
             transform.localScale = Vector3.one * t2;
