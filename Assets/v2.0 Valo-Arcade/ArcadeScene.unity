@@ -1474,6 +1474,7 @@ GameObject:
   m_Component:
   - component: {fileID: 72876370}
   - component: {fileID: 72876371}
+  - component: {fileID: 72876372}
   m_Layer: 12
   m_Name: BlackRoom
   m_TagString: Untagged
@@ -1524,6 +1525,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &72876372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72876369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283f620e7a1884f0ba1419e8b70b4e7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cypherAnim: {fileID: 2036382061}
+  startThrow: 0
 --- !u!1 &95553474
 GameObject:
   m_ObjectHideFlags: 0
@@ -25159,6 +25174,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!95 &2036382061 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: df41da93bd8e44a439c6118787917984, type: 3}
+  m_PrefabInstance: {fileID: 1362613103}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2052255722
 PrefabInstance:
   m_ObjectHideFlags: 0
