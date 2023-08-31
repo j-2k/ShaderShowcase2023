@@ -1,0 +1,123 @@
+fileFormatVersion: 2
+guid: 4ac2d3200d6f4d07d86bedabb1493616
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: lowpoly monitor
+    100002: //RootNode
+    100004: screenOFF
+    100006: screenON
+    100008: screenShards.001
+    100010: screenShards.002
+    100012: screenShards.003
+    100014: screenShards.004
+    100016: screenShards.005
+    100018: CRTMonitor
+    400000: lowpoly monitor
+    400002: //RootNode
+    400004: screenOFF
+    400006: screenON
+    400008: screenShards.001
+    400010: screenShards.002
+    400012: screenShards.003
+    400014: screenShards.004
+    400016: screenShards.005
+    400018: CRTMonitor
+    2300000: lowpoly monitor
+    2300002: screenOFF
+    2300004: screenON
+    2300006: screenShards.001
+    2300008: screenShards.002
+    2300010: screenShards.003
+    2300012: screenShards.004
+    2300014: screenShards.005
+    2300016: CRTMonitor
+    3300000: lowpoly monitor
+    3300002: screenOFF
+    3300004: screenON
+    3300006: screenShards.001
+    3300008: screenShards.002
+    3300010: screenShards.003
+    3300012: screenShards.004
+    3300014: screenShards.005
+    3300016: CRTMonitor
+    4300000: screenShards.005
+    4300002: screenShards.004
+    4300004: screenShards.003
+    4300006: screenShards.002
+    4300008: screenShards.001
+    4300010: screenON
+    4300012: screenOFF
+    4300014: lowpoly monitor
+    4300016: CRTMonitor
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

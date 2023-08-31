@@ -1,0 +1,1771 @@
+fileFormatVersion: 2
+guid: 1530c8d3427d777588822fb5d10045c1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3491696584611199773
+    second: WispySmoke03b_white_8x8_0
+  - first:
+      213: -1370836123696301613
+    second: WispySmoke03b_white_8x8_1
+  - first:
+      213: 2638337563047039593
+    second: WispySmoke03b_white_8x8_2
+  - first:
+      213: 2687591262598711920
+    second: WispySmoke03b_white_8x8_3
+  - first:
+      213: -2299228151895935631
+    second: WispySmoke03b_white_8x8_4
+  - first:
+      213: -9166655190373230635
+    second: WispySmoke03b_white_8x8_5
+  - first:
+      213: -6785774999067190860
+    second: WispySmoke03b_white_8x8_6
+  - first:
+      213: -460056159878337435
+    second: WispySmoke03b_white_8x8_7
+  - first:
+      213: 391213455848628417
+    second: WispySmoke03b_white_8x8_8
+  - first:
+      213: -8804946511169359309
+    second: WispySmoke03b_white_8x8_9
+  - first:
+      213: -2506901681333387858
+    second: WispySmoke03b_white_8x8_10
+  - first:
+      213: 3030052198373532580
+    second: WispySmoke03b_white_8x8_11
+  - first:
+      213: -6323014532654327150
+    second: WispySmoke03b_white_8x8_12
+  - first:
+      213: 5761307162686448176
+    second: WispySmoke03b_white_8x8_13
+  - first:
+      213: -5077716094110425274
+    second: WispySmoke03b_white_8x8_14
+  - first:
+      213: -8425252696232806299
+    second: WispySmoke03b_white_8x8_15
+  - first:
+      213: 5403931162324608414
+    second: WispySmoke03b_white_8x8_16
+  - first:
+      213: 8157700285308088581
+    second: WispySmoke03b_white_8x8_17
+  - first:
+      213: -4444575591314728587
+    second: WispySmoke03b_white_8x8_18
+  - first:
+      213: -7442380352421114496
+    second: WispySmoke03b_white_8x8_19
+  - first:
+      213: -302714756958394938
+    second: WispySmoke03b_white_8x8_20
+  - first:
+      213: 8275286775968771184
+    second: WispySmoke03b_white_8x8_21
+  - first:
+      213: -4017141851831187161
+    second: WispySmoke03b_white_8x8_22
+  - first:
+      213: 448895051925187187
+    second: WispySmoke03b_white_8x8_23
+  - first:
+      213: -4999153928266889163
+    second: WispySmoke03b_white_8x8_24
+  - first:
+      213: 3089561521975580109
+    second: WispySmoke03b_white_8x8_25
+  - first:
+      213: 8264126294529525230
+    second: WispySmoke03b_white_8x8_26
+  - first:
+      213: 7419635940115343227
+    second: WispySmoke03b_white_8x8_27
+  - first:
+      213: -2792521005243925471
+    second: WispySmoke03b_white_8x8_28
+  - first:
+      213: 7162068204146759660
+    second: WispySmoke03b_white_8x8_29
+  - first:
+      213: 3089825139760951543
+    second: WispySmoke03b_white_8x8_30
+  - first:
+      213: -5352710417968036979
+    second: WispySmoke03b_white_8x8_31
+  - first:
+      213: -5153894028581386635
+    second: WispySmoke03b_white_8x8_32
+  - first:
+      213: 8663501416741992676
+    second: WispySmoke03b_white_8x8_33
+  - first:
+      213: 4162068224005760234
+    second: WispySmoke03b_white_8x8_34
+  - first:
+      213: -5619012437521651584
+    second: WispySmoke03b_white_8x8_35
+  - first:
+      213: -63882688065680709
+    second: WispySmoke03b_white_8x8_36
+  - first:
+      213: -6727363179720259625
+    second: WispySmoke03b_white_8x8_37
+  - first:
+      213: -2789629711440606336
+    second: WispySmoke03b_white_8x8_38
+  - first:
+      213: 1798403103490836693
+    second: WispySmoke03b_white_8x8_39
+  - first:
+      213: -7819459700888386993
+    second: WispySmoke03b_white_8x8_40
+  - first:
+      213: -6318750892999883397
+    second: WispySmoke03b_white_8x8_41
+  - first:
+      213: -1644507400614334043
+    second: WispySmoke03b_white_8x8_42
+  - first:
+      213: 1725187992253861637
+    second: WispySmoke03b_white_8x8_43
+  - first:
+      213: -6348659996270885584
+    second: WispySmoke03b_white_8x8_44
+  - first:
+      213: 8170238371698482610
+    second: WispySmoke03b_white_8x8_45
+  - first:
+      213: -4220078774119644836
+    second: WispySmoke03b_white_8x8_46
+  - first:
+      213: 4636216266756498529
+    second: WispySmoke03b_white_8x8_47
+  - first:
+      213: -5791415813905127804
+    second: WispySmoke03b_white_8x8_48
+  - first:
+      213: 9062814929131826919
+    second: WispySmoke03b_white_8x8_49
+  - first:
+      213: 8605078450394150324
+    second: WispySmoke03b_white_8x8_50
+  - first:
+      213: -7989401263079134470
+    second: WispySmoke03b_white_8x8_51
+  - first:
+      213: 3145923450417448437
+    second: WispySmoke03b_white_8x8_52
+  - first:
+      213: 8053133633222901136
+    second: WispySmoke03b_white_8x8_53
+  - first:
+      213: 2615657748674822522
+    second: WispySmoke03b_white_8x8_54
+  - first:
+      213: -8533157403828298561
+    second: WispySmoke03b_white_8x8_55
+  - first:
+      213: 7666491306782782371
+    second: WispySmoke03b_white_8x8_56
+  - first:
+      213: 1185569115788056189
+    second: WispySmoke03b_white_8x8_57
+  - first:
+      213: -9081942945611258599
+    second: WispySmoke03b_white_8x8_58
+  - first:
+      213: 5377462885199045434
+    second: WispySmoke03b_white_8x8_59
+  - first:
+      213: -577818545694417993
+    second: WispySmoke03b_white_8x8_60
+  - first:
+      213: 3526410129393325002
+    second: WispySmoke03b_white_8x8_61
+  - first:
+      213: -8319147294603772889
+    second: WispySmoke03b_white_8x8_62
+  - first:
+      213: 1929423691880469566
+    second: WispySmoke03b_white_8x8_63
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 2
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 1
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da6f09554f3145b44811b29f00c6495f
+      internalID: -3491696584611199773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 189c3672a25b34cc79c334d6319a1eb3
+      internalID: -1370836123696301613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2047f20ebf4cc3d4947d17a558f2819
+      internalID: 2638337563047039593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2742cc92a4f2cc893915934d19b5ff25
+      internalID: 2687591262598711920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80a085a1670c713ee84a8bdfb3b43355
+      internalID: -2299228151895935631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_5
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd301ef852678a2daa62e0ae382cba52
+      internalID: -9166655190373230635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_6
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 212c3d2a3319b53348cddf8a20ca933d
+      internalID: -6785774999067190860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_7
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 896
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52726cfe7e1ebf0008202a64a2fe5e85
+      internalID: -460056159878337435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1414c68af92fe95580990f01f2b2e87
+      internalID: 391213455848628417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50d202ed2cf60aefba54e6dbd4d1670d
+      internalID: -8804946511169359309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_10
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34a41ef020ae2c2fcaeaa4d3df046bd5
+      internalID: -2506901681333387858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_11
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5aa00852a9c77dbea92625df5a287a3
+      internalID: 3030052198373532580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_12
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 035077765aaee446b94d1c08e4c301b7
+      internalID: -6323014532654327150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_13
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 998e194ac652997b88850793461e873c
+      internalID: 5761307162686448176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_14
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2bc0688eb86ea46929e534d2f19e4392
+      internalID: -5077716094110425274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_15
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 768
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7139f01f30d40b039863437012b56c98
+      internalID: -8425252696232806299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 526fcd408eb76b6b981929019efd63ba
+      internalID: 5403931162324608414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_17
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47978b840b224dd4a9cee49cd0baa94d
+      internalID: 8157700285308088581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_18
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33b126f5dc37f43b2857ddd07b57e1c0
+      internalID: -4444575591314728587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_19
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48c4ae34f2e83fb86b9866d602afa229
+      internalID: -7442380352421114496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_20
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8a05b3822e602499ac605dc9147e680
+      internalID: -302714756958394938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_21
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf6f4a323ddd264b29cdf1af4f1baa18
+      internalID: 8275286775968771184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_22
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41c9db5853543972992f8632112c997f
+      internalID: -4017141851831187161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_23
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 640
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acdbdae97c9faa3219b32374ca0f28e7
+      internalID: 448895051925187187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b51523d8bf5e229fdb3ae1f22a130764
+      internalID: -4999153928266889163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_25
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb807d952433437b29b6bed6caab1daa
+      internalID: 3089561521975580109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_26
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b5c2ab45a14a1d5fa60b9b6a65d8bc4
+      internalID: 8264126294529525230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_27
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8061a6119ea62fe96afa9ed247c3077a
+      internalID: 7419635940115343227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_28
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c4abe6e2df334be38d23bb8d93360da
+      internalID: -2792521005243925471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_29
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7f60761ecf7f34efbd86f6f7e2d0fa6
+      internalID: 7162068204146759660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_30
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3435e6fff6280b0e3b67f62a33fe4ee4
+      internalID: 3089825139760951543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_31
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 512
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e95d93c1081a57a7be3f5e78fbdba71
+      internalID: -5352710417968036979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8ae0de30476d394694461ec7b23b278
+      internalID: -5153894028581386635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_33
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b64161e3e8373bc9ab6adf0e85e8d9e3
+      internalID: 8663501416741992676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_34
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca076a0b53a4e87b884ed4ab79250786
+      internalID: 4162068224005760234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_35
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52c60dbe88c4ace2db6847bfe279a711
+      internalID: -5619012437521651584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_36
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06063a970ddc1750da6eb6a59a9cd6f9
+      internalID: -63882688065680709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_37
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 44a1fadfc675b36788d84637c4225b28
+      internalID: -6727363179720259625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_38
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4657d4706d2c16bafb61a3cf6fce6b7d
+      internalID: -2789629711440606336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_39
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1354c3bb2f75eee1eb33b423d58baf25
+      internalID: 1798403103490836693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_40
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: efa66bb0dbdfb8761b4e63c0abd898b8
+      internalID: -7819459700888386993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_41
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa7e0d33d729e8b0198e220b2b741077
+      internalID: -6318750892999883397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_42
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26b3853ce044a3cb8b35dfb12abbcb66
+      internalID: -1644507400614334043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_43
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3f1d34618d394a03afc8dbf19a1a387
+      internalID: 1725187992253861637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_44
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55e2274ff60a497b9a6ce0a8beba8422
+      internalID: -6348659996270885584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_45
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1792d27432e68a551b1df69a4802f1ec
+      internalID: 8170238371698482610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_46
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79ef750e8cd4896f3b8eda12247f1861
+      internalID: -4220078774119644836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_47
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3401d7949a2efbd7d977b133b5da93a2
+      internalID: 4636216266756498529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_48
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75f576b883e4f4903977001ed1d44b60
+      internalID: -5791415813905127804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_49
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b773897be3195d4c89edf862133a7f28
+      internalID: 9062814929131826919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_50
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bff72a4f03c569c94ac23b4c861f26bf
+      internalID: 8605078450394150324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_51
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85418dc1f2cb1823792680f6fa73d038
+      internalID: -7989401263079134470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_52
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2498baf5c5624f06f8ce4cc477a1e96a
+      internalID: 3145923450417448437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_53
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f767c75aa426b746e9e54bf0d70bfa95
+      internalID: 8053133633222901136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_54
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9baf62f1522a0f0ab8e5b1d0d4b23192
+      internalID: 2615657748674822522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_55
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4efe8c102748c042ebb6633f65f7fc34
+      internalID: -8533157403828298561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_56
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40f0e3505c431554a88ce750cf2337d3
+      internalID: 7666491306782782371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_57
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97c50c8c8beabf405be0037fdb620735
+      internalID: 1185569115788056189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_58
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3b99999bd86ec041958af73d980d65e
+      internalID: -9081942945611258599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_59
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56f3870b10113c385aed2f0660b165de
+      internalID: 5377462885199045434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_60
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed294ac9253d4770fa42381f23f905ca
+      internalID: -577818545694417993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_61
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40adad41e857595bf8d9fdd59c03e557
+      internalID: 3526410129393325002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_62
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9ec697b5e4e1b9a9b125280cc0897c8
+      internalID: -8319147294603772889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WispySmoke03b_white_8x8_63
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1fd5a9d8b661a2bae94c52a86fa4a1ac
+      internalID: 1929423691880469566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5addbc6aab63806228e0c9309c250f72
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      WispySmoke03b_white_8x8_18: -4444575591314728587
+      WispySmoke03b_white_8x8_42: -1644507400614334043
+      WispySmoke03b_white_8x8_29: 7162068204146759660
+      WispySmoke03b_white_8x8_54: 2615657748674822522
+      WispySmoke03b_white_8x8_63: 1929423691880469566
+      WispySmoke03b_white_8x8_60: -577818545694417993
+      WispySmoke03b_white_8x8_21: 8275286775968771184
+      WispySmoke03b_white_8x8_12: -6323014532654327150
+      WispySmoke03b_white_8x8_14: -5077716094110425274
+      WispySmoke03b_white_8x8_45: 8170238371698482610
+      WispySmoke03b_white_8x8_57: 1185569115788056189
+      WispySmoke03b_white_8x8_23: 448895051925187187
+      WispySmoke03b_white_8x8_5: -9166655190373230635
+      WispySmoke03b_white_8x8_36: -63882688065680709
+      WispySmoke03b_white_8x8_28: -2792521005243925471
+      WispySmoke03b_white_8x8_44: -6348659996270885584
+      WispySmoke03b_white_8x8_34: 4162068224005760234
+      WispySmoke03b_white_8x8_43: 1725187992253861637
+      WispySmoke03b_white_8x8_61: 3526410129393325002
+      WispySmoke03b_white_8x8_46: -4220078774119644836
+      WispySmoke03b_white_8x8_1: -1370836123696301613
+      WispySmoke03b_white_8x8_53: 8053133633222901136
+      WispySmoke03b_white_8x8_51: -7989401263079134470
+      WispySmoke03b_white_8x8_55: -8533157403828298561
+      WispySmoke03b_white_8x8_8: 391213455848628417
+      WispySmoke03b_white_8x8_40: -7819459700888386993
+      WispySmoke03b_white_8x8_3: 2687591262598711920
+      WispySmoke03b_white_8x8_25: 3089561521975580109
+      WispySmoke03b_white_8x8_32: -5153894028581386635
+      WispySmoke03b_white_8x8_39: 1798403103490836693
+      WispySmoke03b_white_8x8_17: 8157700285308088581
+      WispySmoke03b_white_8x8_58: -9081942945611258599
+      WispySmoke03b_white_8x8_56: 7666491306782782371
+      WispySmoke03b_white_8x8_47: 4636216266756498529
+      WispySmoke03b_white_8x8_6: -6785774999067190860
+      WispySmoke03b_white_8x8_20: -302714756958394938
+      WispySmoke03b_white_8x8_7: -460056159878337435
+      WispySmoke03b_white_8x8_13: 5761307162686448176
+      WispySmoke03b_white_8x8_38: -2789629711440606336
+      WispySmoke03b_white_8x8_59: 5377462885199045434
+      WispySmoke03b_white_8x8_52: 3145923450417448437
+      WispySmoke03b_white_8x8_30: 3089825139760951543
+      WispySmoke03b_white_8x8_10: -2506901681333387858
+      WispySmoke03b_white_8x8_62: -8319147294603772889
+      WispySmoke03b_white_8x8_22: -4017141851831187161
+      WispySmoke03b_white_8x8_27: 7419635940115343227
+      WispySmoke03b_white_8x8_15: -8425252696232806299
+      WispySmoke03b_white_8x8_11: 3030052198373532580
+      WispySmoke03b_white_8x8_2: 2638337563047039593
+      WispySmoke03b_white_8x8_24: -4999153928266889163
+      WispySmoke03b_white_8x8_41: -6318750892999883397
+      WispySmoke03b_white_8x8_4: -2299228151895935631
+      WispySmoke03b_white_8x8_19: -7442380352421114496
+      WispySmoke03b_white_8x8_31: -5352710417968036979
+      WispySmoke03b_white_8x8_26: 8264126294529525230
+      WispySmoke03b_white_8x8_16: 5403931162324608414
+      WispySmoke03b_white_8x8_33: 8663501416741992676
+      WispySmoke03b_white_8x8_37: -6727363179720259625
+      WispySmoke03b_white_8x8_9: -8804946511169359309
+      WispySmoke03b_white_8x8_49: 9062814929131826919
+      WispySmoke03b_white_8x8_48: -5791415813905127804
+      WispySmoke03b_white_8x8_35: -5619012437521651584
+      WispySmoke03b_white_8x8_50: 8605078450394150324
+      WispySmoke03b_white_8x8_0: -3491696584611199773
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
