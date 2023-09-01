@@ -6,8 +6,12 @@ public class BlackRoomController : MonoBehaviour
 {
     Animator blackroomAnimator;
     [SerializeField]Animator cypherAnim;
+    [SerializeField] GameObject noiseBall;
 
     public bool startThrow = false;
+    public bool startNoiseBall = false;
+
+    bool oneRun = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,12 +25,21 @@ public class BlackRoomController : MonoBehaviour
         if(startThrow)
         {
             StartThrowAnimation();
-            this.enabled = false;
         }    
+
+        if(startNoiseBall)
+        {
+
+        }
+
     }
 
     void StartThrowAnimation()
     {
-        cypherAnim.SetTrigger("Throw");
+        if(!oneRun)
+        {
+            cypherAnim.SetTrigger("Throw");
+            oneRun = true;
+        }
     }
 }

@@ -1533,7 +1533,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cypherAnim: {fileID: 2036382061}
+  noiseBall: {fileID: 1913211742}
   startThrow: 0
+  startNoiseBall: 0
 --- !u!1 &84197411
 GameObject:
   m_ObjectHideFlags: 0
@@ -5872,8 +5874,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 1
-  m_FrequencyGain: 1
+  m_AmplitudeGain: 2
+  m_FrequencyGain: 1.5
   mNoiseOffsets: {x: 605.7167, y: -519.6633, z: 67.49072}
 --- !u!43 &548144430
 Mesh:
