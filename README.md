@@ -1,5 +1,8 @@
 # My Shader Showcase Project
-*Unity BIRP - Version 2021.3.16f1*  
+*Unity BIRP - Version 2021.3.16f1*
+THIS PROJECT WILL PROBABLY ONLY LAST FOR THE CURRENT YEAR ITS BEING WORKED ON.
+I plan on having a showcase project every year so this will probably be for the year of 2023
+& a new project will come in 2024.
 
 This is my project where I will hold many shaders that I have created & show them as a portfolio/showcase.  
 Currently it's still a very WIP project, however it already contains a bunch of shaders.  
@@ -18,7 +21,6 @@ A lot of these shaders are incomplete but I will add more & finish them up when 
 - Mandelbrot Fractal Shader (Learning Fractals)
 - Valorant Arcade Kill Effect (Dance Version)
 - Various shaders relating to the Q1 Movement Sim
-- More to come later...
 
 # WIP Projects
 - Arcade Kill Effect Video
