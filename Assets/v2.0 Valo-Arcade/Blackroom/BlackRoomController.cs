@@ -40,7 +40,7 @@ public class BlackRoomController : MonoBehaviour
         }
         else
         {
-            frontCAM = targetPos.transform.position + targetPos.transform.forward * 0.95f;
+            frontCAM = targetPos.transform.position + targetPos.transform.forward * 1.05f ;
             if (Vector3.Distance(noiseBall.transform.position, frontCAM) > 0.1f)
             {
                 noiseBall.transform.SetParent(null);
