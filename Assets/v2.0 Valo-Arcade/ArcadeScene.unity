@@ -1288,7 +1288,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63182465}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.25, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1305,7 +1305,7 @@ Animator:
   m_GameObject: {fileID: 63182465}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b3487c4b215f35943ad7e0d70e78c8e3, type: 2}
+  m_Controller: {fileID: 9100000, guid: a635fa51cb99a43f99ea90b2b3ff377f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -11256,7 +11256,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656570133}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.331, z: 1.369}
+  m_LocalPosition: {x: 0, y: 0, z: 1.369}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14967,7 +14967,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 965618398}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.331, z: -1.371}
+  m_LocalPosition: {x: 0, y: 0, z: -1.371}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30234,11 +30234,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e9fcd00f58234c8b9c7b0a56b51167e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeSpawnRateMS: 0.034
-  trailingRanger: {fileID: 838653737730297359, guid: 29e10a3011cfaa84d89015a5e27bcd1c, type: 3}
-  target: {fileID: 1986103525}
+  timeSpawnRateMS: 0.05
+  trailingRanger: {fileID: 838653737730297359, guid: 429da399a28334eb9a0e291753721483, type: 3}
+  target: {fileID: 63182465}
   smrREF: {fileID: 63182468}
-  spawnAfterglow: 0
+  spawnAfterglow: 1
 --- !u!1 &1986103525
 GameObject:
   m_ObjectHideFlags: 0
@@ -30248,8 +30248,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1986103526}
+  - component: {fileID: 1986103527}
   m_Layer: 0
-  m_Name: JumaQuaker Remake
+  m_Name: ShelfRanger
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30264,13 +30265,28 @@ Transform:
   m_GameObject: {fileID: 1986103525}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 63182466}
   m_Father: {fileID: 1985935307}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1986103527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1986103525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25803a60e81d44e9dbd6f6609212aef5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start: {fileID: 656570134}
+  end: {fileID: 965618399}
+  speed: 0
 --- !u!1 &1988990890
 GameObject:
   m_ObjectHideFlags: 0
