@@ -56,6 +56,14 @@ public class ArcadeDanceController : MonoBehaviour
         deathAnim.SetBool("isDead", isDeadStatus);
         MainIcoSphereController.isDead = isDeadStatus;
         Invoke(nameof(StartDance), 0.75f);//instead of animation event im just going to do this cuz its fast.
+
+        for (int i = 0; i < maxEDDanceArrows; i++)
+        {
+            dir = Vector3.up * directionMagnitude;
+            edDanceArrowsList[i].transform.position = transformPos + dir;
+        }
+        MainIcoSphereController.transform.position = transformPos + dir;
+        MainIcoSphereController.UpdatePositions();
     }
 
     float originalEDTimeOffset = 0;

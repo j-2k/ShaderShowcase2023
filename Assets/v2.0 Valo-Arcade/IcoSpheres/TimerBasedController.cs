@@ -14,7 +14,6 @@ public class TimerBasedController : MonoBehaviour
     [SerializeField] ParticleSystem shinePS;
     public bool isDead = false;
 
-    Vector3 coreOriginPos;
     Vector3 originPos;
     Vector3 targetPos;
     float t = 0;
@@ -23,10 +22,16 @@ public class TimerBasedController : MonoBehaviour
 
     private void Start()
     {
-        coreOriginPos = transform.position;
         originPos = transform.position;
         targetPos = transform.position + Vector3.up * 0.5f;
     }
+
+    public void UpdatePositions()
+    {
+        originPos = transform.position;
+        targetPos = transform.position + Vector3.up * 0.5f;
+    }
+
 
     // Update is called once per frame
     void Update()
