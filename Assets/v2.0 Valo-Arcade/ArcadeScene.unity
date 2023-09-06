@@ -1995,12 +1995,12 @@ GameObject:
   - component: {fileID: 93228916}
   - component: {fileID: 93228915}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: BakedOpeningPlat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &93228914
 Transform:
   m_ObjectHideFlags: 0
@@ -16788,7 +16788,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1064871499
 Transform:
   m_ObjectHideFlags: 0
