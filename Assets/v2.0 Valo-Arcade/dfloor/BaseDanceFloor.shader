@@ -74,15 +74,22 @@ Shader "Unlit/BaseDanceFloor"
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 
                 float2 uv = tile(i.uv,10);
-                float3 finalBox = float3(box(uv, sin(_Time.y * 3.141592) * .05 + 0.8, 0.05).xyx) * col * _Color * 2;
+                //float3 finalBox = float3(box(uv, abs(sin(_Time.y * 3.141592)) * .25 + 0.75, 0.05).xyx) * col * _Color * 2;
                 /*float3 lerpedBox = lerp(createBox(uv, sin(_Time.y * 3.141592) * .05 + 0.8, 0.05, col),
                                         createBox(uv, sin(_Time.y * 3.141592) * .05 + 0.8, 0.05, 1 - col), 
                                         cos(_Time.y * 2)*2 + 1);*/
 
                 //scrolling black bar
-                float scrollBlack = lerp(0,1,i.uv.x);
-                return float4(scrollBlack.xxx,1);
+                float scrollBlack = smoothstep(0,1.5,sin(i.uv.y*4 + _Time.y*4)*1);
+                float3 finalBox = float3(box(uv, abs(sin(_Time.y * 3.141592)) * .25 + 0.75 * scrollBlack, 0.05).xyx) * col * 2;
+
+
+                //float3 finalCols = finalBox * scrollBlack;
+
+                //return float4(scrollBlack.xxx,1);
                 //return float4(finalBox,1);
+                //finalBox = lerp(1,0,finalBox).xyz;
+                return float4(finalBox * _Color,1);
             }
             ENDCG
         }
