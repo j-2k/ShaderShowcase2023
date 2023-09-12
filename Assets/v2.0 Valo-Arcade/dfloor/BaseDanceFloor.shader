@@ -3,6 +3,7 @@ Shader "Unlit/BaseDanceFloor"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _Color("Col", color) = (1,1,1,1)
     }
     SubShader
     {
@@ -35,6 +36,8 @@ Shader "Unlit/BaseDanceFloor"
             sampler2D _MainTex;
             float4 _MainTex_ST;
 
+            float3 _Color;
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -44,13 +47,42 @@ Shader "Unlit/BaseDanceFloor"
                 return o;
             }
 
+            float2 tile(float2 _st, float _zoom){
+                _st *= _zoom;
+                return frac(_st);
+            }
+
+            float2 box(float2 _st, float2 _size, float _smoothEdges){
+                _size = 0.5 - _size * 0.5;
+                float2 aa = float2(_smoothEdges*0.5,_smoothEdges*0.5);
+                float2 uv = smoothstep(_size,_size+aa,_st);
+                uv *= smoothstep(_size,_size+aa,float2(1.0,1.0)-_st);
+                return uv.x*uv.y;
+            }
+
+            float3 createBox(float2 _st, float2 _size, float _smoothEdges, float3 color)
+            {
+                //return float3(box(uv, sin(_Time.y * 3.141592) * .05 + 0.8, 0.05).xyx) * col * _Color * 2;
+                return float3(box(_st, _size,_smoothEdges).xyx * color);
+            }
+
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
+                fixed4 col = tex2D(_MainTex, i.uv * 2.5);
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
-                return col;
+                
+                float2 uv = tile(i.uv,10);
+                float3 finalBox = float3(box(uv, sin(_Time.y * 3.141592) * .05 + 0.8, 0.05).xyx) * col * _Color * 2;
+                /*float3 lerpedBox = lerp(createBox(uv, sin(_Time.y * 3.141592) * .05 + 0.8, 0.05, col),
+                                        createBox(uv, sin(_Time.y * 3.141592) * .05 + 0.8, 0.05, 1 - col), 
+                                        cos(_Time.y * 2)*2 + 1);*/
+
+                //scrolling black bar
+                float scrollBlack = lerp(0,1,i.uv.x);
+                return float4(scrollBlack.xxx,1);
+                //return float4(finalBox,1);
             }
             ENDCG
         }
