@@ -78,18 +78,26 @@ Shader "Unlit/BaseDanceFloor"
                 /*float3 lerpedBox = lerp(createBox(uv, sin(_Time.y * 3.141592) * .05 + 0.8, 0.05, col),
                                         createBox(uv, sin(_Time.y * 3.141592) * .05 + 0.8, 0.05, 1 - col), 
                                         cos(_Time.y * 2)*2 + 1);*/
-
-                //scrolling black bar
-                float scrollBlack = lerp(0.9,1,abs(sin(i.uv.y*3.14 + _Time.y*3.141592)*1));
                 //float3 finalBox = float3(box(uv, abs(sin(_Time.y * 3.141592)) * .25 + 0.5 * scrollBlack, 0.05).xyx) * col * 2;
-                float3 finalBox = float3(box(uv, (sin(_Time.y * 3.141592)) * .1 + 0.75 * scrollBlack, 0.05).xyx) * col * 2;
 
-                //float3 finalCols = finalBox * scrollBlack;
+                /*
+                {
+                    // box scrolls
+                    float scrollBlack = lerp(0.9,1,abs(sin(i.uv.y*5 + _Time.y*3.141592)*1));
+                    float3 finalBox = float3(box(uv, (sin(_Time.y * 3.141592)) * .1 + 0.9 * scrollBlack, 0.05).xyx) * col * 2;
+                    return float4(finalBox,1);
+                }*/
 
-                //return float4(scrollBlack.xxx,1);
-                //return float4(finalBox,1);
-                //finalBox = lerp(1,0,finalBox).xyz;
-                return float4(finalBox * _Color,1);
+                
+                {
+                    // circle scroll + mask
+                    float2 circleMask = smoothstep(0,1,sin(length(uv * 2 - 1)* 10 - _Time.y*3.14)*0.5+0.5);
+                    float3 finalBox = float3(box(uv, (sin(_Time.y * 3.141592)) * .1 + 0.9 * circleMask, 0.05).xyx);
+                    float3 final = (1 - finalBox) * _Color;
+                    finalBox *= col * 2;
+                    return float4(final + finalBox,1);
+                }
+                
             }
             ENDCG
         }
