@@ -80,9 +80,9 @@ Shader "Unlit/BaseDanceFloor"
                                         cos(_Time.y * 2)*2 + 1);*/
 
                 //scrolling black bar
-                float scrollBlack = smoothstep(0,1.5,sin(i.uv.y*4 + _Time.y*4)*1);
-                float3 finalBox = float3(box(uv, abs(sin(_Time.y * 3.141592)) * .25 + 0.75 * scrollBlack, 0.05).xyx) * col * 2;
-
+                float scrollBlack = lerp(0.9,1,abs(sin(i.uv.y*3.14 + _Time.y*3.141592)*1));
+                //float3 finalBox = float3(box(uv, abs(sin(_Time.y * 3.141592)) * .25 + 0.5 * scrollBlack, 0.05).xyx) * col * 2;
+                float3 finalBox = float3(box(uv, (sin(_Time.y * 3.141592)) * .1 + 0.75 * scrollBlack, 0.05).xyx) * col * 2;
 
                 //float3 finalCols = finalBox * scrollBlack;
 
