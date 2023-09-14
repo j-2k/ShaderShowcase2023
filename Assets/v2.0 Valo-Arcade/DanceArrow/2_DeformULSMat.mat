@@ -29,11 +29,11 @@ Material:
     - _Amount: 5
     - _DownPow: 0
     - _FresnelExponent: 3
-    - _Strength: 0
+    - _Strength: 0.5
     - _TimeOffset: 0.5
     - _TimeScale: 10
     - _UpPow: 0
     m_Colors:
-    - _Color: {r: 0.48157963, g: 0, b: 0.6226415, a: 1}
-    - _Emission: {r: 26.923115, g: 26.923115, b: 26.923115, a: 1}
+    - _Color: {r: 0.77358484, g: 0, b: 1, a: 1}
+    - _Emission: {r: 9.734288, g: 9.734288, b: 9.734288, a: 1}
   m_BuildTextureStacks: []

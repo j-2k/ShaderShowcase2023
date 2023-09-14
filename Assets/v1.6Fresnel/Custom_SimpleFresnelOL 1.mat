@@ -27,11 +27,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _FE: 1
-    - _Glossiness: 0.5
+    - _Glossiness: 0
     - _Metallic: 0
     - _R: 0.5
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Emission: {r: 0, g: 0, b: 0, a: 1}
-    - _FC: {r: 1, g: 0, b: 0, a: 1}
+    - _Emission: {r: 8.189918, g: 0, b: 6.9248056, a: 1}
+    - _FC: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
