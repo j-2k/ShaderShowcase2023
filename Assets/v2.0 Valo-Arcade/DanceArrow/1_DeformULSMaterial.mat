@@ -26,14 +26,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amount: 2.8
+    - _Amount: -6.89
     - _DownPow: 0
-    - _FresnelExponent: 5
-    - _Strength: 0.1
+    - _FresnelExponent: 0.5
+    - _Strength: 3
     - _TimeOffset: 24
-    - _TimeScale: 7
-    - _UpPow: 0
+    - _TimeScale: 1.24
+    - _UpPow: -0.2
     m_Colors:
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
-    - _Emission: {r: 5.3403134, g: 5.3403134, b: 5.3403134, a: 1}
+    - _Color: {r: 0.7830189, g: 0, b: 0.7521776, a: 1}
+    - _Emission: {r: 5.656854, g: 5.656854, b: 5.656854, a: 1}
   m_BuildTextureStacks: []
