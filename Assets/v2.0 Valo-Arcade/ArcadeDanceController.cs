@@ -201,7 +201,7 @@ public class ArcadeDanceController : MonoBehaviour
         {
             if (shaderT < 1)
             {
-                shaderT += Time.deltaTime * shaderSpeedT;
+                shaderT += Time.deltaTime * shaderSpeedT * 2;
 
                 //deformShaderMat.SetFloat("_Strength", Mathf.PingPong(Time.time * 2, 1));//(-0.5f,0.5f, Mathf.Abs(Mathf.Sin(Time.time))));
                 deformShaderMat.SetFloat("_Strength", Mathf.Lerp(3, 0.1f, shaderT));
