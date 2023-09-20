@@ -142,10 +142,13 @@ public class ArcadeDanceController : MonoBehaviour
         EnumDanceStates();
     }
 
+    public bool isStartingAnim = false;
+
     void InputHandling()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && !isDeadStatus)
+        if ((Input.GetKeyDown(KeyCode.Space) || isStartingAnim) && !isDeadStatus)
         {
+            isStartingAnim = false;
             DeathAnimController(true);
         }
     }
