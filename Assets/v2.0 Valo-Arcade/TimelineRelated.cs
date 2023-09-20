@@ -5,7 +5,9 @@ using UnityEngine;
 public class TimelineRelated : MonoBehaviour
 {
     [SerializeField] Transform destination1;
+    [SerializeField] Transform destination2;
     [SerializeField] GameObject cypherClone;
+    [SerializeField] GameObject cypherClone2;
     Camera cam;
     int stage = 0;
     // Start is called before the first frame update
@@ -25,10 +27,20 @@ public class TimelineRelated : MonoBehaviour
                 cypherClone.SetActive(true);
             }
         }
-        else
+        else if(stage == 1)
         {
-
+            if(Vector3.Distance(destination2.position, cam.transform.position) <= 4.5)
+            {
+                cypherClone.SetActive(false);
+                Invoke(nameof(PunchStage), 2);
+                stage++;
+            }
         }
 
+    }
+
+    void PunchStage ()
+    {
+        cypherClone2.SetActive(true);
     }
 }
