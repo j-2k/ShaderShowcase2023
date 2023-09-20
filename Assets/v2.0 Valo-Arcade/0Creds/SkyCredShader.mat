@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 1_DeformULSMaterial
-  m_Shader: {fileID: 4800000, guid: e4e1da104e0ee4bb8bc10f8640b5d94f, type: 3}
+  m_Name: SkyCredShader
+  m_Shader: {fileID: 4800000, guid: 379577dc8611e42319eb52ecc9c9b1a0, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -26,14 +26,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amount: -6.89
-    - _DownPow: 0
-    - _FresnelExponent: 0.5
-    - _Strength: 3
-    - _TimeOffset: 24
-    - _TimeScale: 1.24
-    - _UpPow: -0.2
+    - _Offset: 0.9
+    - _R1: -2
+    - _R2: 0.25
     m_Colors:
-    - _Color: {r: 0.7830189, g: 0, b: 0.7521776, a: 1}
-    - _Emission: {r: 5.656854, g: 5.656854, b: 5.656854, a: 1}
+    - _ColD: {r: 0.95939255, g: 0, b: 1, a: 1}
+    - _ColU: {r: 0.21760887, g: 0.12055002, b: 0.4056604, a: 1}
   m_BuildTextureStacks: []
