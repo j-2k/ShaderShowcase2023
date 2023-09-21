@@ -62,7 +62,7 @@ Shader "Unlit/IcoStarShader"
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
                 // apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
+                //UNITY_APPLY_FOG(i.fogCoord, col);
                 float3 normal = normalize(i.worldNormal);
                 float NdotL = dot(_WorldSpaceLightPos0, normal);
                 float3 LightColors = (_EmC.xyz * NdotL) * 1;

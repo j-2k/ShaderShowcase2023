@@ -10,7 +10,12 @@ Shader "Unlit/CloudPlane"
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags { "RenderType"="Transparent" "Queue"="Transparent"}
+        Blend One OneMinusSrcAlpha
+        Cull Off
+        ZTest LEqual
+        ZWrite On
+
         LOD 100
 
         Pass
@@ -36,7 +41,7 @@ Shader "Unlit/CloudPlane"
                 float3 vertCols : TEXCOORD2;
                 UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
-                float3 normal : TEXCOORD1;
+                float3 normal : TEXCOORD3;
             };
 
             sampler2D _MainTex;
@@ -81,7 +86,7 @@ Shader "Unlit/CloudPlane"
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 float3 fc = lerp(_ColB,_ColW,i.vertCols.x);
-                return float4(fc,1);
+                return float4(fc,0.5);
                 //return float4(i.vertCols.xxx,1);
             }
             ENDCG
