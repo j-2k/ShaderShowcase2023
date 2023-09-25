@@ -5,6 +5,10 @@ Map layout for quake bhop sim needs work. Music ideas anything pretty fast & hig
 Additional for fun references for quake level:
 Backrooms level & tp.
 
+
+Making a trailer for a game that dosnt exist
+God hand final
+
 Cinematics/Art
 Cinematic needs to have some sort of replay watching ranger in 3rd person?
 solutions could be a replay system with key presses & with a camera follow? might be too much work for something simple consider cinemachine.

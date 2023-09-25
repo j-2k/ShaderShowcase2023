@@ -66,7 +66,7 @@ Shader "Unlit/DanceArrowULS"
                 fixed4 angleCol = tex2D(_MainTex, i.uv);
                 fixed4 flatCol = 1 - tex2D(_MainTex, i.uv);
                 // apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
+                //UNITY_APPLY_FOG(i.fogCoord, col);
 
                 float f = dot(i.wNormal,i.viewDir);
                 f = saturate(1 - f);
