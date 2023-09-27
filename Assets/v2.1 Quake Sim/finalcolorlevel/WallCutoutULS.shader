@@ -59,7 +59,7 @@ Shader "Unlit/WallCutoutULS"
                 float uv1 = sin(uv.y * 2);
                 float uv2 = sin(uv.y * 2 + 3.5);
 
-                float3 cp = float3(palette(_Time.y,float3(0.5,0.5,0.5),float3(0.5,0.5,0.5),float3(1,1,1),float3(0,0.33,0.67)).rgb);
+                //float3 cp = float3(palette(_Time.y,float3(0.5,0.5,0.5),float3(0.5,0.5,0.5),float3(1,1,1),float3(0,0.33,0.67)).rgb);
                 
                 float mc1 = uv1;
                 mc1 = saturate(mc1);
