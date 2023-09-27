@@ -28,8 +28,8 @@ Material:
     m_Floats:
     - _DepthStrength: 5
     - _ss0: -1
-    - _ss1: 7
+    - _ss1: 1
     m_Colors:
-    - _ColB: {r: 1, g: 1, b: 1, a: 1}
-    - _ColW: {r: 1, g: 1, b: 1, a: 1}
+    - _ColB: {r: 0.25, g: 0, b: 1, a: 1}
+    - _ColW: {r: 0.98791957, g: 0.9858491, b: 1, a: 1}
   m_BuildTextureStacks: []
