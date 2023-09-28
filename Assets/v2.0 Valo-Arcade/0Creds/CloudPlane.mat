@@ -26,7 +26,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DepthStrength: 5
+    - _DepthStrength: 4
     - _ss0: 0
     - _ss1: 5
     m_Colors:
