@@ -17,6 +17,7 @@ public class Quake1Move : MonoBehaviour
     [SerializeField] float jumpSpeed;           //12
     [SerializeField] float gravity;             //30
     [SerializeField] float sens = 1;            //1
+    [SerializeField] float slideLerp = 0;
 
     public float currentSpeed {get{ return cc.velocity.magnitude; }}
     public Vector3 currentVelocityVector {get { return cc.velocity; }}
@@ -36,7 +37,9 @@ public class Quake1Move : MonoBehaviour
     }
 
     [SerializeField] bool isJumping;
+    [SerializeField] bool isSliding;
     [SerializeField] bool isGrounded;
+
     void QuakeMainMovement()
     {
         isGrounded = cc.isGrounded;
@@ -50,8 +53,17 @@ public class Quake1Move : MonoBehaviour
             }
             else//REMOVE THIS ELSE STATEMENT IN CASE YOU WANT 1 FRAME OF FRICTION
             {
-                playerVelocity = MoveGround(wishDir, playerVelocity);
-                Gravity();
+                isSliding = Input.GetKey(KeyCode.LeftShift);
+                if (isSliding)
+                {
+                    playerVelocity = MoveSlide(wishDir, playerVelocity);
+                    Gravity();
+                }
+                else
+                {
+                    playerVelocity = MoveGround(wishDir, playerVelocity);
+                    Gravity();
+                }
             }
         }
         else
@@ -106,6 +118,21 @@ public class Quake1Move : MonoBehaviour
         // air_accelerate and max_velocity_air are server-defined movement variables
         return Accelerate(prevVelocity, air_accelerate, max_velocity_air);
     }
+
+    private Vector3 MoveSlide(float retardation, Vector3 prevVelocity)
+    {
+        // Apply Friction
+        float speed = prevVelocity.magnitude;
+        if (speed != 0) // To avoid divide by zero errors
+        {
+            float drop = speed * (friction * retardation) * Time.deltaTime;
+            prevVelocity *= Mathf.Max(speed - drop, 0) / speed; // Scale the velocity based on friction.
+        }
+
+        // air_accelerate and max_velocity_air are server-defined movement variables
+        return Accelerate(prevVelocity, air_accelerate, max_velocity_air);
+    }
+
     void Gravity()
     {
         playerVelocity.y -= gravity * Time.deltaTime;
