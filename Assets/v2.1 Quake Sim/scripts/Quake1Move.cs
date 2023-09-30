@@ -60,7 +60,8 @@ public class Quake1Move : MonoBehaviour
                 isSliding = Input.GetKey(KeyCode.LeftShift);
                 if (isSliding)
                 {
-                    playerVelocity = MoveSlide(0.1f, playerVelocity);
+                    playerVelocity = MoveSlide(0.1f, playerVelocity);//0.1f to make it difficult to gain speed unless your cheating with perfect 90 degree angles
+                                                                     //mainly this is here to slow down no matter what you are doing in sliding state UNLESS going forward only.
                     //Gravity(); //gravity creating instant weird extreme downforce as soon as falling off a platform?
                 }
                 else
@@ -126,7 +127,7 @@ public class Quake1Move : MonoBehaviour
     private Vector3 MoveSlide(float fricRamp, Vector3 prevVelocity)
     {
         // air_accelerate and max_velocity_air are server-defined movement variables
-        return Accelerate(prevVelocity, air_accelerate * 10, max_velocity_air * fricRamp);
+        return Accelerate(prevVelocity, air_accelerate, max_velocity_air * fricRamp);
     }
 
     void Gravity()
