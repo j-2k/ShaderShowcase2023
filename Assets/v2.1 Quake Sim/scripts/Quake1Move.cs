@@ -56,7 +56,7 @@ public class Quake1Move : MonoBehaviour
                 isSliding = Input.GetKey(KeyCode.LeftShift);
                 if (isSliding)
                 {
-                    playerVelocity = MoveSlide(wishDir, playerVelocity);
+                    playerVelocity = MoveSlide(0.1f, playerVelocity);
                     Gravity();
                 }
                 else
@@ -119,13 +119,13 @@ public class Quake1Move : MonoBehaviour
         return Accelerate(prevVelocity, air_accelerate, max_velocity_air);
     }
 
-    private Vector3 MoveSlide(float retardation, Vector3 prevVelocity)
+    private Vector3 MoveSlide(float fricRamp, Vector3 prevVelocity)
     {
         // Apply Friction
         float speed = prevVelocity.magnitude;
         if (speed != 0) // To avoid divide by zero errors
         {
-            float drop = speed * (friction * retardation) * Time.deltaTime;
+            float drop = speed * (friction * fricRamp) * Time.deltaTime;
             prevVelocity *= Mathf.Max(speed - drop, 0) / speed; // Scale the velocity based on friction.
         }
 
