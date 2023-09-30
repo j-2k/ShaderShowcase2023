@@ -230,7 +230,7 @@ public class Quake1Move : MonoBehaviour
     {
         if (isUpdatingUUPS && offset < Time.timeSinceLevelLoad)
         {
-            currUUPS.text = Mathf.RoundToInt(cc.velocity.magnitude*10).ToString();
+            currUUPS.text = Mathf.RoundToInt(cc.velocity.magnitude*10).ToString();//remove the " * 10 " to remove the fake upscaled speed display
             offset = Time.timeSinceLevelLoad + 0.1f;
         }
     }
@@ -258,6 +258,11 @@ public class Quake1Move : MonoBehaviour
         
         if (isAnimating)
         {
+            if(isSliding)
+            {
+                anim.SetBool("isRunning", false);
+                return;
+            }
             Vector3 xzVelo = playerVelocity;
             xzVelo.y = 0;
             /*
