@@ -22,6 +22,8 @@ public class Quake1Move : MonoBehaviour
     public float currentSpeed {get{ return cc.velocity.magnitude; }}
     public Vector3 currentVelocityVector {get { return cc.velocity; }}
 
+    public float speedCheck;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +33,7 @@ public class Quake1Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        speedCheck = currentSpeed;
         MainFunctions();
         QuakeMainMovement();
         //QuakeMovementManager();
@@ -50,6 +53,7 @@ public class Quake1Move : MonoBehaviour
             {
                 playerVelocity.y = jumpSpeed;
                 isJumping = false;
+                isSliding = false;
             }
             else//REMOVE THIS ELSE STATEMENT IN CASE YOU WANT 1 FRAME OF FRICTION
             {
@@ -57,7 +61,7 @@ public class Quake1Move : MonoBehaviour
                 if (isSliding)
                 {
                     playerVelocity = MoveSlide(0.1f, playerVelocity);
-                    Gravity();
+                    //Gravity(); //gravity creating instant weird extreme downforce as soon as falling off a platform?
                 }
                 else
                 {
@@ -121,16 +125,8 @@ public class Quake1Move : MonoBehaviour
 
     private Vector3 MoveSlide(float fricRamp, Vector3 prevVelocity)
     {
-        // Apply Friction
-        float speed = prevVelocity.magnitude;
-        if (speed != 0) // To avoid divide by zero errors
-        {
-            float drop = speed * (friction * fricRamp) * Time.deltaTime;
-            prevVelocity *= Mathf.Max(speed - drop, 0) / speed; // Scale the velocity based on friction.
-        }
-
         // air_accelerate and max_velocity_air are server-defined movement variables
-        return Accelerate(prevVelocity, air_accelerate, max_velocity_air);
+        return Accelerate(prevVelocity, air_accelerate * 10, max_velocity_air * fricRamp);
     }
 
     void Gravity()
