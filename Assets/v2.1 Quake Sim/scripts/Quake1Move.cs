@@ -177,6 +177,15 @@ public class Quake1Move : MonoBehaviour
         Debug.Log("OnTriggerExit");
     }
 
+    public bool isJumpingCheck() {return isJumping;}
+    public bool isSlidingCheck() { return isSliding; }
+    public bool isGroundedCheck() { return isGrounded; }
+
+
+
+
+
+
     #region DEBUGS & OTHERS
     CharacterController cc;
     [SerializeField] TextMeshProUGUI currUUPS;
