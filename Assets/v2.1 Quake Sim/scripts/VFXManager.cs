@@ -17,6 +17,8 @@ public class VFXManager : MonoBehaviour
         slideDistanceEmission = slideParticlesDistance.emission;
     }
 
+    [SerializeField] bool isAirLastFrame = false;
+
     // Update is called once per frame
     void Update()
     {
@@ -34,6 +36,23 @@ public class VFXManager : MonoBehaviour
             if(!moveData.isGroundedCheck())
             {
                 TrailAfterShadowManager.SetActive(true);
+                isAirLastFrame = true;
+            }
+
+            if (isAirLastFrame && moveData.isGroundedCheck())
+            {
+                isAirLastFrame = false;
+                if (!slideParticlesDistance.isEmitting)
+                {
+                    slideParticlesBurst.Play();
+                }
+            }
+        }
+        else
+        {
+            if (moveData.isGroundedCheck())
+            {
+                isAirLastFrame = false;
             }
         }
     }
