@@ -11,8 +11,12 @@ public class MockGoombaScript : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            pfxGoomba.Play();
-            startDance.isStartingAnim = true;
+            if (!startDance.isStartingAnim)
+            {
+                pfxGoomba.Play();
+
+                startDance.isStartingAnim = true;
+            }
         }
     }
 }

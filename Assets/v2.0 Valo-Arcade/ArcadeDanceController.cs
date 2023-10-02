@@ -151,6 +151,7 @@ public class ArcadeDanceController : MonoBehaviour
             isStartingAnim = false;
             DeathAnimController(true);
         }
+       
     }
 
     public void StartDance()
@@ -393,6 +394,7 @@ public class ArcadeDanceController : MonoBehaviour
                             CycleNextCenterModel(centerModelIndex, 0.5f);
                             danceFloorController.ChangeCurrentLightMode(DanceFloorController.FloorLightModes.Random);
                             danceFloorController.TargetCustomLerps(2, 0, 6, 2);
+                            isStartingAnim = false;
                         }
                     }
                 }
