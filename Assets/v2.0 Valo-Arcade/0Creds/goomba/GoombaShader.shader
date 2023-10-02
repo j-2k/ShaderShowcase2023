@@ -61,9 +61,9 @@ Shader "Unlit/GoombaShader"
                 // sample the texture
                 fixed4 star = tex2D(_MainTex, i.uv);
                 clip(star.a - 0.01);
-                fixed4 outlineStar = 1 - star;
-                fixed4 fStar = star * _Col * i.Custom1;
-
+                fixed4 outlineStar = (1 - star) * 7;//7 is the glow of the star outline this addition was huge since now it blends with the all white outlines on the dance shaders
+                fixed4 fStar = star * _Col * i.Custom1 + outlineStar;
+                
 
 
                 // apply fog
