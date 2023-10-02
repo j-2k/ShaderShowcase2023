@@ -131,7 +131,7 @@ public class ArcadeDanceController : MonoBehaviour
     }
 
 
-
+    [SerializeField] KeyCode startAnimKey;
     // Update is called once per frame
     void Update()
     {
@@ -146,7 +146,7 @@ public class ArcadeDanceController : MonoBehaviour
 
     void InputHandling()
     {
-        if ((Input.GetKeyDown(KeyCode.Space) || isStartingAnim) && !isDeadStatus)
+        if ((Input.GetKeyDown(startAnimKey) || isStartingAnim) && !isDeadStatus)
         {
             isStartingAnim = false;
             DeathAnimController(true);
