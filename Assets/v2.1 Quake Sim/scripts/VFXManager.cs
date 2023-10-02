@@ -35,6 +35,7 @@ public class VFXManager : MonoBehaviour
 
             if(!moveData.isGroundedCheck())
             {
+                slideParticlesDistance.Stop();
                 TrailAfterShadowManager.SetActive(true);
                 isAirLastFrame = true;
             }
