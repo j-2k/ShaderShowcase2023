@@ -28,11 +28,11 @@ Material:
     m_Floats:
     - _Amount: -6.89
     - _DownPow: 0
-    - _FresnelExponent: 3.1287222
-    - _Strength: 1.3059344
+    - _FresnelExponent: 3.071566
+    - _Strength: 1.3427685
     - _TimeOffset: 24
     - _TimeScale: 1.24
-    - _UpPow: -0.0831679
+    - _UpPow: -0.08570818
     m_Colors:
     - _Color: {r: 0.7830189, g: 0, b: 0.7521776, a: 1}
     - _Emission: {r: 5.656854, g: 5.656854, b: 5.656854, a: 1}
