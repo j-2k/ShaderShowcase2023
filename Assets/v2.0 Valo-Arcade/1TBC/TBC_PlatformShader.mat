@@ -21,10 +21,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 781202b7f10e12540b7ec05ba460c5e9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SqMask:
+        m_Texture: {fileID: 2800000, guid: edffb2d66010e4d889c12c96d26f3464, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats: []
-    m_Colors: []
+    m_Colors:
+    - _Em: {r: 1, g: 0, b: 0.5333333, a: 1}
   m_BuildTextureStacks: []
