@@ -22,14 +22,14 @@ Material:
     m_TexEnvs:
     - _MainTex:
         m_Texture: {fileID: 2800000, guid: d20a263e4c470410d8ab425db32f42df, type: 3}
-        m_Scale: {x: 0.01, y: 0.04}
+        m_Scale: {x: 0.01, y: 0.05}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DepthStrength: 5
+    - _DepthStrength: 2
     - _ss0: -1
     - _ss1: 13
     m_Colors:
-    - _ColB: {r: 0.18867922, g: 0, b: 0, a: 1}
-    - _ColW: {r: 1, g: 0, b: 0, a: 1}
+    - _ColB: {r: 1, g: 0, b: 0, a: 1}
+    - _ColW: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []

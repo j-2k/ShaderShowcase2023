@@ -10,24 +10,37 @@ public class CamPrioManager : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera currVCAM;// 10 -> 5/100
     [SerializeField] int prevPrio;
 
+    [SerializeField] CinemachineTrackedDolly camTrackDolly;
+
     // Start is called before the first frame update
     void Start()
     {
         prevPrio = currVCAM.Priority;
+
+        camTrackDolly = vCams[vCams.Count-1].GetCinemachineComponent<CinemachineTrackedDolly>();
     }
 
-    /*
-    [SerializeField] int indexTest = 0;
+    
+    //[SerializeField] int indexTest = 0;
     // Update is called once per frame
     void Update()
     {
+        /*
         //testing if this works properly.
         if(Input.GetKeyDown(KeyCode.O))
         {
             SetPriorityCamera(indexTest);
         }
+        */
+
+        if(currVCAM == vCams[vCams.Count - 1])
+        {
+            camTrackDolly.m_AutoDolly.m_PositionOffset += Time.deltaTime * 0.4f;
+        }
     }
-    */
+    
+
+    
 
     public void SetPriorityCamera(int index)
     {
