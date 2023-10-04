@@ -74,7 +74,7 @@ Shader "Unlit/TBC_PlatformShader"
                 float3 fPlat = saturate(onlyY + col + topSq) * _Em;
                 
                 // apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
+                UNITY_APPLY_FOG(i.fogCoord, fPlat);
                 return float4(fPlat,1);
             }
             ENDCG
