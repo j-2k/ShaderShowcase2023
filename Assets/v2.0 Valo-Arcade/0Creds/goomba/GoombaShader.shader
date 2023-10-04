@@ -14,12 +14,11 @@ Shader "Unlit/GoombaShader"
         Pass
         {
             CGPROGRAM
-// Upgrade NOTE: excluded shader from DX11; has structs without semantics (struct v2f members Custom1)
-#pragma exclude_renderers d3d11
+
             #pragma vertex vert
             #pragma fragment frag
             // make fog work
-            #pragma multi_compile_fog
+            //#pragma multi_compile_fog
 
             #include "UnityCG.cginc"
 
@@ -28,16 +27,16 @@ Shader "Unlit/GoombaShader"
                 float4 vertex : POSITION;
                 float4 uv : TEXCOORD0;
                 float4 texcoord1 : TEXCOORD1;
-                UNITY_VERTEX_INPUT_INSTANCE_ID
+
             };
 
             struct v2f
             {
                 float4 uv : TEXCOORD0;
-                UNITY_FOG_COORDS(2)
+                //UNITY_FOG_COORDS(2)
                 float4 vertex : SV_POSITION;
                 float4 Custom1 : TEXCOORD1;
-                UNITY_VERTEX_OUTPUT_STEREO
+
             };
 
             sampler2D _MainTex;
@@ -47,12 +46,11 @@ Shader "Unlit/GoombaShader"
             v2f vert (appdata v)
             {
                 v2f o;
-                UNITY_SETUP_INSTANCE_ID(v);
-                UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o); 
+
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv.xy = TRANSFORM_TEX(v.uv.xy, _MainTex);
                 o.Custom1 = float4(v.uv.zw,v.texcoord1.xy);
-                UNITY_TRANSFER_FOG(o,o.vertex);
+                //UNITY_TRANSFER_FOG(o,o.vertex);
                 return o;
             }
 
