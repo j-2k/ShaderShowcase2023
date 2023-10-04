@@ -30,6 +30,6 @@ Material:
     - _ss0: -1
     - _ss1: 13
     m_Colors:
-    - _ColB: {r: 1, g: 0, b: 0, a: 1}
+    - _ColB: {r: 1, g: 1, b: 1, a: 1}
     - _ColW: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
