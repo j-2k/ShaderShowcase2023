@@ -9195,6 +9195,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2097148628787567583, guid: 5e60f9bc42e41204cb681b00bef19ad2, type: 3}
+      propertyPath: finalBlitToCameraTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2097148629617273122, guid: 5e60f9bc42e41204cb681b00bef19ad2, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -10561,7 +10565,6 @@ GameObject:
   - component: {fileID: 1379616266}
   - component: {fileID: 1379616269}
   - component: {fileID: 1379616271}
-  - component: {fileID: 1379616270}
   m_Layer: 0
   m_Name: Camerabrain
   m_TagString: Untagged
@@ -10682,23 +10685,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dtm: 1
---- !u!114 &1379616270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1379616264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 8d67616c97ba04316853f65ce3241eed, type: 2}
-  isGlobal: 1
-  blendDistance: 0
-  weight: 1
-  priority: 0
 --- !u!114 &1379616271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10716,7 +10702,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 257
   stopNaNPropagation: 0
-  finalBlitToCameraTarget: 1
+  finalBlitToCameraTarget: 0
   antialiasingMode: 1
   temporalAntialiasing:
     jitterSpread: 0.75
