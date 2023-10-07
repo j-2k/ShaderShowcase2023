@@ -180,6 +180,7 @@ public class ArcadeDanceController : MonoBehaviour
         Debug.DrawRay(transformPos, dir, Color.green);
     }
 
+    [SerializeField] float hardRotValueParent;//garbage implementation but im lazy to do the proper method
 
     float shaderT;
     float shaderSpeedT;
@@ -352,7 +353,7 @@ public class ArcadeDanceController : MonoBehaviour
                     Vector3 camDir = (Camera.main.transform.position - transform.position).normalized;
                     camDir.y = 0; //XZ plane only
                     float zRot = Vector3.SignedAngle(camDir, transform.right, transform.up);
-                    edDanceArrowsList[edArrowIndex].transform.rotation = Quaternion.Euler(90, 0, zRot);
+                    edDanceArrowsList[edArrowIndex].transform.rotation = Quaternion.Euler(90, 0, zRot + hardRotValueParent);
                     edArrowIndex++;
                     maxTime = Time.time + edTimeOffset;
                     //edTimeOffset -= 0.005f;//-= 0.003f;
