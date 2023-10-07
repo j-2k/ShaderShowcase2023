@@ -352,7 +352,7 @@ public class ArcadeDanceController : MonoBehaviour
                     Vector3 camDir = (Camera.main.transform.position - transform.position).normalized;
                     camDir.y = 0; //XZ plane only
                     float zRot = Vector3.SignedAngle(camDir, transform.right, transform.up);
-                    edDanceArrowsList[edArrowIndex].transform.rotation = Quaternion.Euler(90, 0, zRot+45);
+                    edDanceArrowsList[edArrowIndex].transform.rotation = Quaternion.Euler(90, 0, zRot);
                     edArrowIndex++;
                     maxTime = Time.time + edTimeOffset;
                     //edTimeOffset -= 0.005f;//-= 0.003f;
