@@ -50,7 +50,16 @@ Shader "Unlit/NewUnlitShader"
                 fixed4 col = tex2D(_MainTex, i.uv);
                 // apply fog
                 //UNITY_APPLY_FOG(i.fogCoord, col);
-                return col;
+                float uv = i.uv.x * 10;
+                /*
+                float l = lerp(0,1,1 - sin(uv.x));
+                float4 shape = abs(sin(uv.x*3.14/2));
+                float4 fs = step(shape,0.99);
+                */
+
+                float4 fs = asin(abs(sin(uv*1.57)))/1.57;
+
+                return fs;
             }
             ENDCG
         }
