@@ -3,6 +3,9 @@ Shader "Unlit/NewUnlitShader"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _Color ("Color", color) = (0.1,1,0.1,1)
+        [HDR] _Emisson ("Emisson", color) = (0.1,0.1,0.1,0.1)
+        _Var1 ("Weird Shape", float) = 1
     }
     SubShader
     {
@@ -35,6 +38,10 @@ Shader "Unlit/NewUnlitShader"
             sampler2D _MainTex;
             float4 _MainTex_ST;
 
+            float4 _Color;
+            float4 _Emisson;
+            float _Var1;
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -47,19 +54,25 @@ Shader "Unlit/NewUnlitShader"
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
+                fixed col = tex2D(_MainTex, i.uv ).r ;
                 // apply fog
                 //UNITY_APPLY_FOG(i.fogCoord, col);
-                float uv = i.uv.x * 10;
+                float uvx = i.uv.x * 10;
                 /*
                 float l = lerp(0,1,1 - sin(uv.x));
                 float4 shape = abs(sin(uv.x*3.14/2));
                 float4 fs = step(shape,0.99);
                 */
 
-                float4 fs = asin(abs(sin(uv*1.57)))/1.57;
+                float fs = asin(abs(sin(uvx *3.14 * 0.1) * _Var1));
+                
+                float steps = smoothstep(0.2,sin(i.uv.y * 15 + fs * 4 + _Time.y * 3),0.1);
 
-                return fs;
+                float mask = col * steps + 1 - col;
+
+                clip(mask - 0.01);
+                
+                return mask * _Color * _Emisson;
             }
             ENDCG
         }
