@@ -28,6 +28,6 @@ Material:
     m_Floats:
     - _Var1: 1
     m_Colors:
-    - _Color: {r: 0, g: 1, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Emisson: {r: 3.031433, g: 3.031433, b: 3.031433, a: 1}
   m_BuildTextureStacks: []
