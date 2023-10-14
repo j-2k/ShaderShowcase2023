@@ -23,6 +23,7 @@ public class BlackRoomController : MonoBehaviour
 
     }
 
+   
     private void Update()
     {
         if(startThrow)
@@ -46,6 +47,10 @@ public class BlackRoomController : MonoBehaviour
                 noiseBall.transform.SetParent(null);
                 Vector3 dir = frontCAM - noiseBall.transform.position;
                 noiseBall.transform.position += dir.normalized * 100 * Time.deltaTime;
+            }
+            else
+            {
+                this.enabled = false;
             }
         }
 
