@@ -1,4 +1,4 @@
-Shader "Unlit/NewUnlitShader"
+Shader "Unlit/GreenSpeedPadShader"
 {
     Properties
     {
@@ -71,8 +71,11 @@ Shader "Unlit/NewUnlitShader"
                 float mask = col * steps + 1 - col;
 
                 clip(mask - 0.01);
+                float3 fc = mask * _Color.xyz * _Emisson.xyz;
+
+                UNITY_APPLY_FOG(i.fogCoord, fc);
                 
-                return mask * _Color * _Emisson;
+                return float4(fc,1);
             }
             ENDCG
         }

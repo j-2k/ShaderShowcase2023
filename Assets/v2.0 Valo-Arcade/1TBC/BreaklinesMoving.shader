@@ -71,6 +71,7 @@ Shader "Unlit/BreaklinesMoving"
                 fc = saturate(fc) * (yMask * 2);
                 clip(fc.a - 0.01);
                 fc *= _Col * _Em;
+                UNITY_APPLY_FOG(i.fogCoord, fc);
 
                 return fc; 
             }
