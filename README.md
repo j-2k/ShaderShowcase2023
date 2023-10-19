@@ -30,7 +30,7 @@ A lot of these shaders are incomplete but I will add more & finish them up when 
 - Various shaders relating to the Q1 Movement Sim
 
 # WIP Projects
-- Arcade Kill Effect Video
+- Arcade Kill Effect Video // DONE
 - Quake 1 Player Movement Video
 
 # License?
@@ -53,6 +53,7 @@ float arcTan2X = atan2(worldPos.x,worldPos.z)/TAU;
 float2 skyUV = float2(arcTan2X,arcSineY);
 ```
 
+## Picture Dump
 
 table header col 1 |  table header col 2
 :-------------------------:|:-------------------------:
