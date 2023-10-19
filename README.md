@@ -8,6 +8,13 @@ This project will hold 2 showcase projects, I explain them below:
 - First part will showcase the Valorant dance effect from the radiant entertainment system with a bunch of my shaders I created & learned throughout the year for fun. This was mainly to re-learn particle effects & learn new shader techniques.  
 - Second part will showcase some secret "quake" stuff let's just say that...
 
+# Showcase Videos
+Part 1 Released
+
+[![Valorant Dance Project Thumbnail](https://github.com/j-2k/ShaderShowcase/assets/52252068/cfc51b1a-640d-4aee-8987-6e39de497a6c)](https://www.youtube.com/watch?v=HFGB74eJgD0)
+
+Part 2 Coming soon...
+
 
 
 # Shaders currently featured
