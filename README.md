@@ -32,6 +32,7 @@ A lot of these shaders are incomplete but I will add more & finish them up when 
 # WIP Projects
 - Arcade Kill Effect Video // DONE
 - Quake 1 Player Movement Video
+- Water Shader Scene Showcase // to be done before the second project a part 1.5-type idea
 
 # License?
 Please be careful since I'm using ripped models from popular games. This isn't commercial just going to be for testing & making a video for fun out of it.
