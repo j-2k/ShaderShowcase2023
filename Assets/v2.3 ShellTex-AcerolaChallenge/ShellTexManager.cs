@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,42 +12,50 @@ public class ShellTexManager : MonoBehaviour
     [SerializeField] float maxHeight;
     [SerializeField] int density;
 
+
+    float _MaxHeight;
+    int _Density;
+
+    [SerializeField] bool isUpdating = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        if(maxHeight == 0)//avoiding div by 0
-        {
-            maxHeight = 1;
-        }
+        _MaxHeight = maxHeight;
+        _Density = density;
 
-        Color randCol = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f),1);
+        Color randCol;
+        GameObject quad;
+        float heightOffset = 0;
 
-        for(int i = 0; i < density; i++)
+        for (int i = 0; i < _Density; i++)
         {
-            GameObject quad = new GameObject("Shell Texture " + i);
+            randCol = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), 1);
+            quad = new GameObject("Shell Texture " + i);
             quad.transform.parent = transform;
             quad.transform.rotation = transform.rotation;
-            quad.transform.position = transform.position + new Vector3(0, maxHeight / i, 0);
+
+            if (i == 0) { heightOffset = 0; } else { heightOffset = _MaxHeight / i; }// i hate this solution sfm probably should just set the start outside&before the forloop.
+            quad.transform.position = transform.position + new Vector3(0, heightOffset, 0);
             
-
-
-
             quad.AddComponent<MeshFilter>().mesh = _mesh;
             quad.AddComponent<MeshRenderer>().material.shader = _shellTexShader;
             quad.GetComponent<Renderer>().material.SetColor("_Color", randCol);
-
-
         }
-
-
-
-
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(isUpdating)
+        {
+            if(_Density != density || _MaxHeight != maxHeight)
+            {
+                //handle changes here maybe through a array? plan is to just use a array or maybe a list since i want dynamic amount of obs /density
+            }
+        }
     }
+
+
+
 }
