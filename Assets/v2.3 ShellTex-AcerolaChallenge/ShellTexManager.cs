@@ -10,19 +10,21 @@ public class ShellTexManager : MonoBehaviour
     [SerializeField] Shader _shellTexShader;
 
     [SerializeField] float maxHeight;
-    [SerializeField] int density;
+    [Range(0,128)][SerializeField] int density;
 
 
     float _MaxHeight;
     int _Density;
 
     [SerializeField] bool isUpdating = false;
+    [SerializeField] GameObject[] sheets;
 
     // Start is called before the first frame update
     void Start()
     {
         _MaxHeight = maxHeight;
         _Density = density;
+        sheets = new GameObject[density];
 
         Color randCol;
         GameObject quad;
@@ -41,6 +43,8 @@ public class ShellTexManager : MonoBehaviour
             quad.AddComponent<MeshFilter>().mesh = _mesh;
             quad.AddComponent<MeshRenderer>().material.shader = _shellTexShader;
             quad.GetComponent<Renderer>().material.SetColor("_Color", randCol);
+
+            sheets[i] = quad;
         }
     }
 
@@ -51,7 +55,15 @@ public class ShellTexManager : MonoBehaviour
         {
             if(_Density != density || _MaxHeight != maxHeight)
             {
+                _Density = density;
+                _MaxHeight = maxHeight;
+
+                
                 //handle changes here maybe through a array? plan is to just use a array or maybe a list since i want dynamic amount of obs /density
+                for (int i = 0; i < _Density; i++)
+                {
+
+                }
             }
         }
     }
