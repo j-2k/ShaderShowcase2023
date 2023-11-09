@@ -57,12 +57,13 @@ public class ShellTexManager : MonoBehaviour
             {
                 _Density = density;
                 _MaxHeight = maxHeight;
-
+                Debug.Log("Something isnt equal. UPDATING...");
                 
                 //handle changes here maybe through a array? plan is to just use a array or maybe a list since i want dynamic amount of obs /density
-                for (int i = 0; i < _Density; i++)
-                {
 
+                for (int i = 1; i < sheets.Length; i++)
+                {
+                    sheets[i].transform.position = transform.position + new Vector3(0, _MaxHeight / i, 0);
                 }
             }
         }
