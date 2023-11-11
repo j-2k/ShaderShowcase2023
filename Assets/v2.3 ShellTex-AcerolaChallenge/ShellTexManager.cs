@@ -19,7 +19,7 @@ public class ShellTexManager : MonoBehaviour
     int _Density;
 
     [SerializeField] bool isUpdating = false;
-    [SerializeField] GameObject[] sheets;
+    [SerializeField] GameObject[] sheets;//should probably change this to material array? cuz i keep getting the mat component kinda garbaging in update but shouldbe fine since its not every frame technically? idk maybe later
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,9 @@ public class ShellTexManager : MonoBehaviour
 
         Color randCol;
         GameObject quad;
-        float heightOffset = 0;
+        //float heightOffset = 0;
+        float sheetIndexNormalized = 0;
+        Material mat;
 
         for (int i = 0; i < _Density; i++)
         {
@@ -39,12 +41,21 @@ public class ShellTexManager : MonoBehaviour
             quad.transform.parent = transform;
             quad.transform.rotation = transform.rotation;
 
-            if (i == 0) { heightOffset = 0; } else { heightOffset = (i / (float)(_Density - 1)) * _MaxHeight; }// i hate this solution sfm probably should just set the start outside&before the forloop.
-            quad.transform.position = transform.position + new Vector3(0, heightOffset, 0);
+            //transform displacement old(was ignoring vertex displacement for abit to understand some stuff)
+            //if (i == 0) { heightOffset = 0; } else { heightOffset = (i / (float)(_Density - 1)) * _MaxHeight; }// i hate this solution sfm probably should just set the start outside&before the forloop.
+            //quad.transform.position = transform.position + new Vector3(0, heightOffset, 0);
             
             quad.AddComponent<MeshFilter>().mesh = _mesh;
             quad.AddComponent<MeshRenderer>().material.shader = _shellTexShader;
-            quad.GetComponent<Renderer>().material.SetColor("_Color", randCol);
+            mat = quad.GetComponent<Renderer>().material;
+            mat.SetColor("_Color", randCol);
+
+            //vertex displacement new
+            sheetIndexNormalized = (i / (float)(_Density - 1));
+            mat.SetFloat("_SheetIndexNormalized", sheetIndexNormalized);
+            mat.SetFloat("_Distance", _MaxHeight);
+
+
 
             sheets[i] = quad;
         }
@@ -54,6 +65,7 @@ public class ShellTexManager : MonoBehaviour
     {
         Color randCol;
         GameObject quad;
+        Material mat;
 
         randCol = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), 1);
         quad = new GameObject("Shell Texture " + i);
@@ -62,7 +74,10 @@ public class ShellTexManager : MonoBehaviour
 
         quad.AddComponent<MeshFilter>().mesh = _mesh;
         quad.AddComponent<MeshRenderer>().material.shader = _shellTexShader;
-        quad.GetComponent<Renderer>().material.SetColor("_Color", randCol);
+        mat = quad.GetComponent<Renderer>().material;
+        mat.SetColor("_Color", randCol);
+        mat.SetFloat("_SheetIndexNormalized", (i / (float)(_Density - 1)));
+        mat.SetFloat("_Distance", _MaxHeight);
 
         sheets[i] = quad;
     }
@@ -102,7 +117,13 @@ public class ShellTexManager : MonoBehaviour
 
                 for (int i = 1; i < _Density; i++)
                 {
-                    sheets[i].transform.position = transform.position + new Vector3(0, (i / (float)(_Density - 1)) * _MaxHeight, 0);
+                    //old transform displacement
+                    //sheets[i].transform.position = transform.position + new Vector3(0, (i / (float)(_Density - 1)) * _MaxHeight, 0);
+
+                    //new vert displacement .. getting every frame is prob not ideal but whatever look next to the sheets arr comment for a possible fix
+                    Material mat = sheets[i].GetComponent<Renderer>().material;
+                    mat.SetFloat("_SheetIndexNormalized", (i / (float)(_Density - 1)));
+                    mat.SetFloat("_Distance", _MaxHeight);
                 }
             }
         }
