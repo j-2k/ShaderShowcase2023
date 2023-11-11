@@ -6,6 +6,8 @@ Shader "Unlit/ShellTextureShader"
     {
         _MainTex ("Texture", 2D) = "white" {}
         _Color("Color",color) = (0.2,0.8,0.4,1)
+        _Distance("_Distance",float) = 0
+        _SheetIndexNormalized("_SheetIndexNormalized",float) = 0
     }
     SubShader
     {
@@ -26,6 +28,7 @@ Shader "Unlit/ShellTextureShader"
             {
                 float4 vertex : POSITION;
                 float2 uv : TEXCOORD0;
+                float3 normal : NORMAL;
             };
 
             struct v2f
@@ -33,6 +36,7 @@ Shader "Unlit/ShellTextureShader"
                 float2 uv : TEXCOORD0;
                 UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
+                float3 normal : TEXCOORD2;
             };
 
             sampler2D _MainTex;
@@ -40,10 +44,17 @@ Shader "Unlit/ShellTextureShader"
 
             float4 _Color;
 
+            float _Distance;
+            float _SheetIndexNormalized;
+
             v2f vert (appdata v)
             {
                 v2f o;
+                
+                
+                v.vertex.xyz += v.normal.xyz * _Distance * _SheetIndexNormalized;
                 o.vertex = UnityObjectToClipPos(v.vertex);
+                
                 o.uv = v.uv;//TRANSFORM_TEX(v.uv, _MainTex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
 
