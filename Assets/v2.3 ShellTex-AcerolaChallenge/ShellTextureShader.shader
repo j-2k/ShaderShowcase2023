@@ -7,7 +7,7 @@ Shader "Unlit/ShellTextureShader"
         _MainTex ("Texture", 2D) = "white" {}
         _Color("Color",color) = (0.2,0.8,0.4,1)
         _Distance("_Distance",float) = 0
-        _SheetIndexNormalized("_SheetIndexNormalized",float) = 0
+        _SheetIndexNormalized("_SheetIndexNormalized",Range(0,1)) = 0
     }
     SubShader
     {
