@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class ShellTexManager : MonoBehaviour
 {
+    [Header("CURRENTLY NO GUARD FOR ARRAY OVERFLOW!")]
+
     [SerializeField] Mesh _mesh;
     MeshRenderer mr;
     [SerializeField] Shader _shellTexShader;
@@ -24,7 +26,7 @@ public class ShellTexManager : MonoBehaviour
     {
         _MaxHeight = maxHeight;
         _Density = density;
-        sheets = new GameObject[density];
+        sheets = new GameObject[densityHARDLIMIT];
 
         Color randCol;
         GameObject quad;
@@ -75,7 +77,7 @@ public class ShellTexManager : MonoBehaviour
                 Debug.Log("Something isnt equal. UPDATING...");
                 //handle density, i think this is a really fast way? not really sure atleast i dont need to reinitialize new memory in arrays
                 //& need to keep moving memory to new spaces if cap is reached,
-                /*
+                
                 if (_Density < density)
                 {
                     for (int i = _Density; i < density; i++)    //UPCASE
@@ -85,13 +87,14 @@ public class ShellTexManager : MonoBehaviour
                     _Density = density;
                 }
                 else if(_Density > density) 
-                {
+                {       
                     for (int i = _Density; i > density; i--)    //DOWNCASE
                     {
-                        sheets[i] = null;
+                        Destroy(sheets[i-1]);
+                        sheets[i - 1] = null;// not needed? just doing it since it says missing?
                     }
                     _Density = density;
-                }*/
+                }
 
                 _MaxHeight = maxHeight;
 
