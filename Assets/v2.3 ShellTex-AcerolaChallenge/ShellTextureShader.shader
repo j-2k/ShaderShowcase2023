@@ -42,20 +42,49 @@ Shader "Unlit/ShellTextureShader"
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                o.uv = v.uv;//TRANSFORM_TEX(v.uv, _MainTex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
+
                 return o;
             }
+
+           float hash11(float p)
+            {
+                p = frac(p * .1031);
+                p *= p + 33.33;
+                p *= p + p;
+                return frac(p);
+            }
+
 
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
+                //fixed4 col = tex2D(_MainTex, i.uv);
                 // apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
+                //UNITY_APPLY_FOG(i.fogCoord, col);
+				float2 resizeUV = i.uv*100;
+
+                //yikes it took me a while to realize why it looked like this https://prnt.sc/qStIjm0B0Nxv instead of this blocky like version https://prnt.sc/jGhhiIbtCVhb
+                //literally sat and looked at this garbage untill i realized it was a int holy sh i brainfarted so hard because i never used a int in shaders so i didnt look at the dt lmaooo
+                uint2 intUV = resizeUV;
+                uint seedGen = intUV.x + 100 * intUV.y;
+				//uint seed = intUV.x + 100 * intUV.y + 100 * 10; 
                 
+                return float4(0,0.5*hash11(seedGen),0,1);
+                /*
+                float rng = hash11(i.uv.x);
+
+                if(rng > 0)
+                {
+                    return float4(0,1,0,1);
+                }
+                else
+                {
+                    return float4(0,0,0,1);
+                }*/
                 
-                return _Color;
+                //return _Color;
                 //return col;
             }
             ENDCG
