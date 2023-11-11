@@ -1,3 +1,5 @@
+//incase i die trying to understand this while trying to make this shader ill just put a quick link to acerolas shell shader
+//https://github.com/GarrettGunnell/Shell-Texturing/blob/main/Assets/Shell.shader
 Shader "Unlit/ShellTextureShader"
 {
     Properties
