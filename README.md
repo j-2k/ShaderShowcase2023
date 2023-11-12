@@ -56,8 +56,8 @@ float2 skyUV = float2(arcTan2X,arcSineY);
 
 ## Shell Texture Shader
 <p float="left" align="middle">
-  <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/02f1718e-4fb2-446d-b7b6-5ba37dbfdf27" alt="Grass Shells" height="300" width="49%" title="Grass Shells"/>
-  <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/d749de30-5177-4c06-a864-19242e9d1402" alt="RNGCol Shell" height="300" width="49%" title="RNGCol Shell"/> 
+  <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/02f1718e-4fb2-446d-b7b6-5ba37dbfdf27" alt="Grass Shells" height="" width="49%" title="Grass Shells"/>
+  <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/d749de30-5177-4c06-a864-19242e9d1402" alt="RNGCol Shell" height="" width="49%" title="RNGCol Shell"/> 
 </p>
 
   <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/1d0c09bc-3f7f-4b2d-afd9-9e665c241f5a" alt="Combined Shell" height="" width="100%" title="Combined Shell"/>
