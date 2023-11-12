@@ -10,6 +10,7 @@ public class ShellTexManager : MonoBehaviour
     [SerializeField] Mesh _mesh;
     MeshRenderer mr;
     [SerializeField] Shader _shellTexShader;
+    [SerializeField] Color _shellTexColor;
 
     [SerializeField] float maxHeight;
     [Range(0,256)][SerializeField] int density;

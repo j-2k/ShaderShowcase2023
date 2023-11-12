@@ -94,13 +94,14 @@ Shader "Unlit/ShellTextureShader"
 
                 if(rng > _SheetIndexNormalized)
                 {
-                    return float4(0,1 * _SheetIndexNormalized,0,1);
+                    return _Color * _SheetIndexNormalized;
+                    //return float4(0,1* _SheetIndexNormalized,0,1); 
                 }
                 else
                 {
                     discard; //hey this is something new i learned today, discard keyword discards the pixel so it doesnt render it i was just going to return 0? or clip? but this works
                 }
-                
+
                 return _Color;
                 
                 //return _Color;
