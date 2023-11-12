@@ -12,8 +12,8 @@ public class ShellTexManager : MonoBehaviour
     [SerializeField] Shader _shellTexShader;
 
     [SerializeField] float maxHeight;
-    [Range(0,128)][SerializeField] int density;
-    [Range(128,512)][SerializeField] int densityHARDLIMIT;
+    [Range(0,256)][SerializeField] int density;
+    [Range(128, 256)][SerializeField] int densityHARDLIMIT;
 
     float _MaxHeight;
     int _Density;
@@ -24,6 +24,9 @@ public class ShellTexManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //ignore this first line
+        if(transform.GetChild(0).name == "PostionMarkerIgnore") { transform.GetChild(0).gameObject.SetActive(false); }
+
         _MaxHeight = maxHeight;
         _Density = density;
         sheets = new GameObject[densityHARDLIMIT];
