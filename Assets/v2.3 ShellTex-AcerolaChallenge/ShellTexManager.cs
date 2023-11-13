@@ -10,6 +10,7 @@ public class ShellTexManager : MonoBehaviour
     [SerializeField] Mesh _mesh;
     MeshRenderer mr;
     [SerializeField] Shader _shellTexShader;
+    [SerializeField] bool isRandomColors;
     [SerializeField] Color _shellTexColor;
 
     [SerializeField] float maxHeight;
@@ -32,7 +33,6 @@ public class ShellTexManager : MonoBehaviour
         _Density = density;
         sheets = new GameObject[densityHARDLIMIT];
 
-        Color randCol;
         GameObject quad;
         //float heightOffset = 0;
         float sheetIndexNormalized = 0;
@@ -40,20 +40,22 @@ public class ShellTexManager : MonoBehaviour
 
         for (int i = 0; i < _Density; i++)
         {
-            randCol = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), 1);
+
+            
             quad = new GameObject("Shell Texture " + i);
             quad.transform.parent = transform;
-            quad.transform.rotation = transform.rotation;
+            quad.transform.rotation = Quaternion.Euler(Vector3.right * 90);
 
             //transform displacement old(was ignoring vertex displacement for abit to understand some stuff)
             //if (i == 0) { heightOffset = 0; } else { heightOffset = (i / (float)(_Density - 1)) * _MaxHeight; }// i hate this solution sfm probably should just set the start outside&before the forloop.
             //quad.transform.position = transform.position + new Vector3(0, heightOffset, 0);
-            
+
             quad.AddComponent<MeshFilter>().mesh = _mesh;
             quad.AddComponent<MeshRenderer>().material.shader = _shellTexShader;
             mat = quad.GetComponent<Renderer>().material;
-            mat.SetColor("_Color", randCol);
 
+            if (isRandomColors){_shellTexColor = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), 1);}
+            mat.SetColor("_Color", _shellTexColor);
             //vertex displacement new
             sheetIndexNormalized = (i / (float)(_Density - 1));
             mat.SetFloat("_SheetIndexNormalized", sheetIndexNormalized);
@@ -67,19 +69,18 @@ public class ShellTexManager : MonoBehaviour
 
     void AddSheets(int i)
     {
-        Color randCol;
         GameObject quad;
         Material mat;
 
-        randCol = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), 1);
         quad = new GameObject("Shell Texture " + i);
         quad.transform.parent = transform;
-        quad.transform.rotation = transform.rotation;
+        quad.transform.rotation = Quaternion.Euler(Vector3.right * 90);
 
         quad.AddComponent<MeshFilter>().mesh = _mesh;
         quad.AddComponent<MeshRenderer>().material.shader = _shellTexShader;
         mat = quad.GetComponent<Renderer>().material;
-        mat.SetColor("_Color", randCol);
+        if (isRandomColors) { _shellTexColor = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), 1); }
+        mat.SetColor("_Color", _shellTexColor);
         mat.SetFloat("_SheetIndexNormalized", (i / (float)(_Density - 1)));
         mat.SetFloat("_Distance", _MaxHeight);
 

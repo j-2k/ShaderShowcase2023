@@ -11,7 +11,7 @@ Shader "Unlit/ShellTextureShader"
     }
     SubShader
     {
-        //Tags { "RenderType"="Opaque" "Queue"="Transparent" }
+        //Tags { "RenderType"="Opaque"}
         Tags {"RenderType"="Opaque" "LightMode" = "ForwardBase"}
         LOD 100
         //Blend SrcAlpha OneMinusSrcAlpha
