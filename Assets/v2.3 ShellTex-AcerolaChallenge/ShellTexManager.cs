@@ -44,7 +44,8 @@ public class ShellTexManager : MonoBehaviour
             
             quad = new GameObject("Shell Texture " + i);
             quad.transform.parent = transform;
-            quad.transform.rotation = Quaternion.Euler(Vector3.right * 90);
+            quad.transform.localScale = Vector3.one;
+            quad.transform.rotation = Quaternion.Euler(transform.rotation.x + 90, transform.rotation.y, transform.rotation.z);
 
             //transform displacement old(was ignoring vertex displacement for abit to understand some stuff)
             //if (i == 0) { heightOffset = 0; } else { heightOffset = (i / (float)(_Density - 1)) * _MaxHeight; }// i hate this solution sfm probably should just set the start outside&before the forloop.
@@ -74,7 +75,8 @@ public class ShellTexManager : MonoBehaviour
 
         quad = new GameObject("Shell Texture " + i);
         quad.transform.parent = transform;
-        quad.transform.rotation = Quaternion.Euler(Vector3.right * 90);
+        quad.transform.localScale = Vector3.one;
+        quad.transform.rotation = Quaternion.Euler(transform.rotation.x + 90, transform.rotation.y, transform.rotation.z);
 
         quad.AddComponent<MeshFilter>().mesh = _mesh;
         quad.AddComponent<MeshRenderer>().material.shader = _shellTexShader;
