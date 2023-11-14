@@ -82,9 +82,11 @@ Shader "Unlit/ShellTextureShader"
                 
                 //resize uv
 				float2 resizeUV = i.uv * 100;
+
                 //frac(resizeUV) repeat uv 100 times, *2-1 makes it go from -1 to 1 (centering the UV), len takes the signed distance from the center making a circle(SDF),step just makes it 1 or 0 mainly done for colors
                 float lenMask = 1 - (1,length(frac(resizeUV) * 2-1));
-                //lenMask *= _SheetIndexNormalized;
+                
+                //clipping dark areas
                 clip(lenMask - _SheetIndexNormalized);
 
                 return lenMask;
@@ -92,17 +94,15 @@ Shader "Unlit/ShellTextureShader"
                 //yikes it took me a while to realize why it looked like this https://prnt.sc/qStIjm0B0Nxv instead of this blocky like version https://prnt.sc/jGhhiIbtCVhb
                 //literally sat and looked at this garbage untill i realized it was a int holy sh i brainfarted so hard because i never used a int in shaders so i didnt look at the dt lmaooo
                 uint2 intUV = resizeUV;
+
                 //uint seedGen = intUV.x + 100 * intUV.y;
 				uint seed = intUV.x + 100 * intUV.y + 100 * 10; 
                 
-                //return float4(0,0.5*hash11(seedGen),0,1);
-                
                 float rng = hash11(seed);
-       
 
                 if(rng > _SheetIndexNormalized)
                 {
-                    return _Color * (_SheetIndexNormalized * lenMask);
+                    return _Color * (_SheetIndexNormalized);
                     //return float4(0,1* _SheetIndexNormalized,0,1); 
                 }
                 else
@@ -111,9 +111,6 @@ Shader "Unlit/ShellTextureShader"
                 }
 
                 return _Color;
-                
-                //return _Color;
-                //return col;
             }
             ENDCG
         }
