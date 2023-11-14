@@ -65,7 +65,7 @@ Shader "Unlit/ShellTextureShader"
                 return o;
             }
 
-           float hash11(float p)
+            float hash11(float p)
             {
                 p = frac(p * .1031);
                 p *= p + 33.33;
@@ -73,14 +73,21 @@ Shader "Unlit/ShellTextureShader"
                 return frac(p);
             }
 
-
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
                 //fixed4 col = tex2D(_MainTex, i.uv);
                 // apply fog
                 //UNITY_APPLY_FOG(i.fogCoord, col);
+                
+                //resize uv
 				float2 resizeUV = i.uv * 100;
+                //frac(resizeUV) repeat uv 100 times, *2-1 makes it go from -1 to 1 (centering the UV), len takes the signed distance from the center making a circle(SDF),step just makes it 1 or 0 mainly done for colors
+                float lenMask = 1 - (1,length(frac(resizeUV) * 2-1));
+                //lenMask *= _SheetIndexNormalized;
+                clip(lenMask - _SheetIndexNormalized);
+
+                //return lenMask;
 
                 //yikes it took me a while to realize why it looked like this https://prnt.sc/qStIjm0B0Nxv instead of this blocky like version https://prnt.sc/jGhhiIbtCVhb
                 //literally sat and looked at this garbage untill i realized it was a int holy sh i brainfarted so hard because i never used a int in shaders so i didnt look at the dt lmaooo
@@ -91,10 +98,11 @@ Shader "Unlit/ShellTextureShader"
                 //return float4(0,0.5*hash11(seedGen),0,1);
                 
                 float rng = hash11(seed);
+       
 
                 if(rng > _SheetIndexNormalized)
                 {
-                    return _Color * _SheetIndexNormalized;
+                    return _Color * (_SheetIndexNormalized);
                     //return float4(0,1* _SheetIndexNormalized,0,1); 
                 }
                 else

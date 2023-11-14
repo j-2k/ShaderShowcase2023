@@ -26,7 +26,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Distance: 2.16
+    - _Distance: 0.46
     - _SheetIndexNormalized: 0
     m_Colors:
     - _Color: {r: 0, g: 1, b: 0.33333325, a: 1}
