@@ -87,7 +87,7 @@ Shader "Unlit/ShellTextureShader"
                 //lenMask *= _SheetIndexNormalized;
                 clip(lenMask - _SheetIndexNormalized);
 
-                //return lenMask;
+                return lenMask;
 
                 //yikes it took me a while to realize why it looked like this https://prnt.sc/qStIjm0B0Nxv instead of this blocky like version https://prnt.sc/jGhhiIbtCVhb
                 //literally sat and looked at this garbage untill i realized it was a int holy sh i brainfarted so hard because i never used a int in shaders so i didnt look at the dt lmaooo
@@ -102,7 +102,7 @@ Shader "Unlit/ShellTextureShader"
 
                 if(rng > _SheetIndexNormalized)
                 {
-                    return _Color * (_SheetIndexNormalized);
+                    return _Color * (_SheetIndexNormalized * lenMask);
                     //return float4(0,1* _SheetIndexNormalized,0,1); 
                 }
                 else
