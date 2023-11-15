@@ -17,8 +17,12 @@ public class ShellTexManager : MonoBehaviour
     [Range(0,256)][SerializeField] int density;
     [Range(128, 256)][SerializeField] int densityHARDLIMIT;
 
+    [Range(-3,1)][SerializeField] float thickness;
+
     float _MaxHeight;
     int _Density;
+
+    float _Thick;
 
     [SerializeField] bool isUpdating = false;
     [SerializeField] GameObject[] sheets;//should probably change this to material array? cuz i keep getting the mat component kinda garbaging in update but shouldbe fine since its not every frame technically? idk maybe later
@@ -31,6 +35,7 @@ public class ShellTexManager : MonoBehaviour
 
         _MaxHeight = maxHeight;
         _Density = density;
+        _Thick = thickness;
         sheets = new GameObject[densityHARDLIMIT];
 
         GameObject quad;
@@ -61,7 +66,9 @@ public class ShellTexManager : MonoBehaviour
             sheetIndexNormalized = (i / (float)(_Density - 1));
             mat.SetFloat("_SheetIndexNormalized", sheetIndexNormalized);
             mat.SetFloat("_Distance", _MaxHeight);
-
+            mat.SetInt("_SheetIndex", i);
+            mat.SetInt("_SheetDensity", _Density);
+            mat.SetFloat("_Thick", _Thick);
 
 
             sheets[i] = quad;
@@ -85,6 +92,9 @@ public class ShellTexManager : MonoBehaviour
         mat.SetColor("_Color", _shellTexColor);
         mat.SetFloat("_SheetIndexNormalized", (i / (float)(_Density - 1)));
         mat.SetFloat("_Distance", _MaxHeight);
+        mat.SetInt("_SheetIndex", i);
+        mat.SetInt("_SheetDensity", _Density);
+        mat.SetFloat("_Thick", _Thick);
 
         sheets[i] = quad;
     }
@@ -94,7 +104,7 @@ public class ShellTexManager : MonoBehaviour
     {
         if(isUpdating)
         {
-            if(_Density != density || _MaxHeight != maxHeight)
+            if(_Density != density || _MaxHeight != maxHeight || _Thick != thickness)
             {
                 Debug.Log("Something isnt equal. UPDATING...");
                 //handle density, i think this is a really fast way? not really sure atleast i dont need to reinitialize new memory in arrays
@@ -119,6 +129,7 @@ public class ShellTexManager : MonoBehaviour
                 }
 
                 _MaxHeight = maxHeight;
+                _Thick = thickness;
 
                 //handle changes here maybe through a array? plan is to just use a array or maybe a list since i want dynamic amount of obs /density
 
@@ -131,6 +142,9 @@ public class ShellTexManager : MonoBehaviour
                     Material mat = sheets[i].GetComponent<Renderer>().material;
                     mat.SetFloat("_SheetIndexNormalized", (i / (float)(_Density - 1)));
                     mat.SetFloat("_Distance", _MaxHeight);
+                    mat.SetInt("_SheetIndex", i);
+                    mat.SetInt("_SheetDensity", _Density);
+                    mat.SetFloat("_Thick", _Thick);
                 }
             }
         }

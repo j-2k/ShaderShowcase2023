@@ -8,6 +8,10 @@ Shader "Unlit/ShellTextureShader"
         _Color("Color",color) = (0.2,0.8,0.4,1)
         _Distance("_Distance",float) = 0
         _SheetIndexNormalized("_SheetIndexNormalized",Range(0,1)) = 0
+
+        _SheetIndex("_SheetIndex",int) = 0
+        _SheetDensity("_SheetDensity",int) = 0
+        _Thick("_Thick",float) = 0
     }
     SubShader
     {
@@ -51,6 +55,10 @@ Shader "Unlit/ShellTextureShader"
             float _Distance;
             float _SheetIndexNormalized;
 
+            int _SheetIndex;
+            int _SheetDensity;
+            float _Thick;
+
             v2f vert (appdata v)
             {
                 v2f o;
@@ -84,33 +92,51 @@ Shader "Unlit/ShellTextureShader"
 				float2 resizeUV = i.uv * 100;
 
                 //frac(resizeUV) repeat uv 100 times, *2-1 makes it go from -1 to 1 (centering the UV), len takes the signed distance from the center making a circle(SDF),step just makes it 1 or 0 mainly done for colors
-                float lenMask = 1 - (1,length(frac(resizeUV) * 2-1));
-                
-                //clipping dark areas
-                clip(lenMask - _SheetIndexNormalized);
+                float lenMask = 1 - length(frac(resizeUV) * 2-1);//1 - length(frac(resizeUV) * 2-1);
 
-                return lenMask;
+                //return lenMask;
 
                 //yikes it took me a while to realize why it looked like this https://prnt.sc/qStIjm0B0Nxv instead of this blocky like version https://prnt.sc/jGhhiIbtCVhb
                 //literally sat and looked at this garbage untill i realized it was a int holy sh i brainfarted so hard because i never used a int in shaders so i didnt look at the dt lmaooo
                 uint2 intUV = resizeUV;
 
-                //uint seedGen = intUV.x + 100 * intUV.y;
 				uint seed = intUV.x + 100 * intUV.y + 100 * 10; 
+                float rng = lerp(0,1,hash11(seed));
                 
-                float rng = hash11(seed);
+                //THICKNESS HANDLING
+                //LENMASK IS INVERTED ABOVE MAKE SURE OF THE "1 -" & REMOVE IT IF NOT NEEDED
 
-                if(rng > _SheetIndexNormalized)
-                {
-                    return _Color * (_SheetIndexNormalized);
-                    //return float4(0,1* _SheetIndexNormalized,0,1); 
-                }
-                else
-                {
-                    discard; //hey this is something new i learned today, discard keyword discards the pixel so it doesnt render it i was just going to return 0? or clip? but this works
-                }
+                /* acerola thickness
+                int outsideThickness = (lenMask) > (2 * (rng - _SheetIndexNormalized));
+                if(outsideThickness && _SheetIndex > 0) discard;
+                */
+                
+                //my garbage thickness algorithm 
+                //clip((lenMask * (1 - _Thick)) - ((_SheetIndexNormalized/rng) - _Thick));
+                //below is an imitation of the above clip methiod but with discard, im doing it this way to just so its similar to acerolas thickness handler with discard
+                int cone = ((lenMask * (1 - _Thick)) 
+                - ((_SheetIndexNormalized/rng) - _Thick)) < 0;
+                if(cone && _SheetIndex > 0) discard;
 
-                return _Color;
+                /* old double if - changed to the 2 lines above.
+                {
+                    if(_SheetIndex == 0) return 0;//garbage way of just wanting a first black shell
+                    if(rng > _SheetIndexNormalized)
+                    {
+                        //clipping dark areas
+                        //clip((lenMask * (1 - _Thick)) - ((_SheetIndexNormalized/rng) - _Thick));
+                        //return _Color * _SheetIndexNormalized;
+                    }//hey this is something new i learned today, discard keyword discards the pixel so it doesnt render it i was just going to return 0? or clip? but this works
+                    else{ discard; }
+                }
+                */
+                
+                //LIGHTING
+
+
+                
+
+                return _Color * _SheetIndexNormalized;
             }
             ENDCG
         }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.22058108, g: 0.00039888208, b: 0.26586986, a: 1}
+  m_IndirectSpecularColor: {r: 0.22105089, g: 0.00039955546, b: 0.26643077, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -300,7 +300,7 @@ MonoBehaviour:
   _shellTexShader: {fileID: 4800000, guid: 847bc6f00ae554b488e3c97cc1a7bd46, type: 3}
   isRandomColors: 0
   _shellTexColor: {r: 0.22071949, g: 0.7264151, b: 0.0034264945, a: 0}
-  maxHeight: 0.25
+  maxHeight: 0.1
   density: 128
   densityHARDLIMIT: 256
   isUpdating: 0
