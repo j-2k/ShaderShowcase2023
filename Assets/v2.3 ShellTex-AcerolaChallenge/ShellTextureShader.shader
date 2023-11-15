@@ -5,6 +5,7 @@ Shader "Unlit/ShellTextureShader"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _PerlinNoiseTex("_PerlinNoiseTex", 2D) = "white" {}
         _Color("Color",color) = (0.2,0.8,0.4,1)
         _Distance("_Distance",float) = 0
         _SheetIndexNormalized("_SheetIndexNormalized",Range(0,1)) = 0
@@ -50,6 +51,9 @@ Shader "Unlit/ShellTextureShader"
             sampler2D _MainTex;
             float4 _MainTex_ST;
 
+            sampler2D _PerlinNoiseTex; 
+            float4 _PerlinNoiseTex_ST;
+
             float4 _Color;
 
             float _Distance;
@@ -59,26 +63,6 @@ Shader "Unlit/ShellTextureShader"
             int _SheetDensity;
             float _Thick;
 
-            v2f vert (appdata v)
-            {
-                v2f o;
-                
-
-                
-                v.vertex.xz += (sin(_Time.y + _SheetIndexNormalized)*_SheetIndexNormalized);
-                
-                //vertex & normal based scaling aka the true scale/offset method compared to my old hard coded quad y + offset
-                v.vertex.xyz += v.normal.xyz * _Distance * _SheetIndexNormalized;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-
-                o.normal = normalize(UnityObjectToWorldNormal(v.normal));
-                
-                o.uv = v.uv;//TRANSFORM_TEX(v.uv, _MainTex);
-                UNITY_TRANSFER_FOG(o,o.vertex);
-
-                return o;
-            }
-
             float hash11(float p)
             {
                 p = frac(p * .1031);
@@ -87,12 +71,41 @@ Shader "Unlit/ShellTextureShader"
                 return frac(p);
             }
 
+            v2f vert (appdata v)
+            {
+                v2f o;
+                o.uv = v.uv;//TRANSFORM_TEX(v.uv, _MainTex);
+
+                float2 intUV = o.uv * 100;
+                float seed = intUV.x + 100 * intUV.y;
+
+                float sway = sin(_Time.y + _SheetIndexNormalized) * _SheetIndexNormalized;
+                
+                v.vertex.xz += (sway);
+                
+                
+                //vertex & normal based scaling aka the true scale/offset method compared to my old hard coded quad y + offset
+                v.vertex.xyz += v.normal.xyz * _Distance * _SheetIndexNormalized;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+
+                o.normal = normalize(UnityObjectToWorldNormal(v.normal));
+                
+                
+                UNITY_TRANSFER_FOG(o,o.vertex);
+
+                return o;
+            }
+
+
+
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
                 //fixed4 col = tex2D(_MainTex, i.uv);
                 // apply fog
                 //UNITY_APPLY_FOG(i.fogCoord, col);
+
+
                 
                 //resize uv
 				float2 resizeUV = i.uv * 100;
@@ -105,9 +118,9 @@ Shader "Unlit/ShellTextureShader"
                 //yikes it took me a while to realize why it looked like this https://prnt.sc/qStIjm0B0Nxv instead of this blocky like version https://prnt.sc/jGhhiIbtCVhb
                 //literally sat and looked at this garbage untill i realized it was a int holy sh i brainfarted so hard because i never used a int in shaders so i didnt look at the dt lmaooo
                 uint2 intUV = resizeUV;
-
 				uint seed = intUV.x + 100 * intUV.y + 100 * 10; 
                 float rng = lerp(0,1,hash11(seed));
+                //return rng;
                 
                 //THICKNESS HANDLING
                 //LENMASK IS INVERTED ABOVE MAKE SURE OF THE "1 -" & REMOVE IT IF NOT NEEDED

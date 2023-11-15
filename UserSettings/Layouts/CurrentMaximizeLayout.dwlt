@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 9435
+  controlID: 9594
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 9436
+  controlID: 9595
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -735,13 +735,13 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.7082036, y: 2.2969272, z: -4.9139466}
+    m_Target: {x: 2.826167, y: 2.7477756, z: 7.246278}
     speed: 2
-    m_Value: {x: -1.7082036, y: 2.2969272, z: -4.9139466}
+    m_Value: {x: 2.826167, y: 2.7477756, z: 7.246278}
   m_RenderMode: 0
   m_CameraMode:
-    drawMode: 0
-    name: Shaded
+    drawMode: 2
+    name: Shaded Wireframe
     section: Shading Mode
   m_ValidateTrueMetals: 0
   m_DoValidateTrueMetals: 0
@@ -784,9 +784,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.20895785, y: -0.060795803, z: 0.013347235, w: -0.9762135}
+    m_Target: {x: -0.007181236, y: 0.93724215, z: -0.34891188, w: -0.018009625}
     speed: 2
-    m_Value: {x: -0.20890245, y: -0.06077968, z: 0.013343696, w: -0.97595465}
+    m_Value: {x: -0.0077025234, y: 0.936962, z: -0.34880686, w: -0.019410245}
   m_Size:
     m_Target: 0.8660254
     speed: 2
@@ -839,7 +839,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 9376
+  controlID: 9684
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1266,7 +1266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c262c1329a02fa49b5cb4c297106f3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MinSize: {x: 147, y: 27}
+  m_MinSize: {x: 129, y: 28}
   m_MaxSize: {x: 4000, y: 4000}
   m_TitleContent:
     m_Text: ProBuilder
