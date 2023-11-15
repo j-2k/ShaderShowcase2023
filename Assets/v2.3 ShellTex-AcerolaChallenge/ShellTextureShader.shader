@@ -79,11 +79,15 @@ Shader "Unlit/ShellTextureShader"
                 float2 intUV = o.uv * 100;
                 float seed = intUV.x + 100 * intUV.y;
 
-                float sway = sin(_Time.y + _SheetIndexNormalized) * _SheetIndexNormalized;
-                
-                v.vertex.xz += (sway);
-                
-                
+                //default sway no random only sin
+                float sway = sin(_Time.y + (_SheetIndexNormalized)) * _SheetIndexNormalized;//float sway = sin(_Time.y + (_SheetIndexNormalized) * hash11(seed)) * _SheetIndexNormalized;
+                float2 dir = float2(1,0);
+
+                //sphere grass displacement
+                float displacement = 0;
+
+                v.vertex.xz += (dir * sway);
+
                 //vertex & normal based scaling aka the true scale/offset method compared to my old hard coded quad y + offset
                 v.vertex.xyz += v.normal.xyz * _Distance * _SheetIndexNormalized;
                 o.vertex = UnityObjectToClipPos(v.vertex);
