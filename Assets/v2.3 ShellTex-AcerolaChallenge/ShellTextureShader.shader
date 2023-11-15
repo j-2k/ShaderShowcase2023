@@ -76,12 +76,15 @@ Shader "Unlit/ShellTextureShader"
                 v2f o;
                 o.uv = v.uv;//TRANSFORM_TEX(v.uv, _MainTex);
 
-                float2 intUV = o.uv * 100;
-                float seed = intUV.x + 100 * intUV.y;
+                uint2 intUV = o.uv * 100;
+                uint seed = intUV.x + 100 * intUV.y+100;
 
-                //default sway no random only sin
-                float sway = sin(_Time.y + (_SheetIndexNormalized)) * _SheetIndexNormalized;//float sway = sin(_Time.y + (_SheetIndexNormalized) * hash11(seed)) * _SheetIndexNormalized;
-                float2 dir = float2(1,0);
+                //default sway no random only sin, nvm brainfarted didnt need to add index offset, ignore the hash inthere was for test
+                //float sway = sin(_Time.y + (_SheetIndexNormalized) * hash11(seed)) * _SheetIndexNormalized;
+                
+
+                float sway = sin(_Time.y + (hash11(seed))) * _SheetIndexNormalized;
+                float2 dir = float2(0,0);
 
                 //sphere grass displacement
                 float displacement = 0;
@@ -109,7 +112,9 @@ Shader "Unlit/ShellTextureShader"
                 // apply fog
                 //UNITY_APPLY_FOG(i.fogCoord, col);
 
-
+                //trying to find the same type of pattern https://prnt.sc/qIG9T70tf4k- found on another acerola vid https://youtu.be/jw00MbIJcrk?t=317
+                //primary will be put in the vertex shader but want to see colors for better visual understanding
+                return sin(_Time.y*2 + i.uv.x * 10) * _SheetIndexNormalized;
                 
                 //resize uv
 				float2 resizeUV = i.uv * 100;
