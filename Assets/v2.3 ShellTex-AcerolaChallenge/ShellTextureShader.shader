@@ -16,7 +16,7 @@ Shader "Unlit/ShellTextureShader"
     SubShader
     {
         //Tags { "RenderType"="Opaque"}
-        Tags {"RenderType"="Opaque" "LightMode" = "ForwardBase"}
+        Tags {"RenderType"="Opaque" "LightMode" = "ForwardBase" "Queue" = "Geometry"}
         LOD 100
         //Blend SrcAlpha OneMinusSrcAlpha
         //ZWrite Off
@@ -63,7 +63,11 @@ Shader "Unlit/ShellTextureShader"
             {
                 v2f o;
                 
+
                 
+                v.vertex.xz += (sin(_Time.y + _SheetIndexNormalized)*_SheetIndexNormalized);
+                
+                //vertex & normal based scaling aka the true scale/offset method compared to my old hard coded quad y + offset
                 v.vertex.xyz += v.normal.xyz * _Distance * _SheetIndexNormalized;
                 o.vertex = UnityObjectToClipPos(v.vertex);
 
