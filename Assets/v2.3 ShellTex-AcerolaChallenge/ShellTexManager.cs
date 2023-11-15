@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class ShellTexManager : MonoBehaviour
 {
-    [Header("CURRENTLY NO GUARD FOR ARRAY OVERFLOW!")]
-
+    
+    [Header("Does your mesh have a rotation offset? if so insert here below")]
+    [Header("ex. quad = 90, plane = 0, etc.")]
+    [Range(0,180)][SerializeField] float rotationOffset;
     [SerializeField] Mesh _mesh;
     MeshRenderer mr;
     [SerializeField] Shader _shellTexShader;
@@ -15,6 +17,7 @@ public class ShellTexManager : MonoBehaviour
 
     [SerializeField] float maxHeight;
     [Range(0,256)][SerializeField] int density;
+    [Header("CURRENTLY NO GUARD FOR ARRAY OVERFLOW!")]
     [Range(128, 256)][SerializeField] int densityHARDLIMIT;
 
     [Range(-3,1)][SerializeField] float thickness;
@@ -50,7 +53,7 @@ public class ShellTexManager : MonoBehaviour
             quad = new GameObject("Shell Texture " + i);
             quad.transform.parent = transform;
             quad.transform.localScale = Vector3.one;
-            quad.transform.rotation = Quaternion.Euler(transform.rotation.x + 90, transform.rotation.y, transform.rotation.z);
+            quad.transform.rotation = Quaternion.Euler(transform.rotation.x + rotationOffset, transform.rotation.y, transform.rotation.z);
 
             //transform displacement old(was ignoring vertex displacement for abit to understand some stuff)
             //if (i == 0) { heightOffset = 0; } else { heightOffset = (i / (float)(_Density - 1)) * _MaxHeight; }// i hate this solution sfm probably should just set the start outside&before the forloop.
@@ -83,7 +86,7 @@ public class ShellTexManager : MonoBehaviour
         quad = new GameObject("Shell Texture " + i);
         quad.transform.parent = transform;
         quad.transform.localScale = Vector3.one;
-        quad.transform.rotation = Quaternion.Euler(transform.rotation.x + 90, transform.rotation.y, transform.rotation.z);
+        quad.transform.rotation = Quaternion.Euler(transform.rotation.x + rotationOffset, transform.rotation.y, transform.rotation.z);
 
         quad.AddComponent<MeshFilter>().mesh = _mesh;
         quad.AddComponent<MeshRenderer>().material.shader = _shellTexShader;

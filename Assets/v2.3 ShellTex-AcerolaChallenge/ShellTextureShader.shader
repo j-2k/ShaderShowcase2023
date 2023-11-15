@@ -66,6 +66,8 @@ Shader "Unlit/ShellTextureShader"
                 
                 v.vertex.xyz += v.normal.xyz * _Distance * _SheetIndexNormalized;
                 o.vertex = UnityObjectToClipPos(v.vertex);
+
+                o.normal = normalize(UnityObjectToWorldNormal(v.normal));
                 
                 o.uv = v.uv;//TRANSFORM_TEX(v.uv, _MainTex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
@@ -132,11 +134,14 @@ Shader "Unlit/ShellTextureShader"
                 */
                 
                 //LIGHTING
+                float dotNL = saturate(dot(i.normal, _WorldSpaceLightPos0)*1);  //dot between normal & light dir, standard lighting
+                dotNL = dotNL * 0.5 + 0.5;  //same concept as (1-thick & (-thick))
+                dotNL = dotNL * dotNL;      //valve square the last value, without doing this it its hard to see the difference vetween the lit and unlit areas
 
+                //float FAOmul = _SheetIndexNormalized * 5;
+                float FAOpow = pow(_SheetIndexNormalized, 2);
 
-                
-
-                return _Color * _SheetIndexNormalized;
+                return float4(_Color.xyz * FAOpow * dotNL,1);
             }
             ENDCG
         }
