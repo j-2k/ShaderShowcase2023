@@ -13,6 +13,9 @@ Shader "Unlit/ShellTextureShader"
         _SheetIndex("_SheetIndex",int) = 0
         _SheetDensity("_SheetDensity",int) = 0
         _Thick("_Thick",float) = 0
+
+        _RNGceil("_RNGceil",float) = 1
+        _RNGfloor("_RNGfloor",float) = 0
     }
     SubShader
     {
@@ -62,6 +65,9 @@ Shader "Unlit/ShellTextureShader"
             int _SheetIndex;
             int _SheetDensity;
             float _Thick;
+
+            float _RNGceil;
+            float _RNGfloor;
 
             float hash11(float p)
             {
@@ -130,7 +136,7 @@ Shader "Unlit/ShellTextureShader"
                 //literally sat and looked at this garbage untill i realized it was a int holy sh i brainfarted so hard because i never used a int in shaders so i didnt look at the dt lmaooo
                 uint2 intUV = resizeUV;
 				uint seed = intUV.x + 100 * intUV.y + 100 * 10; 
-                float rng = lerp(0,1,hash11(seed));
+                float rng = lerp(_RNGfloor,_RNGceil,hash11(seed));
                 //return rng;
                 
                 //THICKNESS HANDLING
