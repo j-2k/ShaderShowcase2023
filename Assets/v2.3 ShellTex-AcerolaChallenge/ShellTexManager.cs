@@ -45,40 +45,14 @@ public class ShellTexManager : MonoBehaviour
         _Thick = thickness;
         sheets = new GameObject[densityHARDLIMIT];
 
-        GameObject quad;
+        //GameObject quad;
         //float heightOffset = 0;
-        float sheetIndexNormalized = 0;
-        Material mat;
+        //float sheetIndexNormalized = 0;
+        //Material mat;
 
         for (int i = 0; i < _Density; i++)
         {
-
-            
-            quad = new GameObject("Shell Texture " + i);
-            quad.transform.parent = transform;
-            quad.transform.localScale = Vector3.one;
-            quad.transform.rotation = Quaternion.Euler(transform.rotation.x + rotationOffset, transform.rotation.y, transform.rotation.z);
-
-            //transform displacement old(was ignoring vertex displacement for abit to understand some stuff)
-            //if (i == 0) { heightOffset = 0; } else { heightOffset = (i / (float)(_Density - 1)) * _MaxHeight; }// i hate this solution sfm probably should just set the start outside&before the forloop.
-            //quad.transform.position = transform.position + new Vector3(0, heightOffset, 0);
-
-            quad.AddComponent<MeshFilter>().mesh = _mesh;
-            quad.AddComponent<MeshRenderer>().material.shader = _shellTexShader;
-            mat = quad.GetComponent<Renderer>().material;
-
-            if (isRandomColors){_shellTexColor = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), 1);}
-            mat.SetColor("_Color", _shellTexColor);
-            //vertex displacement new
-            sheetIndexNormalized = (i / (float)(_Density - 1));
-            mat.SetFloat("_SheetIndexNormalized", sheetIndexNormalized);
-            mat.SetFloat("_Distance", _MaxHeight);
-            mat.SetInt("_SheetIndex", i);
-            mat.SetInt("_SheetDensity", _Density);
-            mat.SetFloat("_Thick", _Thick);
-
-
-            sheets[i] = quad;
+            AddSheets(i);
         }
     }
 
@@ -92,11 +66,17 @@ public class ShellTexManager : MonoBehaviour
         quad.transform.localScale = Vector3.one;
         quad.transform.rotation = Quaternion.Euler(transform.rotation.x + rotationOffset, transform.rotation.y, transform.rotation.z);
 
+        //transform displacement old(was ignoring vertex displacement for abit to understand some stuff)
+        //if (i == 0) { heightOffset = 0; } else { heightOffset = (i / (float)(_Density - 1)) * _MaxHeight; }// i hate this solution sfm probably should just set the start outside&before the forloop.
+        //quad.transform.position = transform.position + new Vector3(0, heightOffset, 0);
+
         quad.AddComponent<MeshFilter>().mesh = _mesh;
         quad.AddComponent<MeshRenderer>().material.shader = _shellTexShader;
         mat = quad.GetComponent<Renderer>().material;
+
         if (isRandomColors) { _shellTexColor = new Color(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f), 1); }
         mat.SetColor("_Color", _shellTexColor);
+        
         mat.SetFloat("_SheetIndexNormalized", (i / (float)(_Density - 1)));
         mat.SetFloat("_Distance", _MaxHeight);
         mat.SetInt("_SheetIndex", i);
