@@ -81,15 +81,15 @@ Shader "Unlit/ShellTextureShader"
 
                 //default sway no random only sin, nvm brainfarted didnt need to add index offset, ignore the hash inthere was for test
                 //float sway = sin(_Time.y + (_SheetIndexNormalized) * hash11(seed)) * _SheetIndexNormalized;
-                
-
-                float sway = sin(_Time.y + (hash11(seed))) * _SheetIndexNormalized;
-                float2 dir = float2(0,0);
+                float2 uvc = (o.uv * 2 - 1) * 33;
+                float sway = sin(_Time.y + (hash11(seed) + (uvc.x + uvc.y))) * _SheetIndexNormalized;
+                float swayAmount = lerp(0,sway,0.4);
+                float2 dir = float2(1,1);
 
                 //sphere grass displacement
                 float displacement = 0;
 
-                v.vertex.xz += (dir * sway);
+                v.vertex.xz += (dir * swayAmount);
 
                 //vertex & normal based scaling aka the true scale/offset method compared to my old hard coded quad y + offset
                 v.vertex.xyz += v.normal.xyz * _Distance * _SheetIndexNormalized;
@@ -114,7 +114,9 @@ Shader "Unlit/ShellTextureShader"
 
                 //trying to find the same type of pattern https://prnt.sc/qIG9T70tf4k- found on another acerola vid https://youtu.be/jw00MbIJcrk?t=317
                 //primary will be put in the vertex shader but want to see colors for better visual understanding
-                return sin(_Time.y*2 + i.uv.x * 10) * _SheetIndexNormalized;
+                float2 uvc = i.uv * 2 - 1;
+                float randDistortion = hash11(uvc.x+uvc.y);
+                //return sin(_Time.y*2 + (uvc.x * 33 + uvc.y * 33)) * _SheetIndexNormalized;
                 
                 //resize uv
 				float2 resizeUV = i.uv * 100;
