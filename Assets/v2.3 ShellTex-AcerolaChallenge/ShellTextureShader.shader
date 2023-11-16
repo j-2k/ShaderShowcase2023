@@ -80,15 +80,13 @@ Shader "Unlit/ShellTextureShader"
             v2f vert (appdata v)
             {
                 v2f o;
-                o.uv = v.uv;//TRANSFORM_TEX(v.uv, _MainTex);
-
-                uint2 intUV = o.uv * 100;
-                uint seed = intUV.x + 100 * intUV.y+100;
+                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
 
                 //default sway no random only sin, nvm brainfarted didnt need to add index offset, ignore the hash inthere was for test
                 //float sway = sin(_Time.y + (_SheetIndexNormalized) * hash11(seed)) * _SheetIndexNormalized;
-                float2 uvc = (o.uv * 2 - 1) * 33;
-                float sway = sin(_Time.y + (hash11(seed) + (uvc.x + uvc.y))) * _SheetIndexNormalized;
+                float2 uvc = v.uv * 33;
+                float seed = uvc.x + 100 * uvc.y + 100 * 10; 
+                float sway = sin(_Time.y + (hash11(seed) + (_SheetIndexNormalized*0.5))) * _SheetIndexNormalized;
                 float swayAmount = lerp(0,sway,0.4);
                 float2 dir = float2(1,1);
 
@@ -120,8 +118,8 @@ Shader "Unlit/ShellTextureShader"
 
                 //trying to find the same type of pattern https://prnt.sc/qIG9T70tf4k- found on another acerola vid https://youtu.be/jw00MbIJcrk?t=317
                 //primary will be put in the vertex shader but want to see colors for better visual understanding
-                float2 uvc = i.uv * 2 - 1;
-                float randDistortion = hash11(uvc.x+uvc.y);
+                //float2 uvc = i.uv * 2 - 1;
+                //float randDistortion = hash11(uvc.x+uvc.y);
                 //return sin(_Time.y*2 + (uvc.x * 33 + uvc.y * 33)) * _SheetIndexNormalized;
                 
                 //resize uv
