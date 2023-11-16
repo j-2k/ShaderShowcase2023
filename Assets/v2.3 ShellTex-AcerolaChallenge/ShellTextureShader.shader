@@ -1,9 +1,12 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 //incase i die trying to understand this while trying to make this shader ill just put a quick link to acerolas shell shader
 //https://github.com/GarrettGunnell/Shell-Texturing/blob/main/Assets/Shell.shader
 Shader "Unlit/ShellTextureShader"
 {
     Properties
     {
+        _SpherePosition("_SpherePosition",Vector) = (0,0,0,0)
         _MainTex ("Texture", 2D) = "white" {}
         _PerlinNoiseTex("_PerlinNoiseTex", 2D) = "white" {}
         _Color("Color",color) = (0.2,0.8,0.4,1)
@@ -69,6 +72,8 @@ Shader "Unlit/ShellTextureShader"
             float _RNGceil;
             float _RNGfloor;
 
+            float4 _SpherePosition;
+
             float hash11(float p)
             {
                 p = frac(p * .1031);
@@ -87,11 +92,10 @@ Shader "Unlit/ShellTextureShader"
                 float2 uvc = v.uv * 33;
                 float seed = uvc.x + 100 * uvc.y + 100 * 10; 
                 float sway = sin(_Time.y + (hash11(seed) + (_SheetIndexNormalized*0.5))) * _SheetIndexNormalized;
-                float swayAmount = lerp(0,sway,0.4);
+                float swayAmount = lerp(0,sway,0.5);
                 float2 dir = float2(1,1);
 
                 //sphere grass displacement
-                float displacement = 0;
 
                 v.vertex.xz += (dir * swayAmount);
 

@@ -28,6 +28,10 @@ public class ShellTexManager : MonoBehaviour
     float _Thick;
 
     [SerializeField] bool isUpdating = false;
+
+    [Header("Displacement Stuff!")]
+    [SerializeField] Transform sphereGrassCollider;
+    [SerializeField] bool isSendingWorldPosition = false;
     [SerializeField] GameObject[] sheets;//should probably change this to material array? cuz i keep getting the mat component kinda garbaging in update but shouldbe fine since its not every frame technically? idk maybe later
 
     // Start is called before the first frame update
@@ -102,9 +106,24 @@ public class ShellTexManager : MonoBehaviour
         sheets[i] = quad;
     }
 
+
+
     // Update is called once per frame
     void Update()
     {
+        if(isSendingWorldPosition)
+        {
+            for (int i = 1; i < _Density; i++)
+            {
+                    //old transform displacement
+                    //sheets[i].transform.position = transform.position + new Vector3(0, (i / (float)(_Density - 1)) * _MaxHeight, 0);
+
+                    //new vert displacement .. getting every frame is prob not ideal but whatever look next to the sheets arr comment for a possible fix
+                    Material mat = sheets[i].GetComponent<Renderer>().material;
+                    mat.SetVector("_SpherePosition", sphereGrassCollider.transform.position);
+            }
+        }
+
         if(isUpdating)
         {
             if(_Density != density || _MaxHeight != maxHeight || _Thick != thickness)
