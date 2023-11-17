@@ -94,7 +94,7 @@ Shader "Unlit/ShellTextureShader"
                 float2 uvc = v.uv * 33;
                 float seed = uvc.x + 100 * uvc.y + 100 * 10; 
                 float sway = sin(_Time.y + (hash11(seed) + (_SheetIndexNormalized*0.3))) * _SheetIndexNormalized;
-                float swayAmount = lerp(0,sway,0.5);
+                float swayAmount = lerp(0,sway,0.2);
                 float2 dir = float2(1,1);
                 //v.vertex.xz += (dir * swayAmount);
 
@@ -103,7 +103,7 @@ Shader "Unlit/ShellTextureShader"
 
                 
                 float3 dirDisplacement = (v.vertex.xyz - _SpherePosition.xyz);
-                float3 finalDisplace = float3(
+                float3 grassDisplace = float3(
                     normalize(dirDisplacement).x,
                     normalize(dirDisplacement).y,
                     normalize(dirDisplacement).z) * (1.0 - saturate(length(dirDisplacement) / 1.0));
@@ -116,8 +116,10 @@ Shader "Unlit/ShellTextureShader"
                     dirDisplacement.y,
                     dirDisplacement.z) * (1.0 - saturate(length(dirDisplacement) / 1.0));
                 */
-                v.vertex.xyz += finalDisplace * _SheetIndexNormalized;
-                
+
+
+                //v.vertex.y += grassDisplace.y;
+                v.vertex.xz += ((dir * swayAmount) + grassDisplace.xz) * _SheetIndexNormalized;
                 
                 
                 
