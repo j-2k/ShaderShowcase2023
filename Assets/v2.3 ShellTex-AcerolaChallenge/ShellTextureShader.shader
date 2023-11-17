@@ -19,6 +19,8 @@ Shader "Unlit/ShellTextureShader"
 
         _RNGceil("_RNGceil",float) = 1
         _RNGfloor("_RNGfloor",float) = 0
+
+
     }
     SubShader
     {
@@ -91,7 +93,7 @@ Shader "Unlit/ShellTextureShader"
                 //float sway = sin(_Time.y + (_SheetIndexNormalized) * hash11(seed)) * _SheetIndexNormalized;
                 float2 uvc = v.uv * 33;
                 float seed = uvc.x + 100 * uvc.y + 100 * 10; 
-                float sway = sin(_Time.y + (hash11(seed) + (_SheetIndexNormalized*0.5))) * _SheetIndexNormalized;
+                float sway = sin(_Time.y + (hash11(seed) + (_SheetIndexNormalized*0.3))) * _SheetIndexNormalized;
                 float swayAmount = lerp(0,sway,0.5);
                 float2 dir = float2(1,1);
 

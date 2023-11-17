@@ -29,6 +29,10 @@ public class ShellTexManager : MonoBehaviour
 
     [SerializeField] bool isUpdating = false;
 
+    [SerializeField] float rngCeil;
+    [SerializeField] float rngFloor;
+    float _RNGceil,_RNGfloor;
+
     [Header("Displacement Stuff!")]
     [SerializeField] Transform sphereGrassCollider;
     [SerializeField] bool isSendingWorldPosition = false;
@@ -43,6 +47,8 @@ public class ShellTexManager : MonoBehaviour
         _MaxHeight = maxHeight;
         _Density = density;
         _Thick = thickness;
+        _RNGceil = rngCeil;
+        _RNGfloor = rngFloor;
         sheets = new GameObject[densityHARDLIMIT];
 
         //GameObject quad;
@@ -82,6 +88,8 @@ public class ShellTexManager : MonoBehaviour
         mat.SetInt("_SheetIndex", i);
         mat.SetInt("_SheetDensity", _Density);
         mat.SetFloat("_Thick", _Thick);
+        mat.SetFloat("_RNGceil", _RNGceil);
+        mat.SetFloat("_RNGfloor", _RNGfloor);
 
         sheets[i] = quad;
     }
@@ -106,7 +114,7 @@ public class ShellTexManager : MonoBehaviour
 
         if(isUpdating)
         {
-            if(_Density != density || _MaxHeight != maxHeight || _Thick != thickness)
+            if(_Density != density || _MaxHeight != maxHeight || _Thick != thickness || _RNGceil != rngCeil || _RNGfloor != rngFloor)
             {
                 Debug.Log("Something isnt equal. UPDATING...");
                 //handle density, i think this is a really fast way? not really sure atleast i dont need to reinitialize new memory in arrays
@@ -132,6 +140,8 @@ public class ShellTexManager : MonoBehaviour
 
                 _MaxHeight = maxHeight;
                 _Thick = thickness;
+                _RNGceil = rngCeil;
+                _RNGfloor = rngFloor;
 
                 //handle changes here maybe through a array? plan is to just use a array or maybe a list since i want dynamic amount of obs /density
 
@@ -147,6 +157,8 @@ public class ShellTexManager : MonoBehaviour
                     mat.SetInt("_SheetIndex", i);
                     mat.SetInt("_SheetDensity", _Density);
                     mat.SetFloat("_Thick", _Thick);
+                    mat.SetFloat("_RNGceil", _RNGceil);
+                    mat.SetFloat("_RNGfloor", _RNGfloor);
                 }
             }
         }
