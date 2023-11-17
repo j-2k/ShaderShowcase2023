@@ -1508,11 +1508,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationOffset: 0
-  _mesh: {fileID: 4300000, guid: 98d781fc6daeeed44916ec1c12ebd0a9, type: 2}
+  _mesh: {fileID: -462981019419857548, guid: e09225232e5a8504281fc546bfaecbcf, type: 3}
   _shellTexShader: {fileID: 4800000, guid: 847bc6f00ae554b488e3c97cc1a7bd46, type: 3}
   isRandomColors: 0
   _shellTexColor: {r: 0.22071949, g: 0.7264151, b: 0.0034264945, a: 0}
-  maxHeight: 1.5
+  maxHeight: 1
   density: 256
   densityHARDLIMIT: 256
   thickness: 0.65
@@ -1520,7 +1520,7 @@ MonoBehaviour:
   rngCeil: 1
   rngFloor: 0.33
   sphereGrassCollider: {fileID: 1398201}
-  isSendingWorldPosition: 0
+  isSendingWorldPosition: 1
   sheets: []
 --- !u!4 &1628399262
 Transform:
