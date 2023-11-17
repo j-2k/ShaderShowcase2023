@@ -103,10 +103,11 @@ Shader "Unlit/ShellTextureShader"
 
                 
                 float3 dirDisplacement = (v.vertex.xyz - _SpherePosition.xyz);
-                float3 grassDisplace = float3(
-                    normalize(dirDisplacement).x,
-                    normalize(dirDisplacement).y,
-                    normalize(dirDisplacement).z) * (1.0 - saturate(length(dirDisplacement) / 1.0));
+                float3 grassDisplace = float3(normalize(dirDisplacement).x, normalize(dirDisplacement).y, normalize(dirDisplacement).z);
+                float clampDisplacement = (saturate(length(dirDisplacement) / 1));
+                grassDisplace *= (1.0 - clampDisplacement);
+
+                v.vertex.xz += grassDisplace.xz * _SheetIndexNormalized;
                     
                 /*
                 //WHAT IS THE DIFFERENCE???
@@ -118,8 +119,8 @@ Shader "Unlit/ShellTextureShader"
                 */
 
 
-                //v.vertex.y += grassDisplace.y;
-                v.vertex.xz += ((dir * swayAmount) + grassDisplace.xz) * _SheetIndexNormalized;
+                v.vertex.y += (grassDisplace.y * 1.2) * _SheetIndexNormalized;
+                //v.vertex.xz += (dir * swayAmount) + grassDisplace.xz * _SheetIndexNormalized;
                 
                 
                 
