@@ -60,6 +60,7 @@ public class ShellTexManager : MonoBehaviour
         {
             AddSheets(i);
         }
+        
     }
 
     void AddSheets(int i)

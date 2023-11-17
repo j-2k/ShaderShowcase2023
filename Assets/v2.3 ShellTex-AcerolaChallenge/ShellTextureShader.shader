@@ -99,17 +99,26 @@ Shader "Unlit/ShellTextureShader"
                 //v.vertex.xz += (dir * swayAmount);
 
                 //sphere grass displacement
+                //float3 worldPos = mul(unity_ObjectToWorld, v.vertex); //notneeded
+
                 
-                float3 worldPos = mul(unity_ObjectToWorld, v.vertex);
-                float3 dirDisplacement = (worldPos.xyz - _SpherePosition.xyz);
-                if(length(dirDisplacement) < 0.5)//1 being the radius of the sphere
-                {
-                    v.vertex.xyz += dirDisplacement * _SheetIndexNormalized;
-                }
-                else
-                {
-                    //v.vertex.xyz += v.normal.xyz * _Distance * _SheetIndexNormalized;
-                }
+                float3 dirDisplacement = (v.vertex.xyz - _SpherePosition.xyz);
+                float3 finalDisplace = float3(
+                    normalize(dirDisplacement).x,
+                    normalize(dirDisplacement).y,
+                    normalize(dirDisplacement).z) * (1.0 - saturate(length(dirDisplacement) / 1.0));
+                    
+                /*
+                //WHAT IS THE DIFFERENCE???
+                float3 dirDisplacement = normalize(v.vertex.xyz - _SpherePosition.xyz);
+                float3 finalDisplace = float3(
+                    dirDisplacement.x,
+                    dirDisplacement.y,
+                    dirDisplacement.z) * (1.0 - saturate(length(dirDisplacement) / 1.0));
+                */
+                v.vertex.xyz += finalDisplace * _SheetIndexNormalized;
+                
+                
                 
                 
 
