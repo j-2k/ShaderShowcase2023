@@ -24,10 +24,20 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _PerlinNoiseTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
     - _Distance: 0.46
-    - _SheetIndexNormalized: 0
+    - _RNGceil: 1.46
+    - _RNGfloor: 1.38
+    - _SheetDensity: 0.53
+    - _SheetIndex: 1.21
+    - _SheetIndexNormalized: 0.242
+    - _Thick: 0
     m_Colors:
     - _Color: {r: 0, g: 1, b: 0.33333325, a: 1}
+    - _SpherePosition: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []

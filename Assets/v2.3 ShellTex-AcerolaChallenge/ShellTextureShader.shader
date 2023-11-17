@@ -96,10 +96,22 @@ Shader "Unlit/ShellTextureShader"
                 float sway = sin(_Time.y + (hash11(seed) + (_SheetIndexNormalized*0.3))) * _SheetIndexNormalized;
                 float swayAmount = lerp(0,sway,0.5);
                 float2 dir = float2(1,1);
+                v.vertex.xz += (dir * swayAmount);
 
                 //sphere grass displacement
-
-                v.vertex.xz += (dir * swayAmount);
+                /*
+                float3 worldPos = mul(unity_ObjectToWorld, v.vertex);
+                float3 dirDisplacement = (worldPos.xyz - _SpherePosition.xyz);
+                if(length(dirDisplacement) < 0.5)//1 being the radius of the sphere
+                {
+                    v.vertex.xyz += dirDisplacement * _SheetIndexNormalized;
+                }
+                else
+                {
+                    v.vertex.xyz += v.normal.xyz * _Distance * _SheetIndexNormalized;
+                }*/
+                
+                
 
                 //vertex & normal based scaling aka the true scale/offset method compared to my old hard coded quad y + offset
                 v.vertex.xyz += v.normal.xyz * _Distance * _SheetIndexNormalized;
@@ -127,7 +139,21 @@ Shader "Unlit/ShellTextureShader"
                 //float2 uvc = i.uv * 2 - 1;
                 //float randDistortion = hash11(uvc.x+uvc.y);
                 //return sin(_Time.y*2 + (uvc.x * 33 + uvc.y * 33)) * _SheetIndexNormalized;
-                
+
+
+                /*float3 worldPos = mul(unity_ObjectToWorld, i.vertex);
+                float3 dirToSphere = (_SpherePosition.xyz - worldPos);
+                if(length(dirToSphere) < 1)
+                {
+                    
+                    return float4(dirToSphere.xxx,1);
+                }
+                else
+                {
+                    return float4(0,0,0,1);
+                }
+                */
+
                 //resize uv
 				float2 resizeUV = i.uv * 100;
 
