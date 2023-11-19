@@ -57,7 +57,7 @@ float2 skyUV = float2(arcTan2X,arcSineY);
 
 ## Shell Texture Shader (128 Textures)
 
-Finished Shell Texturing project (Submitted for #acerolafurrychallenge)
+Finished Shell Texturing project (Submitted for #acerolafurrychallenge)  
 Twitter submission with video > [click here](https://x.com/jumaalremeithi/status/1725938324248867175?s=20)
 
 <p float="left" align="middle">
