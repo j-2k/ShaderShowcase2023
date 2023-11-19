@@ -65,7 +65,10 @@ Twitter submission with video > [click here](https://x.com/jumaalremeithi/status
   <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/d749de30-5177-4c06-a864-19242e9d1402" alt="RNGCol Shell" height="" width="49%" title="RNGCol Shell"/> 
 </p>
 
-  <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/1d0c09bc-3f7f-4b2d-afd9-9e665c241f5a" alt="Combined Shell" height="" width="100%" title="Combined Shell"/>
+<p float="left" align="middle">
+  <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/1d0c09bc-3f7f-4b2d-afd9-9e665c241f5a" alt="Combined Shell" height="" width="49%" title="Combined Shell"/>
+    <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/44d0b30c-f9aa-494e-a5b6-7a5ae1667a92" alt="Combined Shell" height="" width="49%" title="Final"/>
+</p>
 
 
 
