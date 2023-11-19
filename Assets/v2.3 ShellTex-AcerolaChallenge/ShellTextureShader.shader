@@ -105,8 +105,10 @@ Shader "Unlit/ShellTextureShader"
                 float3 dirDisplacement = (v.vertex.xyz - _SpherePosition.xyz);
                 float3 grassDisplace = normalize(dirDisplacement);
                 //displacement vector is divided by radius of sphere to get a unclamped normal value that we then clamp and then inverse it to get the displacement
-                float clampDisplacement = (saturate(length(dirDisplacement) / 0.75));
+                float clampDisplacement = (saturate(length(dirDisplacement) / 1));
                 grassDisplace *= (1.0 - clampDisplacement);
+
+                grassDisplace *= 1.2;
                     
                 /*
                 //WHAT IS THE DIFFERENCE???
