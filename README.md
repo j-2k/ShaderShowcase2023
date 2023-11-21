@@ -70,9 +70,15 @@ Twitter submission with video > [click here](https://x.com/jumaalremeithi/status
     <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/44d0b30c-f9aa-494e-a5b6-7a5ae1667a92" alt="Combined Shell" height="" width="49%" title="Final"/>
 </p>
 
+<img align="right" width="49%" src="Acerolakindagiga.png" />
 
-
-## Picture Dump
+# Acerola 🛐
+The first like GIGACHAD & thanks to the other random guy :)  
+My motivation for the video after seeing this 📈📈📈  
+Will post my promised video when its done.  
+*twitter post likes on my shell texturing video using the acerolafurrychallenge hashtag*
+  
+# Picture Dump
 
 table header col 1 |  table header col 2
 :-------------------------:|:-------------------------:
