@@ -189,12 +189,15 @@ Shader "Unlit/ShellTextureShader"
                 int outsideThickness = (lenMask) > (2 * (rng - _SheetIndexNormalized));
                 if(outsideThickness && _SheetIndex > 0) discard;
                 */
+                //int cone = (1 - lenMask) > (_Thick * (rng - _SheetIndexNormalized));
                 
                 //my garbage thickness algorithm 
                 //clip((lenMask * (1 - _Thick)) - ((_SheetIndexNormalized/rng) - _Thick));
                 //below is an imitation of the above clip methiod but with discard, im doing it this way to just so its similar to acerolas thickness handler with discard
-                int cone = ((lenMask * (1 - _Thick)) 
-                - ((_SheetIndexNormalized/rng) - _Thick)) < 0;
+                //cyclinder only is int cone = lenMask; shaving off the cylinder you must minus the thickness from the length & if you do so you get thinner cylinders, the amount
+                //is based on the height/rng to get heights proportional to the capped rng & finally the - thickness & 1 - thickness is to clamp the thickness from 0 - 1 range and move
+                //the bottom thickness of the grass to the top of the cylinder.
+                int cone = ((lenMask * (1 - _Thick )) - ((_SheetIndexNormalized/rng) - _Thick)) < 0;
                 if(cone && _SheetIndex > 0) discard;
 
                 /* old double if - changed to the 2 lines above.
