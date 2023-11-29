@@ -100,28 +100,36 @@ Shader "Unlit/ShellTextureShader"
 
                 //sphere grass displacement
                 //float3 worldPos = mul(unity_ObjectToWorld, v.vertex); //notneeded
-
+                //https://gamedev.center/tutorial-how-to-make-an-interactive-grass-shader-in-unity/ YOINKED THIS
                 
                 float3 dirDisplacement = (v.vertex.xyz - _SpherePosition.xyz);
                 float3 grassDisplace = normalize(dirDisplacement);
                 //displacement vector is divided by radius of sphere to get a unclamped normal value that we then clamp and then inverse it to get the displacement
                 float clampDisplacement = (saturate(length(dirDisplacement) / 1));
-                grassDisplace *= (1.0 - clampDisplacement);
+                grassDisplace *= (1.0 - clampDisplacement);//inverse the clamped displacement = if clamp disp == 0 => FULL DISPLACEMENT else if clamp disp == 1 => NO DISPLACEMENT
+                grassDisplace *= 1.2; //scaling the strength of grass displacement
 
-                grassDisplace *= 1.2;
-                    
+                v.vertex.xyz += grassDisplace * _SheetIndexNormalized;
+                
+                
                 /*
-                //WHAT IS THE DIFFERENCE???
-                float3 dirDisplacement = normalize(v.vertex.xyz - _SpherePosition.xyz);
-                float3 finalDisplace = float3(
-                    dirDisplacement.x,
-                    dirDisplacement.y,
-                    dirDisplacement.z) * (1.0 - saturate(length(dirDisplacement) / 1.0));
+                float3 trampleDiff = v.vertex.xyz - _SpherePosition.xyz;
+                float3 trample = normalize(trampleDiff) * (1.0 - saturate(length(trampleDiff) / 1));
+                v.vertex.xyz += trample.xyz * _SheetIndexNormalized;
                 */
 
+                /*
+                //WHAT IS THE DIFFERENCE??? nvm i found it pagchomp check the 3 lines above its neat, justm ake sure u know what urdoing
+                float3 dirDisplacement = (v.vertex.xyz - _SpherePosition.xyz);
+                float3 finalDisplace = float3(
+                    normalize(dirDisplacement.x),
+                    normalize(dirDisplacement.y),
+                    normalize(dirDisplacement.z)) * (1.0 - saturate(length(dirDisplacement) / 1.0));
+                v.vertex.xyz += finalDisplace * _SheetIndexNormalized;
+                */
 
-                v.vertex.y += (grassDisplace.y * 1.2) * _SheetIndexNormalized;
-                v.vertex.xz += (dir * swayAmount) + grassDisplace.xz * _SheetIndexNormalized;
+                //v.vertex.y += (grassDisplace.y * 1.2) * _SheetIndexNormalized;
+                //v.vertex.xz += (dir * swayAmount) + grassDisplace.xz * _SheetIndexNormalized;
                 
                 
                 
