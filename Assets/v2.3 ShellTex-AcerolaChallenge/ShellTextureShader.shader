@@ -108,8 +108,10 @@ Shader "Unlit/ShellTextureShader"
                 float clampDisplacement = (saturate(length(dirDisplacement) / 1));
                 grassDisplace *= (1.0 - clampDisplacement);//inverse the clamped displacement = if clamp disp == 0 => FULL DISPLACEMENT else if clamp disp == 1 => NO DISPLACEMENT
                 grassDisplace *= 1.2; //scaling the strength of grass displacement
-
-                v.vertex.xyz += grassDisplace * _SheetIndexNormalized;
+                
+                v.vertex.y += (grassDisplace.y * 1.2) * _SheetIndexNormalized;
+                v.vertex.xz += (dir * swayAmount) + grassDisplace.xz * _SheetIndexNormalized;
+                //v.vertex.xyz += grassDisplace * _SheetIndexNormalized;
                 
                 
                 /*
@@ -128,8 +130,7 @@ Shader "Unlit/ShellTextureShader"
                 v.vertex.xyz += finalDisplace * _SheetIndexNormalized;
                 */
 
-                //v.vertex.y += (grassDisplace.y * 1.2) * _SheetIndexNormalized;
-                //v.vertex.xz += (dir * swayAmount) + grassDisplace.xz * _SheetIndexNormalized;
+
                 
                 
                 
