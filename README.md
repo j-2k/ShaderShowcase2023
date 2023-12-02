@@ -1,4 +1,4 @@
-# My Shader Showcase Project
+# My Shader Showcase Project Year 2023
 *Unity BIRP - Version 2021.3.16f1*  
 THIS PROJECT WILL PROBABLY ONLY LAST FOR THE CURRENT YEAR ITS BEING WORKED ON.  
 I plan on having a showcase project every year so this will probably be for the year of 2023 & a new project will come in 2024.
@@ -79,6 +79,25 @@ Will post my promised video when its done.
 *twitter post likes on my shell texturing video using the acerolafurrychallenge hashtag*
   
 # Picture Dump
+
+
+(2022-2023 Read me) First ever custom shader that looked decent  
+
+https://user-images.githubusercontent.com/52252068/146339015-9a0d2fac-8d2b-4c9d-880d-235585fd0d4e.mp4
+
+$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$ $$a^2 + b^2 = c^2$$ 
+
+$$R = R_x(\alpha) \cdot R_y(\beta) \cdot R_z(\gamma)$$
+
+$$
+R = \begin{bmatrix}
+\cos(\gamma)\cos(\beta) & -\sin(\gamma)\cos(\alpha) + \cos(\gamma)\sin(\beta)\sin(\alpha) & \sin(\gamma)\sin(\alpha) + \cos(\gamma)\sin(\beta)\cos(\alpha) \\
+\sin(\gamma)\cos(\beta) & \cos(\gamma)\cos(\alpha) + \sin(\gamma)\sin(\beta)\sin(\alpha) & -\cos(\gamma)\sin(\alpha) + \sin(\gamma)\sin(\beta)\cos(\alpha) \\
+-\sin(\beta) & \cos(\beta)\sin(\alpha) & \cos(\beta)\cos(\alpha) \\
+\end{bmatrix}
+$$
+
+Good to know after so much time wasted that mathjax is supported natively on MD & on GH-pages but needs only a import.
 
 table header col 1 |  table header col 2
 :-------------------------:|:-------------------------:
