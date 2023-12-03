@@ -19,9 +19,10 @@ Shader "Unlit/EmptyShellTextureShader"
 
         _RNGceil("_RNGceil",float) = 1
         _RNGfloor("_RNGfloor",float) = 0
-
+        _Size("Size",float) = 100
 
     }
+
     SubShader
     {
         //Tags { "RenderType"="Opaque"}
@@ -73,6 +74,7 @@ Shader "Unlit/EmptyShellTextureShader"
 
             float _RNGceil;
             float _RNGfloor;
+            float _Size;
 
             float4 _SpherePosition;
 
@@ -109,8 +111,8 @@ Shader "Unlit/EmptyShellTextureShader"
                 grassDisplace *= (1.0 - clampDisplacement);//inverse the clamped displacement = if clamp disp == 0 => FULL DISPLACEMENT else if clamp disp == 1 => NO DISPLACEMENT
                 grassDisplace *= 1.2; //scaling the strength of grass displacement
                 
-                v.vertex.y += (grassDisplace.y * 1.2) * _SheetIndexNormalized;
-                v.vertex.xz += (dir * swayAmount) + grassDisplace.xz * _SheetIndexNormalized;
+                //v.vertex.y += (grassDisplace.y * 1.2) * _SheetIndexNormalized;
+                //v.vertex.xz += (dir * swayAmount) + grassDisplace.xz * _SheetIndexNormalized;
                 //v.vertex.xyz += grassDisplace * _SheetIndexNormalized;
 
                 //vertex & normal based scaling aka the true scale/offset method compared to my old hard coded quad y + offset
@@ -131,7 +133,8 @@ Shader "Unlit/EmptyShellTextureShader"
             {
 
                 //resize uv
-				float2 resizeUV = i.uv * 100;
+				float2 resizeUV = i.uv * _Size;
+                //return float4(resizeUV.xy,0,1);
 
                 //frac(resizeUV) repeat uv 100 times, *2-1 makes it go from -1 to 1 (centering the UV), len takes the signed distance from the center making a circle(SDF),step just makes it 1 or 0 mainly done for colors
                 float lenMask = 1 - length(frac(resizeUV) * 2-1);//1 - length(frac(resizeUV) * 2-1);
@@ -143,7 +146,10 @@ Shader "Unlit/EmptyShellTextureShader"
                 uint2 intUV = resizeUV;
 				uint seed = intUV.x + 100 * intUV.y + 100 * 10; 
                 float rng = lerp(_RNGfloor,_RNGceil,hash11(seed));
-
+                if(_SheetIndexNormalized<rng) return float4(0,1,0,1) * _SheetIndexNormalized;
+                else discard;
+                return 0;
+                //return rng;
                 int cone = ((lenMask * (1 - _Thick )) - ((_SheetIndexNormalized/rng) - _Thick)) < 0;
                 if(cone && _SheetIndex > 0) discard;
 
