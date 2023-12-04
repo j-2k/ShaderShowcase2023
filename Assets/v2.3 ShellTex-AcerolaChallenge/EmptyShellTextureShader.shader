@@ -135,10 +135,11 @@ Shader "Unlit/EmptyShellTextureShader"
                 //resize uv
 				float2 resizeUV = i.uv * _Size;
                 //return float4(resizeUV.xy,0,1);
-
+                
                 //frac(resizeUV) repeat uv 100 times, *2-1 makes it go from -1 to 1 (centering the UV), len takes the signed distance from the center making a circle(SDF),step just makes it 1 or 0 mainly done for colors
                 float lenMask = 1 - length(frac(resizeUV) * 2-1);//1 - length(frac(resizeUV) * 2-1);
-
+                //return float4( 1 - length(frac(resizeUV.xy) * 2 - 1).xxx,1);
+                //return lenMask;
                 //return lenMask;
 
                 //yikes it took me a while to realize why it looked like this https://prnt.sc/qStIjm0B0Nxv instead of this blocky like version https://prnt.sc/jGhhiIbtCVhb
@@ -146,13 +147,17 @@ Shader "Unlit/EmptyShellTextureShader"
                 uint2 intUV = resizeUV;
 				uint seed = intUV.x + 100 * intUV.y + 100 * 10; 
                 float rng = lerp(_RNGfloor,_RNGceil,hash11(seed));
-                if(_SheetIndexNormalized<rng) return float4(0,1,0,1) * _SheetIndexNormalized;
-                else discard;
-                return 0;
+
+
+                //if(_SheetIndexNormalized<rng) return float4(0,1,0,1) * _SheetIndexNormalized;
+                //else discard;
+                //return 0;
                 //return rng;
+
+
                 int cone = ((lenMask * (1 - _Thick )) - ((_SheetIndexNormalized/rng) - _Thick)) < 0;
                 if(cone && _SheetIndex > 0) discard;
-
+                return float4(_Color.xyz * _SheetIndexNormalized,1);
                 //LIGHTING
                 float dotNL = saturate(dot(i.normal, _WorldSpaceLightPos0)*1);  //dot between normal & light dir, standard lighting
                 dotNL = dotNL * 0.5 + 0.5;  //same concept as (1-thick & (-thick))

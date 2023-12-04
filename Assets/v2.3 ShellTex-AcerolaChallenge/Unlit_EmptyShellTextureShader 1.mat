@@ -35,7 +35,7 @@ Material:
     - _RNGfloor: 0
     - _SheetDensity: 0
     - _SheetIndex: 0
-    - _SheetIndexNormalized: 0
+    - _SheetIndexNormalized: 0.362
     - _Size: 20
     - _Thick: 0
     m_Colors:
