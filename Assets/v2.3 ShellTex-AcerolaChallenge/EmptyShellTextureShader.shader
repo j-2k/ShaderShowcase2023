@@ -154,17 +154,19 @@ Shader "Unlit/EmptyShellTextureShader"
                 //return 0;
                 //return rng;
 
-
+                //int acerolaCone = (1 - lenMask) > ((_Thick*5) * (rng - _SheetIndexNormalized));
                 int cone = ((lenMask * (1 - _Thick )) - ((_SheetIndexNormalized/rng) - _Thick)) < 0;
+                //int cone = lenMask < 0;
+                //int cone = lenMask - (_SheetIndexNormalized/rng) < 0;
                 if(cone && _SheetIndex > 0) discard;
-                return float4(_Color.xyz * _SheetIndexNormalized,1);
+                //return float4(_Color.xyz * _SheetIndexNormalized,1);
                 //LIGHTING
                 float dotNL = saturate(dot(i.normal, _WorldSpaceLightPos0)*1);  //dot between normal & light dir, standard lighting
                 dotNL = dotNL * 0.5 + 0.5;  //same concept as (1-thick & (-thick))
                 dotNL = dotNL * dotNL;      //valve square the last value, without doing this it its hard to see the difference vetween the lit and unlit areas
 
                 //float FAOmul = _SheetIndexNormalized * 5;
-                float FAOpow = pow(_SheetIndexNormalized, 2);
+                float FAOpow = pow(_SheetIndexNormalized, 1);
 
                 return float4(_Color.xyz * FAOpow * dotNL,1);
             }
