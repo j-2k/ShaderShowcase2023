@@ -97,7 +97,7 @@ Shader "Unlit/EmptyShellTextureShader"
                 float seed = uvc.x + 100 * uvc.y + 100 * 10; 
                 float sway = sin(_Time.y + (hash11(seed) + (_SheetIndexNormalized*0.3))) * _SheetIndexNormalized;
                 float swayAmount = lerp(0,sway,0.2);
-                float2 dir = float2(1,1);
+                float2 dir = float2(1,1) * 0;
                 //v.vertex.xz += (dir * swayAmount);
 
                 //sphere grass displacement
@@ -111,8 +111,13 @@ Shader "Unlit/EmptyShellTextureShader"
                 grassDisplace *= (1.0 - clampDisplacement);//inverse the clamped displacement = if clamp disp == 0 => FULL DISPLACEMENT else if clamp disp == 1 => NO DISPLACEMENT
                 grassDisplace *= 1.2; //scaling the strength of grass displacement
                 
+                //v.vertex.xyz += dirDisplacement;
+                v.vertex.xyz += dirDisplacement * _SheetIndexNormalized;
+
                 //v.vertex.y += (grassDisplace.y * 1.2) * _SheetIndexNormalized;
                 //v.vertex.xz += (dir * swayAmount) + grassDisplace.xz * _SheetIndexNormalized;
+
+
                 //v.vertex.xyz += grassDisplace * _SheetIndexNormalized;
 
                 //vertex & normal based scaling aka the true scale/offset method compared to my old hard coded quad y + offset

@@ -162,7 +162,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1398197}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -214,7 +214,7 @@ Transform:
   m_GameObject: {fileID: 1398197}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1539106998}
@@ -1127,7 +1127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationOffset: 0
-  _mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  _mesh: {fileID: -462981019419857548, guid: d91479e4eb06c5443963985cade7d977, type: 3}
   _shellTexShader: {fileID: 4800000, guid: 88ef409b42b7b5d4382e9f7438cd1c9c, type: 3}
   isRandomColors: 0
   _shellTexColor: {r: 0.22071949, g: 0.7264151, b: 0.0034264945, a: 0}
