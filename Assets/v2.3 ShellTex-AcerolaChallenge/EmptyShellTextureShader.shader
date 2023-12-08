@@ -112,11 +112,16 @@ Shader "Unlit/EmptyShellTextureShader"
                 grassDisplace *= 1.2; //scaling the strength of grass displacement
                 
                 //v.vertex.xyz += dirDisplacement;
-                v.vertex.xyz += dirDisplacement * _SheetIndexNormalized;
+                //v.vertex.xyz += normalize(dirDisplacement) * _SheetIndexNormalized;
 
                 //v.vertex.y += (grassDisplace.y * 1.2) * _SheetIndexNormalized;
                 //v.vertex.xz += (dir * swayAmount) + grassDisplace.xz * _SheetIndexNormalized;
 
+                float3 grassDirection = v.vertex.xyz - _SpherePosition.xyz;
+                float3 grassDisplacement = normalize(grassDirection) * (1.0 - saturate(length(grassDirection) / 1));
+                //keeping y displacement will cause weird behavior sometimes so you can just remove it if you want
+                //v.vertex.xz += grassDisplacement.xz * _SheetIndexNormalized; //example of above comment
+                v.vertex.xyz += grassDisplacement.xyz * _SheetIndexNormalized;
 
                 //v.vertex.xyz += grassDisplace * _SheetIndexNormalized;
 
@@ -125,10 +130,7 @@ Shader "Unlit/EmptyShellTextureShader"
                 o.vertex = UnityObjectToClipPos(v.vertex);
 
                 o.normal = normalize(UnityObjectToWorldNormal(v.normal));
-                
-                
                 UNITY_TRANSFER_FOG(o,o.vertex);
-
                 return o;
             }
 
