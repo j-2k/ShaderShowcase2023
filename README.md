@@ -8,12 +8,14 @@ This project will hold 2 showcase projects, I explain them below:
 - First part will showcase the Valorant dance effect from the radiant entertainment system with a bunch of my shaders I created & learned throughout the year for fun. This was mainly to re-learn particle effects & learn new shader techniques.  
 - Second part will showcase some secret "quake" stuff let's just say that...
 
-# Showcase Videos
-
-Part 1 |  Part 2
+# Videos out of this Project
+  
+Valorant Dance Project |  Learning Shell Texturing
 :-------------------------:|:-------------------------:
-**Valorant Dance Project** <br><br> [![Valorant Dance Project Thumbnail](https://img.youtube.com/vi/HFGB74eJgD0/0.jpg)](https://www.youtube.com/watch?v=HFGB74eJgD0) | Part 2 Coming soon...
+[<img src="https://github.com/j-2k/ShaderShowcase2023/assets/52252068/71b13887-e8f4-44fd-8787-d20fc117404c" width=500>](https://www.youtube.com/watch?v=HFGB74eJgD0) | [<img src="https://github.com/j-2k/ShaderShowcase2023/assets/52252068/2d1c9c68-e14a-4556-aa7d-d9ccafc60007" width=500>](https://www.youtube.com/watch?v=P-vr9w1XpAY)
 
+This project also contains MANY things not shown DIRECTLY! however, these were the biggest things in terms of what I enjoyed making a video out of.  
+*EXAMPLE, fresnel is not shown DIRECTLY, BUT you can still see fresnel shaders in the valorant dance project video, there are many hidden small effects/easter eggs I put in that video!*
 
 # Shaders currently featured
 A lot of these shaders are incomplete but I will add more & finish them up when I prepare a final scene or if I ever need to showcase properly.
@@ -30,10 +32,10 @@ A lot of these shaders are incomplete but I will add more & finish them up when 
 - Various shaders relating to the Q1 Movement Sim
 
 # WIP Projects
-- Arcade Kill Effect Video // DONE
-- Quake 1 Player Movement Video
-- Water Shader Scene Showcase // to be done before the second project a part 1.5-type idea
-- Shell Texture Shader Scene Showcase // to be done before the second project a part 1.5-type idea?? maybe this will replace the water shader
+- Arcade Kill Effect Video // Completed!
+- Quake 1 Player Movement Video // Postponed
+- Water Shader Scene Showcase // Postponed // to be done before the second project a part 1.5-type idea
+- Shell Texture Shader Scene Showcase // Completed! //to be done before the second project a part 1.5-type idea?? maybe this will replace the water shader
 
 # License?
 Please be careful since I'm using ripped models from popular games. This isn't commercial just going to be for testing & making a video for fun out of it.
@@ -69,6 +71,7 @@ Twitter submission with video > [click here](https://x.com/jumaalremeithi/status
   <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/1d0c09bc-3f7f-4b2d-afd9-9e665c241f5a" alt="Combined Shell" height="" width="49%" title="Combined Shell"/>
     <img src="https://github.com/j-2k/ShaderShowcase/assets/52252068/44d0b30c-f9aa-494e-a5b6-7a5ae1667a92" alt="Combined Shell" height="" width="49%" title="Final"/>
 </p>
+
 
 <img align="right" width="49%" src="Acerolakindagiga.png" />
 
