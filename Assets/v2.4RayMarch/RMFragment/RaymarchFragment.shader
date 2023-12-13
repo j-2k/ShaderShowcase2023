@@ -2,10 +2,10 @@ Shader "Unlit/RaymarchFragment"
 {
     Properties
     {
-        _MainTex ("Texture", 2D) = "white" {}
-        
-        _SpherePos("Sphere Position", Vector) = (0,1,6,1)
-        _LightPos("Light Position", Vector) = (0,1,5,1)
+        //_MainTex ("Texture", 2D) = "white" {}
+        _CameraOrigin("Camera Position", Vector) = (0,1,0,1)
+        _SpherePos("Sphere Position", Vector) = (0,1,8,1)
+        _LightPos("Light Position", Vector) = (0,1,8,4) //w is rotation magnitude offset
     }
     SubShader
     {
@@ -36,18 +36,20 @@ Shader "Unlit/RaymarchFragment"
                 float3 camPos : TEXCOORD1;
             };
 
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
+            //sampler2D _MainTex;
+            //float4 _MainTex_ST;
 
             float4 _SpherePos;
             float4 _LightPos;
+            float4 _CameraOrigin;
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.camPos = _WorldSpaceCameraPos;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                //o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+                o.uv = v.uv;
                 UNITY_TRANSFER_FOG(o,o.vertex);
                 return o;
             }
@@ -109,7 +111,7 @@ Shader "Unlit/RaymarchFragment"
             {
                 float2 cuv = i.uv * 2 - 1;
 
-                float3 rayOrigin = float3(0,1,0);
+                float3 rayOrigin = _CameraOrigin;
                 float3 rayDirection = normalize(float3(cuv.xy,1));
 
                 float distanceRM = RayMarch(rayOrigin, rayDirection);//i.camPos
