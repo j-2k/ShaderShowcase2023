@@ -4,6 +4,7 @@ Shader "Unlit/RaymarchFragment"
     {
         _MainTex ("Texture", 2D) = "white" {}
         _SpherePos("Sphere Position", Vector) = (0,1,6,1)
+        _LightPos("Light Position", Vector) = (0,1,5,1)
     }
     SubShader
     {
@@ -38,6 +39,7 @@ Shader "Unlit/RaymarchFragment"
             float4 _MainTex_ST;
 
             float4 _SpherePos;
+            float4 _LightPos;
 
             v2f vert (appdata v)
             {
@@ -61,6 +63,32 @@ Shader "Unlit/RaymarchFragment"
                 return dRaymarch;
             }
 
+            float3 GetNormals(float3 p)
+            {
+                float d = GetDistance(p);
+                float2 e = float2(0.01, 0);
+
+                float3 normals = d - float3(
+                    GetDistance(p - e.xyy),
+                    GetDistance(p - e.yxy),
+                    GetDistance(p - e.yyx)
+                );
+                return normalize(normals);
+            }
+
+            float GetLight(float3 p)
+            {
+                //_LightPos.xz += float2(sin(_Time.y),0) * 5;
+                float3 lightDir = normalize(_LightPos - p);
+                float3 normal = GetNormals(p);
+
+                float dotNL = saturate(dot(normal, lightDir));
+
+                return dotNL;
+            }
+
+
+
             //github copilot instantly put the raymarch code inside, kinda cool but not exactly what I wanted but kinda close, so i just refactored.
             float RayMarch (float3 rayOrigin, float3 rayDirection)
             {
@@ -80,9 +108,20 @@ Shader "Unlit/RaymarchFragment"
             {
                 float2 cuv = i.uv * 2 - 1;
 
-                float distRM = RayMarch(float3(0,1,0), normalize(float3(cuv.xy,1)));////i.camPos
-                distRM /= 6;
-                return float4(distRM.xxx,1);
+                float3 rayOrigin = float3(0,1,0);
+                float3 rayDirection = normalize(float3(cuv.xy,1));
+
+                float distanceRM = RayMarch(rayOrigin, rayDirection);//i.camPos
+
+                float3 p = rayOrigin + rayDirection * distanceRM;
+                
+                float3 light = GetLight(p);
+                
+                //float3 diff = GetNormals(p); test normals
+                
+                //distanceRM /= _SpherePos.z;
+                
+                return float4(light.xyz,1);
 
                 /*
                 // sample the texture
