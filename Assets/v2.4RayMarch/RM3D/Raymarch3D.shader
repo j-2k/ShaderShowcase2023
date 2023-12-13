@@ -47,22 +47,29 @@ Shader "Unlit/Raymarch3D"
                 return o;
             }
 
+            #define PI 3.1415926535897932384626433832795
+            #define TWO_PI 6.283185307179586476925286766559
+            #define MAX_DIST 1000.0
+            #define MIN_DIST 0.01
+
+            float GetDistance(float3 position)
+            {
+                return 0.4;
+            }
 
             //github copilot instantly put the raymarch code inside, kinda cool but not exactly what I wanted but kinda close, so i just refactored.
             float RayMarch (float3 rayOrigin, float3 rayDirection, uint maxSteps)
             {
                 float dO = 0.0; //Distance from Origin
+                float dS = 0.0; //Distance from Scene
                 for (uint i = 0; i < maxSteps; i++)
                 {
-                    float3 p = rayOrigin + rayDirection * dO;               // standard point calculation dO is the offset for direction or magnitude
-                    float dS = GetDistance(p);                             //dS = distance from the scene
+                    float3 p = rayOrigin + rayDirection * dO;             // standard point calculation dO is the offset for direction or magnitude
+                    dS = GetDistance(p);                             
                     dO += dS;
-                    if (dS < 0.001)
-                    {
-                        return dO;
-                    }
+                    if (dS < MIN_DIST || dO > MAX_DIST) break;            // if we are close enough to the surface or too far away, break
                 }
-                return -1.0;
+                return dO;
             }
 
             fixed4 frag (v2f i) : SV_Target
