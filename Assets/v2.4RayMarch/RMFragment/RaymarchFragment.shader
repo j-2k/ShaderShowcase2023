@@ -3,6 +3,7 @@ Shader "Unlit/RaymarchFragment"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        
         _SpherePos("Sphere Position", Vector) = (0,1,6,1)
         _LightPos("Light Position", Vector) = (0,1,5,1)
     }
@@ -78,7 +79,7 @@ Shader "Unlit/RaymarchFragment"
 
             float GetLight(float3 p)
             {
-                //_LightPos.xz += float2(sin(_Time.y),0) * 5;
+                _LightPos.xz += float2(sin(_Time.y*2),cos(_Time.y*2))*_LightPos.w;
                 float3 lightDir = normalize(_LightPos - p);
                 float3 normal = GetNormals(p);
 
