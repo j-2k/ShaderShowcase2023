@@ -97,12 +97,18 @@ Shader "Unlit/RaymarchFragment"
                     GetDistance(p - e.yyx)
                 );
                     /*trying to understand how partial derivatives work, slightly missing how this gives you a correct normal vector
+                    same as above but with partial derivatives
                     float df_dx = (d - GetDistance(p - e.xyy));
                     float df_dy = (d - GetDistance(p - e.yxy));
                     float df_dz = (d - GetDistance(p - e.yyx));
                     return normalize(float3(df_dx, df_dy, df_dz));
                     */
-                //return normalize(normals);
+
+                    //ok now i kind of understand, after tons of images and desmos trials but a simple summary is to compare the distances of the shifted points (shifting the points means the whole sphere will move with it!) 
+                    //to the original points in the 4 quadrants. (the result from [original distance point] - [shifted distance point] is you get a x and y value that is the vector/correct color gradient to be used as the normal! ) 
+                    //here is a extremely bad drawing of what i was doing and figured it out? https://prnt.sc/DQRrOrAIYs1c i might still be wrong but the idea at least is in my head now. will revisit this later.
+                    //thats basically how to get normals the idea is commented above this function for a reminder.
+                return normalize(normals);
             }
 
 
