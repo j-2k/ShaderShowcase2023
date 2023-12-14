@@ -4,6 +4,7 @@ Shader "Unlit/RaymarchFragment"
     {
         //_MainTex ("Texture", 2D) = "white" {}
         _CameraOrigin("Camera Position", Vector) = (0,1,0,1)
+        _PlanePos("Plane Position", Vector) = (0,0,0,1)
         _SpherePos("Sphere Position", Vector) = (0,1,8,1)
         _LightPos("Light Position", Vector) = (0,1,8,4) //w is rotation magnitude offset
     }
@@ -42,6 +43,7 @@ Shader "Unlit/RaymarchFragment"
             float4 _SpherePos;
             float4 _LightPos;
             float4 _CameraOrigin;
+            float4 _PlanePos;
 
             v2f vert (appdata v)
             {
@@ -54,16 +56,31 @@ Shader "Unlit/RaymarchFragment"
                 return o;
             }
 
+            //NOTES
+            //NOTE 1:
+            //float dPlane = distancePoint.y didnt make sense at first, so I manually got the direction or distance by manually subtracting the y values.
+            //I was thinking that the distance point was static for some reason even though ik it isnt (thinking it was camera origin only)??? but it is not, it is the point that is being raymarched, so it is constantly changing. obviously.
+            //Now I think of the distancePoint as a camera origin that is constantly moving forward if that makes sense, even though thats ... wrong to think? idk,
+            //but that helped me understand it abit more, so now I know getting the plane is just the y axis of the distance point since when raymarching
+            //towards the sphere it will yield a y value that constantly gets lower and lower until it hits the sphere(assuming the sphere is placed on the floor of the plane). 
+            //sorry that this is long over something that is so easy to understand but I just wanted to write it down so I can remember it.
+
+            //NOTE 2:
+
+
             #define MAX_DIST 100.0
             #define MIN_SURF_DIST 0.001
             #define MAX_STEPS 100
 
+
+            //IMPORTANT: GET DISTANCE IS USED TO GET THE DISTANCE OF EVERYTHING IN THE SCENE, SO IF YOU WANT TO ADD MORE OBJECTS, YOU NEED TO ADD IT HERE.
+            //THIS IS KEY WHEN UNDERSTANDING HOW RAYMARCHING ACTUALLY WORKS. The raymarching algortihim is so simple tbh but understanding distances is 10x more important.
             float GetDistance(float3 distancePoint)
             {
                 float dSphere = length(distancePoint - _SpherePos.xyz) - _SpherePos.w;
-                float dPlane = distancePoint.y;
-                float dRaymarch = min(dSphere, dPlane);
-                return dRaymarch;
+                float dPlane = distancePoint.y - _PlanePos.y;// REFERENCE NOTE 1 // for some reason i had a hard time understanding just (dPlane = distancePoint.y).
+                float distanceToScene = min(dSphere, dPlane);         //get min from the 2 objects so we dont step into something we dont want to.
+                return distanceToScene; //distance to scene is the distance scalar from ANYTHING in the scene
             }
 
             float3 GetNormals(float3 p)
