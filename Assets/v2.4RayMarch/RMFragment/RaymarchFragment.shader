@@ -79,16 +79,7 @@ Shader "Unlit/RaymarchFragment"
                 return normalize(normals);
             }
 
-            float GetLight(float3 p)
-            {
-                _LightPos.xz += float2(sin(_Time.y*2),cos(_Time.y*2))*_LightPos.w;
-                float3 lightDir = normalize(_LightPos - p);
-                float3 normal = GetNormals(p);
 
-                float dotNL = saturate(dot(normal, lightDir));
-
-                return dotNL;
-            }
 
 
 
@@ -107,6 +98,23 @@ Shader "Unlit/RaymarchFragment"
                 return dO;
             }
 
+            float GetLight(float3 p)
+            {
+                _LightPos.xz += float2(sin(_Time.y*2),cos(_Time.y*2))*_LightPos.w;
+                float3 lightDir = normalize(_LightPos - p);
+                float3 normal = GetNormals(p);
+
+                float dotNL = saturate(dot(normal, lightDir));
+                float d = RayMarch(p + normal * (MIN_SURF_DIST * 2), lightDir);
+                if (d < length(lightDir)) 
+                {
+                    dotNL *= smoothstep(0.7, 1, d / length(lightDir));
+                    //dotNL *= 0.1;
+                }
+
+                return dotNL;
+            }
+
             fixed4 frag (v2f i) : SV_Target
             {
                 float2 cuv = i.uv * 2 - 1;
@@ -115,6 +123,7 @@ Shader "Unlit/RaymarchFragment"
                 float3 rayDirection = normalize(float3(cuv.xy,1));
 
                 float distanceRM = RayMarch(rayOrigin, rayDirection);//i.camPos
+                if(distanceRM > MAX_DIST) return float4(0,0.4,0.8,1);
 
                 float3 p = rayOrigin + rayDirection * distanceRM;
                 
@@ -124,7 +133,7 @@ Shader "Unlit/RaymarchFragment"
                 
                 //distanceRM /= _SpherePos.z;
                 
-                return float4(light.xyz,1);
+                return float4(light.xyz * float3(1,1,0),1);
 
                 /*
                 // sample the texture
