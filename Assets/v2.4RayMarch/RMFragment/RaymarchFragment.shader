@@ -83,6 +83,9 @@ Shader "Unlit/RaymarchFragment"
                 return distanceToScene; //distance to scene is the distance scalar from ANYTHING in the scene
             }
 
+
+            //in order to get normals on complex objects that have a curve on them its fairly simple, you have to sample 2 points inifi close to each other and 
+            //draw a line between them, effectively the slope & then you get the normal from that line! pretty crazy, cant believe im using the slope formula when back then I use to say when tf am i going to use this.
             float3 GetNormals(float3 p)
             {
                 float d = GetDistance(p);
@@ -93,7 +96,13 @@ Shader "Unlit/RaymarchFragment"
                     GetDistance(p - e.yxy),
                     GetDistance(p - e.yyx)
                 );
-                return normalize(normals);
+                    /*trying to understand how partial derivatives work, slightly missing how this gives you a correct normal vector
+                    float df_dx = (d - GetDistance(p - e.xyy));
+                    float df_dy = (d - GetDistance(p - e.yxy));
+                    float df_dz = (d - GetDistance(p - e.yyx));
+                    return normalize(float3(df_dx, df_dy, df_dz));
+                    */
+                //return normalize(normals);
             }
 
 
@@ -110,7 +119,7 @@ Shader "Unlit/RaymarchFragment"
                     float3 p = rayOrigin + rayDirection * dO;             // standard point calculation dO is the offset for direction or magnitude
                     dS = GetDistance(p);                             
                     dO += dS;
-                    if (dS < MIN_SURF_DIST || dO > MAX_DIST) break;            // if we are close enough to the surface or too far away, break
+                    if (dS < MIN_SURF_DIST || dO > MAX_DIST) break;            // if we are close enough to a surface or went to infinity, break & return distance to the origin
                 }
                 return dO;
             }
@@ -146,8 +155,8 @@ Shader "Unlit/RaymarchFragment"
                 
                 float3 light = GetLight(p);
                 
-                //float3 diff = GetNormals(p); test normals
-                
+                float3 diff = GetNormals(p); //test normals
+                return float4(diff,1);
                 //distanceRM /= _SpherePos.z;
                 
                 return float4(light.xyz * float3(1,1,0),1);
