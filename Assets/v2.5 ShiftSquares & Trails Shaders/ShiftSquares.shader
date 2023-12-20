@@ -16,8 +16,6 @@ Shader "Unlit/ShiftSquares"
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            // make fog work
-            #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
 
@@ -30,7 +28,6 @@ Shader "Unlit/ShiftSquares"
             struct v2f
             {
                 float2 uv : TEXCOORD0;
-                UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
             };
 
@@ -47,7 +44,6 @@ Shader "Unlit/ShiftSquares"
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                UNITY_TRANSFER_FOG(o,o.vertex);
                 return o;
             }
 
@@ -74,26 +70,25 @@ Shader "Unlit/ShiftSquares"
                 fixed4 col = tex2D(_MainTex, i.uv);
                 fixed4 col2 = tex2D(_MainTex2, i.uv);
                 //return col2;
-                // apply fog
-                UNITY_APPLY_FOG(i.fogCoord, col);
-                //float2 uv = frac(i.uv * 10);
+
                 float2 uv = floor(i.uv * _Size);
-                float r = hash11((uv.x*32) + (uv.y + 8));
-                r += sin(_Time.y);
-                clip(r-0.01);
+                float seed =(uv.x*32) + (uv.y + 8);
+                float r = hash11(seed + sin(_Time.x*0.03));
+                float s = sin(_Time.y*2);
+                //float g = smoothstep(-0.5,0.5,sin(_Time.y*1));//gradient
+                //float as = abs(s)-1;
+                if(s < 0)
+                {   
+                    r = lerp(r+s,1,col*1);
+                    //r += s + (col+r);
+                    clip(r-0.01);
+                    //return float4(1,0,1,1)*r;
+                }
+                else
+                {
+
+                }
                 return float4(1,0,1,1)*r;
-                //float r = hash12(uv.xy);
-                //float3 rng = float3(r.xxx + sin(_Time.y));
-
-                
-
-                //TRY TO DO SCRAMBLING FIRST!
-                float rng = r + (sin(_Time.y));
-                float l = lerp(rng,rng,sin(_Time.y)*0.5+0.5);
-                float3 fc = float3(1,1,1) * l;
-
-                return float4(fc,1);
-
 
                 /*
                 float s = step(0,sin(_Time.y));
@@ -106,14 +101,6 @@ Shader "Unlit/ShiftSquares"
                 //rng += sin(_Time.y);
                 float gMAX = lerp(0,rng,gradient);
                 return rng;
-                */
-                /*
-                //clip(gMID);
-                //return gMID;
-                //gMID = lerp(fc,1 - fc,gradient);
-                //float gMID = lerp(col,fc,1 - gMAX);//care inverse of interpolater var t here
-                //float gMIN = lerp(col2,col,gradient);
-                //clip(gMID - 0.01);
                 */
             }
             ENDCG
