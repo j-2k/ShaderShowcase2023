@@ -58,6 +58,7 @@ Shader "Unlit/Circles"
 
                 //Sphere stuff
                 float2 uv = float2(frac(i.uv.x * 4), i.uv.y)*2-1;
+                //uv.x += frac(sin(_Time.y));
                 //- (sin(_Time.y)*0.2+0.2) | (sin(_Time.y*2)*0.25+0.25)
                 float offsetX = (1 - i.uv.x * 0.75);
                 float d = 1-step(1 * offsetX, length(uv));
