@@ -78,33 +78,43 @@ Shader "Unlit/ShiftSquares"
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 //float2 uv = frac(i.uv * 10);
                 float2 uv = floor(i.uv * _Size);
-                float r = hash11((uv.x*32) + (uv.y+8));
+                float r = hash11((uv.x*32) + (uv.y + 8));
+                r += sin(_Time.y);
+                clip(r-0.01);
+                return float4(1,0,1,1)*r;
                 //float r = hash12(uv.xy);
-                float3 fc = float3(r.xxx + sin(_Time.y));
+                //float3 rng = float3(r.xxx + sin(_Time.y));
+
+                
+
+                //TRY TO DO SCRAMBLING FIRST!
+                float rng = r + (sin(_Time.y));
+                float l = lerp(rng,rng,sin(_Time.y)*0.5+0.5);
+                float3 fc = float3(1,1,1) * l;
+
+                return float4(fc,1);
+
+
+                /*
                 float s = step(0,sin(_Time.y));
                 //float s = min(max(sin(_Time.y)*3, 0), 1);
-                float ll = lerp(fc,1-fc,s);
+                float ll = lerp(rng,1-rng,s);
 
                 //https://graphtoy.com/
                 //GRADIENT FOUND VIA SMOOTHSTEP AKA THE TRANSITION SLOPE
-                float gradient = smoothstep(-0.2,0.2,sin(_Time.y*1));
-                float gMAX = lerp(fc,1,gradient);
-                float gMID = lerp(0,fc,gMAX);
+                float gradient = smoothstep(-0.5,0.5,sin(_Time.y*1));
+                //rng += sin(_Time.y);
+                float gMAX = lerp(0,rng,gradient);
+                return rng;
+                */
+                /*
+                //clip(gMID);
+                //return gMID;
                 //gMID = lerp(fc,1 - fc,gradient);
                 //float gMID = lerp(col,fc,1 - gMAX);//care inverse of interpolater var t here
                 //float gMIN = lerp(col2,col,gradient);
                 //clip(gMID - 0.01);
-                return gradient;
-                //return fc.x;
-
-
-                //float l = lerp(col,1,s);//lerp(col,fc,s);
-                //float l2 = lerp(0,fc,l);//lerp(col,fc,s);
-                //clip(l2-0.01);
-                //return l2;
-                //fc = saturate(fc);
-                clip(ll - 0.01);
-                return float4(ll.xxx,1);
+                */
             }
             ENDCG
         }
