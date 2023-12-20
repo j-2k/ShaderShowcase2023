@@ -3,6 +3,7 @@ Shader "Unlit/ShiftSquares"
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _MainTex2 ("Texture2", 2D) = "white" {}
         _Size("UV Size", Range(0, 30)) = 10
     }
     SubShader
@@ -36,6 +37,9 @@ Shader "Unlit/ShiftSquares"
             sampler2D _MainTex;
             float4 _MainTex_ST;
 
+            sampler2D _MainTex2;
+            float4 _MainTex2_ST;
+
             float _Size;
 
             v2f vert (appdata v)
@@ -68,6 +72,8 @@ Shader "Unlit/ShiftSquares"
                 //return sin(_Time.y);
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
+                fixed4 col2 = tex2D(_MainTex2, i.uv);
+                //return col2;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 //float2 uv = frac(i.uv * 10);
@@ -75,8 +81,13 @@ Shader "Unlit/ShiftSquares"
                 float r = hash11((uv.x*32) + (uv.y+8));
                 //float r = hash12(uv.xy);
                 float3 fc = float3(r.xxx + sin(_Time.y));
-                fc = saturate(fc);
-                clip(fc);
+                float s = min(max(sin(_Time.y)*10, 0), 1);
+                //float l = lerp(col,1,s);//lerp(col,fc,s);
+                //float l2 = lerp(0,fc,l);//lerp(col,fc,s);
+                //clip(l2-0.01);
+                //return l2;
+                //fc = saturate(fc);
+                clip(fc-0.01);
                 return float4(fc,1);
             }
             ENDCG
