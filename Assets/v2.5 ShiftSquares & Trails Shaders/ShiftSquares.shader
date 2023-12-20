@@ -81,14 +81,30 @@ Shader "Unlit/ShiftSquares"
                 float r = hash11((uv.x*32) + (uv.y+8));
                 //float r = hash12(uv.xy);
                 float3 fc = float3(r.xxx + sin(_Time.y));
-                float s = min(max(sin(_Time.y)*10, 0), 1);
+                float s = step(0,sin(_Time.y));
+                //float s = min(max(sin(_Time.y)*3, 0), 1);
+                float ll = lerp(fc,1-fc,s);
+
+                //https://graphtoy.com/
+                //GRADIENT FOUND VIA SMOOTHSTEP AKA THE TRANSITION SLOPE
+                float gradient = smoothstep(-0.2,0.2,sin(_Time.y*1));
+                float gMAX = lerp(fc,1,gradient);
+                float gMID = lerp(0,fc,gMAX);
+                //gMID = lerp(fc,1 - fc,gradient);
+                //float gMID = lerp(col,fc,1 - gMAX);//care inverse of interpolater var t here
+                //float gMIN = lerp(col2,col,gradient);
+                //clip(gMID - 0.01);
+                return gradient;
+                //return fc.x;
+
+
                 //float l = lerp(col,1,s);//lerp(col,fc,s);
                 //float l2 = lerp(0,fc,l);//lerp(col,fc,s);
                 //clip(l2-0.01);
                 //return l2;
                 //fc = saturate(fc);
-                clip(fc-0.01);
-                return float4(fc,1);
+                clip(ll - 0.01);
+                return float4(ll.xxx,1);
             }
             ENDCG
         }
