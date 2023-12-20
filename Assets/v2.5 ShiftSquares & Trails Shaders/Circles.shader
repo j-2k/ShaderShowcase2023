@@ -52,14 +52,15 @@ Shader "Unlit/Circles"
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                fixed4 col = tex2D(_MainTex, float2(i.uv.x*2, i.uv.y*0.25+0.75));
+                fixed4 col = tex2D(_MainTex, float2(i.uv.x*1, i.uv.y*0.25+0.75));
                 // apply fog
                 //UNITY_APPLY_FOG(i.fogCoord, col);
 
                 //Sphere stuff
-                float2 uv = float2(frac(i.uv.x * 8), i.uv.y)*2-1;
+                float2 uv = float2(frac(i.uv.x * 4), i.uv.y)*2-1;
                 //- (sin(_Time.y)*0.2+0.2) | (sin(_Time.y*2)*0.25+0.25)
-                float d = 1-step(1 * ((1 - i.uv.x * 0.5)), length(uv));
+                float offsetX = (1 - i.uv.x * 0.75);
+                float d = 1-step(1 * offsetX, length(uv));
                 clip(d-0.1);
                 
                 //Rectangle
@@ -71,7 +72,8 @@ Shader "Unlit/Circles"
                 */
 
                 
-                return col * d;
+                return lerp(col,1 - col,sin(_Time.y*4)*0.5+0.5);
+                //saturate(col + d)
                 //return (1-i.uv.x);
                 
                 //return float4(i.uv,0,1);
