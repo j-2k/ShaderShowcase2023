@@ -58,10 +58,15 @@ Shader "Unlit/RectTrail"
                 //return float4(uv.xxxx * sin(uv.y*3.14));
 
                 //circle sdf implementation
+                /*
                 float2 uv = float2(i.uv.x*0.5,i.uv.y-0.5)*2;
                 float d = saturate(1-length(uv));
                 float3 l = lerp(float3(1,1,0) * d,float3(1,0,1) * d,sin(_Time.y*2));
                 return float4(l*2,d);
+                */
+
+                //tex implementation
+                return col.xyzx;
             }
             ENDCG
         }
