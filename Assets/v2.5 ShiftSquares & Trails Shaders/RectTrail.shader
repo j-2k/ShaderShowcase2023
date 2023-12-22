@@ -66,7 +66,7 @@ Shader "Unlit/RectTrail"
                 */
 
                 //tex implementation
-                return col.xyzx;
+                return ((sin(_Time.w)*0.25 + 0.25) * col.x) + col.x;
             }
             ENDCG
         }
