@@ -91,6 +91,7 @@ Shader "Unlit/RaymarchFragment"
             {   
                 float3 sp = _SpherePos.xyz;
                 sp.x += sin(_Time.y*2) * 2;
+                sp.z += sin(_Time.y*2)+(_Time.y);
                 float dSphere = length(distancePoint - (sp)) - _SpherePos.w;
                 float dPlane = distancePoint.y - _PlanePos.y;// REFERENCE NOTE 1 // for some reason i had a hard time understanding just (dPlane = distancePoint.y).
                 
@@ -182,13 +183,15 @@ Shader "Unlit/RaymarchFragment"
                 return dotNL;
             }
 
-
-
             fixed4 frag (v2f i) : SV_Target
             {
+                //Debug = 1 will show u normals & "depth buffer", 0 will show u the colored scene
+                float DEBUG = 1;
+
                 float2 cuv = i.uv * 2 - 1;
 
                 float3 rayOrigin = _CameraOrigin;
+                rayOrigin.z += (_Time.y);
 
                 rayOrigin.xy += float2(sin(_Time.y*0.5) * 2,cos(_Time.y*1) * 1);
 
@@ -197,7 +200,7 @@ Shader "Unlit/RaymarchFragment"
 
                 float3 rayDirection = normalize(float3(cuv.xy,1));
 
-                rayDirection.z += rot2D(rayDirection.xy, _Time.y) * 1.2;
+                rayDirection.z += rot2D(rayDirection.xy, _Time.y) * 0.5;
                 rayDirection.xy += rot2D(rayDirection.xy, _Time.z) * 0.2;
                 rayDirection = normalize(rayDirection);
 
@@ -216,13 +219,24 @@ Shader "Unlit/RaymarchFragment"
 
                 light += (distanceRM*0.04) + tCol;
                 
-                //float3 diff = GetNormals(p); //test normals
+                float3 diff = GetNormals(p); //test normals
                 //return float4(diff,1);
                 //distanceRM /= _SpherePos.z;
                 //float3 bgc = smoothstep(0.1,1,(distanceRM*0.05)) * palette(_Time.y,float3(0.7, 0.5, 0.5),float3(0.5, 0.2, 0.9),float3(1.0, 0.5, 0.3),float3(0.09, 0.33, 0.67));
                 //return float4(bgc,1);
                 //if(distanceRM > 22) return float4(0,0.4,0.8,1);//skybox
-                return float4(light.xyz * float3(1,1,1),1);
+
+
+
+                if(cuv.x < (1-DEBUG)){ 
+                    return float4(light.xyz * float3(1,1,1),1);
+                } else {
+                    if(cuv.y < 0){return float4(diff,1);}
+                    return float4((distanceRM*0.01).rrr,1);
+                }
+                
+
+                
 
                 /*
                 // sample the texture
