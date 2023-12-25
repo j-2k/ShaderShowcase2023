@@ -67,32 +67,45 @@ Shader "Unlit/RaymarchFragment"
 
             //NOTE 2:
 
-
+            #define PI 3.1415
+            #define TAU 6.2831
             #define MAX_DIST 100.0
             #define MIN_SURF_DIST 0.001
             #define MAX_STEPS 100
 
+            float3 palette( in float t, in float3 a, in float3 b, in float3 c, in float3 d )
+            {
+                return a + b*cos( 6.28318*(c*t+d) );
+            }
+
+
             float sdBox( float3 p, float3 b )
             {
-            float3 q = abs(p) - b;
-            return length(max(q,0.0)) + min(max(q.x,max(q.y,q.z)),0.0);
+                float3 q = abs(p) - b;
+                return length(max(q,0.0)) + min(max(q.x,max(q.y,q.z)),0.0);
             }
 
             //IMPORTANT: GET DISTANCE IS USED TO GET THE DISTANCE OF EVERYTHING IN THE SCENE, SO IF YOU WANT TO ADD MORE OBJECTS, YOU NEED TO ADD IT HERE.
             //THIS IS KEY WHEN UNDERSTANDING HOW RAYMARCHING ACTUALLY WORKS. The raymarching algortihim is so simple tbh but understanding distances is 10x more important.
             float GetDistance(float3 distancePoint)
-            {
-                float dSphere = length(distancePoint - _SpherePos.xyz) - _SpherePos.w;
-
+            {   
+                float3 sp = _SpherePos.xyz;
+                sp.x += sin(_Time.y*2) * 2;
+                float dSphere = length(distancePoint - (sp)) - _SpherePos.w;
+                float dPlane = distancePoint.y - _PlanePos.y;// REFERENCE NOTE 1 // for some reason i had a hard time understanding just (dPlane = distancePoint.y).
+                
                 distancePoint.z += _Time.y;
-
                 float3 q = frac(distancePoint)-0.5;
-
-                float dbox = sdBox(q, float3(0.05,0.05,0.2));
-                //float dSpheres = length(q - float3(0.01,0.01,0.01)) - 0.1;
+                
+                q.z = fmod(distancePoint.z, 0.3) - 0.15;
+                q.y += sin(distancePoint.z * 4 + _Time.y*3) * 0.1 + 0.1;
                 
 
-                float dPlane = distancePoint.y - _PlanePos.y;// REFERENCE NOTE 1 // for some reason i had a hard time understanding just (dPlane = distancePoint.y).
+                float dbox = sdBox(q, float3(0.1,0.1,0.1));
+                
+                //float dbox = length(q - float3(0.01,0.01,0.01)) - 0.1;
+                
+
                 float distanceToScene = min(dbox,min(dSphere, dPlane));         //get min from the 2 objects so we dont step into something we dont want to.
                 //float distanceToScene = min(dSphere, dPlane);
                 
@@ -105,7 +118,7 @@ Shader "Unlit/RaymarchFragment"
             float3 GetNormals(float3 p)
             {
                 float d = GetDistance(p);
-                float2 e = float2(0.01, 0);
+                float2 e = float2(0.00001, 0);
 
                 float3 normals = d - float3(
                     GetDistance(p - e.xyy),
@@ -129,7 +142,12 @@ Shader "Unlit/RaymarchFragment"
 
 
 
-
+            float2 rot2D(float2 p, float a)
+            {
+                float c = cos(a);
+                float s = sin(a);
+                return float2(p.x * c - p.y * s, p.x * s + p.y * c);
+            }
 
             //github copilot instantly put the raymarch code inside, kinda cool but not exactly what I wanted but kinda close, so i just refactored.
             float RayMarch (float3 rayOrigin, float3 rayDirection)
@@ -139,6 +157,7 @@ Shader "Unlit/RaymarchFragment"
                 for (uint i = 0; i < MAX_STEPS; i++)
                 {
                     float3 p = rayOrigin + rayDirection * dO;             // standard point calculation dO is the offset for direction or magnitude
+                    //p.xy += rot2D(p.xy, p); //rotate the scene
                     dS = GetDistance(p);                             
                     dO += dS;
                     if (dS < MIN_SURF_DIST || dO > MAX_DIST) break;            // if we are close enough to a surface or went to infinity, break & return distance to the origin
@@ -163,25 +182,46 @@ Shader "Unlit/RaymarchFragment"
                 return dotNL;
             }
 
+
+
             fixed4 frag (v2f i) : SV_Target
             {
                 float2 cuv = i.uv * 2 - 1;
 
                 float3 rayOrigin = _CameraOrigin;
+
+                rayOrigin.xy += float2(sin(_Time.y*0.5) * 2,cos(_Time.y*1) * 1);
+
+                //rayOrigin.xy = rot2D(rayOrigin.xy, _Time.y) * 2;
+                //cuv.xy += rot2D(cuv.xy, _Time.y) * 0.1;
+
                 float3 rayDirection = normalize(float3(cuv.xy,1));
 
+                rayDirection.z += rot2D(rayDirection.xy, _Time.y) * 1.2;
+                rayDirection.xy += rot2D(rayDirection.xy, _Time.z) * 0.2;
+                rayDirection = normalize(rayDirection);
+
                 float distanceRM = RayMarch(rayOrigin, rayDirection);//i.camPos
+                //return (distanceRM)*0.01;
+
                 //if(distanceRM > MAX_DIST) return float4(0,0.4,0.8,1);//skybox
                 float3 p = rayOrigin + rayDirection * distanceRM;
                 //return float4(abs(p.rrr/50),1);
                 
+                float3 tCol = palette(distanceRM + _Time.w,float3(0.7, 0.5, 0.5),float3(0.5, 0.2, 0.9),float3(1.0, 0.5, 0.3),float3(0.09, 0.33, 0.67));
                 
                 float3 light = GetLight(p);
+
+                light -= (light * (distanceRM*0.05));
+
+                light += (distanceRM*0.04) + tCol;
                 
                 //float3 diff = GetNormals(p); //test normals
                 //return float4(diff,1);
                 //distanceRM /= _SpherePos.z;
-                
+                //float3 bgc = smoothstep(0.1,1,(distanceRM*0.05)) * palette(_Time.y,float3(0.7, 0.5, 0.5),float3(0.5, 0.2, 0.9),float3(1.0, 0.5, 0.3),float3(0.09, 0.33, 0.67));
+                //return float4(bgc,1);
+                //if(distanceRM > 22) return float4(0,0.4,0.8,1);//skybox
                 return float4(light.xyz * float3(1,1,1),1);
 
                 /*

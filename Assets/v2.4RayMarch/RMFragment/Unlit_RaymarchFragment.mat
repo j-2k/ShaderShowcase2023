@@ -28,7 +28,7 @@ Material:
     m_Floats: []
     m_Colors:
     - _CameraOrigin: {r: 0, g: 2, b: 1, a: 1}
-    - _LightPos: {r: 0.5, g: 3, b: 8, a: 4}
+    - _LightPos: {r: 0, g: 7, b: 8, a: 8}
     - _PlanePos: {r: 0, g: 0, b: 0, a: 1}
-    - _SpherePos: {r: 0, g: 1, b: 8, a: 1}
+    - _SpherePos: {r: 0, g: 0.5, b: 8, a: 0.5}
   m_BuildTextureStacks: []
