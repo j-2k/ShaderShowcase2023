@@ -72,14 +72,30 @@ Shader "Unlit/RaymarchFragment"
             #define MIN_SURF_DIST 0.001
             #define MAX_STEPS 100
 
+            float sdBox( float3 p, float3 b )
+            {
+            float3 q = abs(p) - b;
+            return length(max(q,0.0)) + min(max(q.x,max(q.y,q.z)),0.0);
+            }
 
             //IMPORTANT: GET DISTANCE IS USED TO GET THE DISTANCE OF EVERYTHING IN THE SCENE, SO IF YOU WANT TO ADD MORE OBJECTS, YOU NEED TO ADD IT HERE.
             //THIS IS KEY WHEN UNDERSTANDING HOW RAYMARCHING ACTUALLY WORKS. The raymarching algortihim is so simple tbh but understanding distances is 10x more important.
             float GetDistance(float3 distancePoint)
             {
                 float dSphere = length(distancePoint - _SpherePos.xyz) - _SpherePos.w;
+
+                distancePoint.z += _Time.y;
+
+                float3 q = frac(distancePoint)-0.5;
+
+                float dbox = sdBox(q, float3(0.05,0.05,0.2));
+                //float dSpheres = length(q - float3(0.01,0.01,0.01)) - 0.1;
+                
+
                 float dPlane = distancePoint.y - _PlanePos.y;// REFERENCE NOTE 1 // for some reason i had a hard time understanding just (dPlane = distancePoint.y).
-                float distanceToScene = min(dSphere, dPlane);         //get min from the 2 objects so we dont step into something we dont want to.
+                float distanceToScene = min(dbox,min(dSphere, dPlane));         //get min from the 2 objects so we dont step into something we dont want to.
+                //float distanceToScene = min(dSphere, dPlane);
+                
                 return distanceToScene; //distance to scene is the distance scalar from ANYTHING in the scene
             }
 
@@ -155,17 +171,18 @@ Shader "Unlit/RaymarchFragment"
                 float3 rayDirection = normalize(float3(cuv.xy,1));
 
                 float distanceRM = RayMarch(rayOrigin, rayDirection);//i.camPos
-                if(distanceRM > MAX_DIST) return float4(0,0.4,0.8,1);
-
+                //if(distanceRM > MAX_DIST) return float4(0,0.4,0.8,1);//skybox
                 float3 p = rayOrigin + rayDirection * distanceRM;
+                //return float4(abs(p.rrr/50),1);
+                
                 
                 float3 light = GetLight(p);
                 
-                float3 diff = GetNormals(p); //test normals
-                return float4(diff,1);
+                //float3 diff = GetNormals(p); //test normals
+                //return float4(diff,1);
                 //distanceRM /= _SpherePos.z;
                 
-                return float4(light.xyz * float3(1,1,0),1);
+                return float4(light.xyz * float3(1,1,1),1);
 
                 /*
                 // sample the texture
