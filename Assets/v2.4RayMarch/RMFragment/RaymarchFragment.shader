@@ -91,15 +91,16 @@ Shader "Unlit/RaymarchFragment"
             {   
                 float3 sp = _SpherePos.xyz;
                 sp.x += sin(_Time.y*2) * 2;
-                sp.z += sin(_Time.y*2)+(_Time.y);
+                //sp.z += sin(_Time.y*2)+(_Time.y);
                 float dSphere = length(distancePoint - (sp)) - _SpherePos.w;
                 float dPlane = distancePoint.y - _PlanePos.y;// REFERENCE NOTE 1 // for some reason i had a hard time understanding just (dPlane = distancePoint.y).
                 
                 distancePoint.z += _Time.y;
+                distancePoint.y += sin(distancePoint.z * 4.0 + _Time.y * 2)*0.1;
                 float3 q = frac(distancePoint)-0.5;
                 
                 q.z = fmod(distancePoint.z, 0.3) - 0.15;
-                q.y += sin(distancePoint.z * 4 + _Time.y*3) * 0.1 + 0.1;
+                //q.y += sin(distancePoint.z * 4 + _Time.y*3) * 0.1 + 0.1;
                 
 
                 float dbox = sdBox(q, float3(0.1,0.1,0.1));
@@ -186,12 +187,12 @@ Shader "Unlit/RaymarchFragment"
             fixed4 frag (v2f i) : SV_Target
             {
                 //Debug = 1 will show u normals & "depth buffer", 0 will show u the colored scene
-                float DEBUG = 1;
+                float DEBUG = 0;
 
                 float2 cuv = i.uv * 2 - 1;
 
                 float3 rayOrigin = _CameraOrigin;
-                rayOrigin.z += (_Time.y);
+                //rayOrigin.z += (_Time.y);
 
                 rayOrigin.xy += float2(sin(_Time.y*0.5) * 2,cos(_Time.y*1) * 1);
 
